@@ -1,13 +1,13 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import green from '@material-ui/core/colors/green'
-import createMuiTheme  from '@material-ui/core/styles'
+import SimpleAppBar from './NavBar'
+import SimpleSearchBar from './SearchBar'
 
-class Homepage extends React.Component {  
+class Homepage extends React.Component {
   render () {
-    return (<Button variant="raised" style={{backgroundColor:'#5AD81D'}}>
-          Vous êtes gérant de salle de sport ?
-        </Button>
+    return (<div>
+      < SimpleAppBar />
+      < SimpleSearchBar />
+    </div>
     )
   }
 }
