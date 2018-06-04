@@ -12,7 +12,8 @@ const styles = {
     flexGrow: 1
   },
   flex: {
-    flex: 1
+    flex: 1,
+    color: '#66FF33'
   }
 }
 
