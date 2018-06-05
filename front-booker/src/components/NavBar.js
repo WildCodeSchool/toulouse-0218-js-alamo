@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -23,13 +23,14 @@ class SimpleAppBar extends React.Component {
     this.state = {}
   }
   render () {
-    return (<div className="classes.root">
+    const { classes } = this.props
+    return (<div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <Typography variant="title" color="inherit" className="classes.flex">
+          <Typography variant="title" color="inherit" className={classes.flex}>
           Alamo
           </Typography>
-          <Button className="classes.btn" variant="raised" style={{backgroundColor: '#66FF33'}}>
+          <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
         Vous êtes gérant de salle de sport ?
           </Button> <a href ="#" ><img src={permIdentity} className="App-logo" alt="logo" /> </a>
         </Toolbar>
@@ -37,6 +38,11 @@ class SimpleAppBar extends React.Component {
     </div>
     )
   }
+}
+
+SimpleAppBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  label: PropTypes.string
 }
 
 export default withStyles(styles)(SimpleAppBar)

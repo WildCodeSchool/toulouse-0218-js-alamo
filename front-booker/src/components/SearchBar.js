@@ -37,7 +37,7 @@ class SimpleSearchBar extends React.Component {
               <h1> RESERVEZ VOTRE SESSION SPORTIVE EN LIGNE </h1>
 
               <Grid container spacing={24}>
-                <Grid item xs={4}>
+                <Grid item xs={4}>             
                 </Grid>
                 <Grid item xs={4}>
                   <SearchBar className="classes.search" position="static" color="default"
