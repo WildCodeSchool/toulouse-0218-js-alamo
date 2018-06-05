@@ -1,13 +1,16 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import green from '@material-ui/core/colors/green'
-import createMuiTheme  from '@material-ui/core/styles'
+import Navbar from './Navbar'
+
 
 class Homepage extends React.Component {  
   render () {
-    return (<Button variant="raised" style={{backgroundColor:'#5AD81D'}}>
-          Vous êtes gérant de salle de sport ?
-        </Button>
+    return (<div>
+      <Navbar />
+      <Button variant="raised" style={{backgroundColor:'#5AD81D'}}>
+        Vous êtes gérant de salle de sport ?
+      </Button>
+      </div>
     )
   }
 }
