@@ -17,10 +17,14 @@ const styles = {
   }
 }
 
-function SimpleAppBar (props) {
-  const { classes } = props
-  return (
-    <div className={classes.root}>
+class SimpleAppBar extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+  render () {
+    const { classes } = this.props
+    return (<div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="title" color="inherit" className={classes.flex}>
@@ -32,11 +36,13 @@ function SimpleAppBar (props) {
         </Toolbar>
       </AppBar>
     </div>
-  )
+    )
+  }
 }
 
 SimpleAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  label: PropTypes.string
 }
 
 export default withStyles(styles)(SimpleAppBar)
