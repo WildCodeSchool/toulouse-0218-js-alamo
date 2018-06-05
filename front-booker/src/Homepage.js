@@ -4,10 +4,11 @@ import SimpleSearchBar from './components/SearchBar'
 
 class Homepage extends React.Component {
   render () {
-    return (<div>
-      < SimpleAppBar />
-      < SimpleSearchBar />
-    </div>
+    return (
+      <div>
+        < SimpleAppBar />
+        < SimpleSearchBar />
+      </div>
     )
   }
 }
