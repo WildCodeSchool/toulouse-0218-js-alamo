@@ -1,16 +1,13 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import Navbar from './Navbar'
+import SimpleAppBar from './components/NavBar'
+import SimpleSearchBar from './components/SearchBar'
 
-
-class Homepage extends React.Component {  
+class Homepage extends React.Component {
   render () {
     return (<div>
-      <Navbar />
-      <Button variant="raised" style={{backgroundColor:'#5AD81D'}}>
-        Vous êtes gérant de salle de sport ?
-      </Button>
-      </div>
+      < SimpleAppBar />
+      < SimpleSearchBar />
+    </div>
     )
   }
 }
