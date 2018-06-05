@@ -5,7 +5,7 @@ import SearchBar from 'material-ui-search-bar'
 import Button from '@material-ui/core/Button'
 // import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-// import MultiSelectField from './SelectBar'
+import MultiSelectField from './SelectBar'
 
 const styles = theme => ({
   root: {
@@ -37,7 +37,8 @@ class SimpleSearchBar extends React.Component {
               <h1> RESERVEZ VOTRE SESSION SPORTIVE EN LIGNE </h1>
 
               <Grid container spacing={24}>
-                <Grid item xs={4}>             
+                <Grid item xs={4}>
+                  < MultiSelectField />
                 </Grid>
                 <Grid item xs={4}>
                   <SearchBar className="classes.search" position="static" color="default"
