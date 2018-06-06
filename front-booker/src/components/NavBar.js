@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import permIdentity from '../images/permIdentity.png'
 import Button from '@material-ui/core/Button'
+import '../index.css'
 
 const styles = {
   root: {
@@ -27,7 +28,7 @@ class SimpleAppBar extends React.Component {
     return (<div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
-          <Typography variant="title" className={classes.flex} >
+          <Typography variant="title" className={classes.flex}>
           Alamo
           </Typography>
           <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>

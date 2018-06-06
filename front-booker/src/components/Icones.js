@@ -35,10 +35,10 @@ class IconeSport extends React.Component {
               <img src={icone6} className="icone" alt="icone" style={{width: '33%', paddingLeft: '50%', paddingBottom: '30%'}} />
             </Grid>
             <Grid item xs={4}>
-              <img src={icone5} className="icone" alt="icone" style={{width: '33%', paddingLeft: '30%', paddingBottom: '30%'}} />
+              <img src={icone5} className="icone" alt="icone" style={{width: '33%', paddingLeft: '50%', paddingBottom: '30%'}} />
             </Grid>
             <Grid item xs={4}>
-              <img src={icone4} className="icone" alt="icone" style={{width: '33%', paddingBottom: '30%'}} />
+              <img src={icone4} className="icone" alt="icone" style={{width: '33%', paddingLeft: '30%', paddingBottom: '30%'}} />
             </Grid>
           </Grid>
         </Grid>
