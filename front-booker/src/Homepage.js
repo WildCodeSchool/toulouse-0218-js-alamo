@@ -18,7 +18,7 @@ class Homepage extends React.Component {
     return (<div>
       <Paper className={classes.paper}>
         < SimpleAppBar />
-        < SimpleSearchBar />
+        < SimpleSearchBar nextStep={this.props.nextStep} />
         < IconeSport />
       </Paper>
     </div>
@@ -26,6 +26,7 @@ class Homepage extends React.Component {
   }
 }
 Homepage.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  nextStep: PropTypes.func
 }
 export default withStyles(styles)(Homepage)

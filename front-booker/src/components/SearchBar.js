@@ -45,7 +45,7 @@ class SimpleSearchBar extends React.Component {
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                  <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+                  <Button className={classes.btn} onClick={this.props.nextStep} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
 
                 Recherchez
                   </Button>
@@ -60,7 +60,8 @@ class SimpleSearchBar extends React.Component {
 }
 
 SimpleSearchBar.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  nextStep: PropTypes.func
 }
 
 export default withStyles(styles)(SimpleSearchBar)

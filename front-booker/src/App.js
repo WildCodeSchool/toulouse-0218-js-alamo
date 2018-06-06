@@ -14,13 +14,13 @@ class App extends Component {
   }
   nextStep () {
     const newStep = this.state.step + 1
-    this.setStep({
+    this.setState({
       step: newStep
     })
   }
   onResultDone (result) {
     const newStep = this.state.step + 1
-    this.setStep({
+    this.setState({
       result: result,
       step: newStep
     })
@@ -30,7 +30,7 @@ class App extends Component {
     const step = this.state.step
     let componentToShow
     if (step === 0) {
-      componentToShow = <Homepage />
+      componentToShow = <Homepage nextStep={this.nextStep} />
     } else if (step === 1) {
       componentToShow = <ResultTransitory onResultDone={this.onResultDone}/>
     }
