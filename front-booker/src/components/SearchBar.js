@@ -16,11 +16,7 @@ class SimpleSearchBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
-    this.onClickButton = this.onClickButton.bind(this)
   }
-  // onClickButton (event) {
-  //   this.props.onResultdone(this.state)
-  // }
   render () {
     const { classes } = this.props
     return (
