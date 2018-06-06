@@ -24,7 +24,7 @@ class IconeSport extends React.Component {
         <Grid item xs={12}>
           <Grid
             container
-            spacing={10}
+            spacing={8}
             className={classes.demo}
             direction={'row'}
             justify={'center'}

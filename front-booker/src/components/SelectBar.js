@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
+import { withStyles } from '@material-ui/core/styles'
 import '../css/react-select.min.css'
 
 const sports = [
@@ -8,6 +9,14 @@ const sports = [
   { label: 'Tennis', value: 'tennis' },
   { label: 'Equitation', value: 'equitation' }
 ]
+
+const styles = {
+  placeholder: {
+    '&::placeholder': {
+      color: 'red'
+    }
+  }
+}
 
 class MultiSelectField extends React.Component {
   constructor (props) {
@@ -40,9 +49,10 @@ class MultiSelectField extends React.Component {
 
   render () {
     const { disabled, stayOpen, value } = this.state
+    const { classes } = this.props
     const options = sports
     return (
-      <div className="section">
+      <div className="section" style={{height: '100%'}}>
         <Select
           closeOnSelect={!stayOpen}
           disabled={disabled}
@@ -54,7 +64,8 @@ class MultiSelectField extends React.Component {
           rtl={this.state.rtl}
           simpleValue
           value={value}
-          style={{height: '7vh', borderRadius: 0, borderColor: '#A2A9BC', textAlign: 'center'}}
+          className={classes.placeholder}
+          style={{ borderRadius: 0, borderColor: '#A2A9BC', padding: '10px', verticalAlign: 'middle' }}
         />
       </div>
     )
@@ -66,4 +77,4 @@ MultiSelectField.propTypes = {
   label: PropTypes.string
 }
 
-export default MultiSelectField
+export default withStyles(styles)(MultiSelectField)
