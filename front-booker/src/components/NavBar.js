@@ -27,7 +27,7 @@ class SimpleAppBar extends React.Component {
     return (<div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
-          <Typography variant="title" className={classes.flex} >
+          <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'ChampagneLimousines' }}>
           Alamo
           </Typography>
           <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>

@@ -32,7 +32,7 @@ class SimpleSearchBar extends React.Component {
             style={{height: '60vh'}}
           >
             <form>
-              <h1 style={{color: '#49515F'}} > RESERVEZ VOTRE SESSION SPORTIVE EN LIGNE </h1>
+              <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>
 
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={4}>
