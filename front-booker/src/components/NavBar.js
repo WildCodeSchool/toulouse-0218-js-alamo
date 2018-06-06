@@ -17,13 +17,17 @@ const styles = {
   }
 }
 
-function SimpleAppBar (props) {
-  const { classes } = props
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
+class SimpleAppBar extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+  render () {
+    const { classes } = this.props
+    return (<div className={classes.root}>
+      <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
-          <Typography variant="title" color="inherit" className={classes.flex}>
+          <Typography variant="title" className={classes.flex} >
           Alamo
           </Typography>
           <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
@@ -32,7 +36,8 @@ function SimpleAppBar (props) {
         </Toolbar>
       </AppBar>
     </div>
-  )
+    )
+  }
 }
 
 SimpleAppBar.propTypes = {
