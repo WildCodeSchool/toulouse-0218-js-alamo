@@ -12,7 +12,7 @@ const styles = theme => ({
   }
 })
 
-class SimpleSearchBar extends React.Component {
+class SearchLocationBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -29,7 +29,7 @@ class SimpleSearchBar extends React.Component {
             direction={'row'}
             justify={'center'}
             alignItems={'center'}
-            style={{height: '60vh'}}
+            style={{height: '60vh'}} // A VOIR AVEC BENOIT MET UNE MARGE EN BAS DE PAGE !
           >
             <form>
               <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>
@@ -57,7 +57,7 @@ class SimpleSearchBar extends React.Component {
   }
 }
 
-SimpleSearchBar.propTypes = {
+SearchLocationBar.propTypes = {
   classes: PropTypes.object
 }
-export default withStyles(styles)(SimpleSearchBar)
+export default withStyles(styles)(SearchLocationBar)

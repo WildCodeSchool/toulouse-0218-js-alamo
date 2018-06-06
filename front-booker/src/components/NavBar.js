@@ -17,7 +17,7 @@ const styles = {
   }
 }
 
-class SimpleAppBar extends React.Component {
+class NavBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -40,8 +40,8 @@ class SimpleAppBar extends React.Component {
   }
 }
 
-SimpleAppBar.propTypes = {
+NavBar.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(SimpleAppBar)
+export default withStyles(styles)(NavBar)

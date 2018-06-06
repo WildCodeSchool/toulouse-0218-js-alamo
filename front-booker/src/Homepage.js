@@ -1,10 +1,11 @@
 import React from 'react'
-import SimpleAppBar from './components/NavBar'
-import SimpleSearchBar from './components/SearchBar'
+import NavBar from './components/NavBar'
+import SearchLocationBar from './components/SearchBar'
 import { withStyles } from '@material-ui/core/styles'
 import IconeSport from './components/Icones'
 import PropTypes from 'prop-types'
 import Paper from '@material-ui/core/Paper'
+import IconePresentation from './components/IconePresentation'
 import './index.css'
 
 const styles = theme => ({
@@ -17,10 +18,14 @@ class Homepage extends React.Component {
     const { classes } = this.props
     return (<div>
       <Paper className={classes.paper}>
-        < SimpleAppBar />
-        < SimpleSearchBar />
+        < NavBar />
+        < SearchLocationBar />
         < IconeSport />
       </Paper>
+      <Paper className={classes.paperIcones}>
+        < IconePresentation />
+      </Paper>
+
     </div>
     )
   }

@@ -11,14 +11,10 @@ const sports = [
 ]
 
 const styles = {
-  placeholder: {
-    '&::placeholder': {
-      color: 'red'
-    }
-  }
+
 }
 
-class MultiSelectField extends React.Component {
+class SelectBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -54,6 +50,7 @@ class MultiSelectField extends React.Component {
     return (
       <div className="section" style={{height: '100%'}}>
         <Select
+          className={classes.placeholder}
           closeOnSelect={!stayOpen}
           disabled={disabled}
           multi
@@ -64,7 +61,6 @@ class MultiSelectField extends React.Component {
           rtl={this.state.rtl}
           simpleValue
           value={value}
-          className={classes.placeholder}
           style={{ borderRadius: 0, borderColor: '#A2A9BC', padding: '10px', verticalAlign: 'middle' }}
         />
       </div>
@@ -72,9 +68,9 @@ class MultiSelectField extends React.Component {
   }
 }
 
-MultiSelectField.propTypes = {
+SelectBar.propTypes = {
   classes: PropTypes.object,
   label: PropTypes.string
 }
 
-export default withStyles(styles)(MultiSelectField)
+export default withStyles(styles)(SelectBar)
