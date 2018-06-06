@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import permIdentity from '../images/permIdentity.png'
 import Button from '@material-ui/core/Button'
+import Modal from '../modal/modal'
 
 const styles = {
   root: {
@@ -20,10 +21,26 @@ const styles = {
 class SimpleAppBar extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      modalOpen: false
+    }
+
+    this.handleOpen= this.handleOpen.bind(this)
+    this.handleClose= this.handleClose.bind(this)
+
   }
+
+  handleOpen = () => {
+    this.setState({ modalOpen: true });
+  };
+
+  handleClose = () => {
+    this.setState({ modalOpen: false });
+  };
+
   render () {
     const { classes } = this.props
+    const { modalOpen}= this.state
     return (<div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
@@ -32,9 +49,11 @@ class SimpleAppBar extends React.Component {
           </Typography>
           <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
         Vous êtes gérant de salle de sport ?
-          </Button> <a href ="#" ><img src={permIdentity} className="App-logo" alt="logo" /> </a>
+          </Button> <a href ="#"  onClick={this.handleOpen}><img src={permIdentity} className="App-logo" alt="logo" /> </a>
         </Toolbar>
       </AppBar>
+
+      < Modal open={modalOpen} close={this.handleClose} />
     </div>
     )
   }
