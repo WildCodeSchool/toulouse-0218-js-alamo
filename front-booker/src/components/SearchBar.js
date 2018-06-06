@@ -1,20 +1,14 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import SearchBar from 'material-ui-search-bar'
 import Button from '@material-ui/core/Button'
-// import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import MultiSelectField from './SelectBar'
-import PropTypes from 'prop-types'
 
 const styles = theme => ({
   root: {
     flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center'
   }
 })
 
@@ -24,34 +18,39 @@ class SimpleSearchBar extends React.Component {
     this.state = {}
     this.onClickButton = this.onClickButton.bind(this)
   }
-  onClickButton (event) {
-    this.props.onResultdone(this.state)
-  }
+  // onClickButton (event) {
+  //   this.props.onResultdone(this.state)
+  // }
   render () {
+    const { classes } = this.props
     return (
-      <div className="classes.root">
+      <div className={classes.root} >
         <Grid item xs={12}>
           <Grid
             container
-            spacing={10}
-            className="classes.demo"
+            spacing={8}
+            className={classes.demo}
             direction={'row'}
             justify={'center'}
+            alignItems={'center'}
+            style={{height: '60vh'}}
           >
             <form>
-              <h1> RESERVEZ VOTRE SESSION SPORTIVE EN LIGNE </h1>
+              <h1 style={{color: '#49515F'}} > RESERVEZ VOTRE SESSION SPORTIVE EN LIGNE </h1>
 
-              <Grid container spacing={24}>
-                <Grid item xs={4}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sm={4}>
                   < MultiSelectField />
                 </Grid>
-                <Grid item xs={4}>
-                  <SearchBar className="classes.search" position="static" color="default"
+                <Grid item xs={12} sm={4}>
+                  <SearchBar className={classes.search} style={{height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}} position="static"
                     onChange={() => console.log('onChange')}
                     onRequestSearch={() => console.log('onRequestSearch')} />
                 </Grid>
-                <Grid item xs={4}>
-                  <Button className="classes.btn" onClick={this.onClickButton} variant="raised" style={{backgroundColor: '#66FF33'}}>
+
+                <Grid item xs={12} sm={4}>
+                  <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+
                 Recherchez
                   </Button>
                 </Grid>
@@ -65,7 +64,7 @@ class SimpleSearchBar extends React.Component {
 }
 
 SimpleSearchBar.propTypes = {
-  onResultdone: PropTypes.object
+  classes: PropTypes.object
 }
 
 export default withStyles(styles)(SimpleSearchBar)
