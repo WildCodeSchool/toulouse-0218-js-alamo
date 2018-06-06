@@ -11,7 +11,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { ListItem } from '@material-ui/core';
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -53,28 +52,42 @@ const styles = theme => ({
   }
 })
 
-function ButtonAppBar (props) {
-  const { classes } = props
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Toolbar >
-          <Typography variant="title" color="#66FF33"  >
-            Alamo
-          </Typography>
-          <List className={classes.flex} >
-            <Button color="inherit">Mes salles</Button>
-            <Button color="inherit" >Membres</Button>
-          </List>
-          <Button color="inherit" >Logout</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  )
+class Calendar extends React.Component {
+  render() {
+    const { classes } = this.props
+    return (
+      <Grid container spacing={24}>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>Menu
+            <List>
+            <ListItem>
+              <Button variant="contained" color="secondary" className={classes.button1}>
+              Badminton 1
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button variant="contained" color="secondary" className={classes.button2}>
+              Badminton 2
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button variant="contained" color="secondary" className={classes.button3}>
+              Tennis
+              </Button>
+            </ListItem>
+            </List>
+          </Paper>
+        </Grid>
+        <Grid item xs={9}>
+          <Paper className={classes.paper}>Calendar</Paper>
+        </Grid>
+      </Grid>
+      )
+    }
 }
 
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
+Calendar.propTypes = {
+  classes: PropTypes.object
 }
 
-export default withStyles(styles)(ButtonAppBar)
+export default withStyles(styles)(Calendar)
