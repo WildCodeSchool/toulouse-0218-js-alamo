@@ -6,7 +6,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      profile: {},
+      research: {},
       step: 0
     }
     this.nextStep = this.nextStep.bind(this)
@@ -30,9 +30,9 @@ class App extends Component {
     const step = this.state.step
     let componentToShow
     if (step === 0) {
-      componentToShow = <Homepage onResultDone={this.onResultDone}/>
+      componentToShow = <Homepage />
     } else if (step === 1) {
-      componentToShow = <ResultTransitory />
+      componentToShow = <ResultTransitory onResultDone={this.onResultDone}/>
     }
     return (
       <Fragment>

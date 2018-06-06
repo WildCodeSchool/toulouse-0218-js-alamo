@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 // import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import MultiSelectField from './SelectBar'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   root: {
@@ -21,6 +22,10 @@ class SimpleSearchBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
+    this.onClickButton = this.onClickButton.bind(this)
+  }
+  onClickButton (event) {
+    this.props.onResultdone(this.state)
   }
   render () {
     return (
@@ -46,7 +51,7 @@ class SimpleSearchBar extends React.Component {
                     onRequestSearch={() => console.log('onRequestSearch')} />
                 </Grid>
                 <Grid item xs={4}>
-                  <Button className="classes.btn" variant="raised" style={{backgroundColor: '#66FF33'}}>
+                  <Button className="classes.btn" onClick={this.onClickButton} variant="raised" style={{backgroundColor: '#66FF33'}}>
                 Recherchez
                   </Button>
                 </Grid>
@@ -57,6 +62,10 @@ class SimpleSearchBar extends React.Component {
       </div>
     )
   }
+}
+
+SimpleSearchBar.propTypes = {
+  onResultdone: PropTypes.object
 }
 
 export default withStyles(styles)(SimpleSearchBar)
