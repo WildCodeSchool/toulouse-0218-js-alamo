@@ -22,10 +22,7 @@ class Homepage extends React.Component {
         < SearchLocationBar />
         < IconeSport />
       </Paper>
-      <Paper className={classes.paperIcones}>
-        < IconePresentation />
-      </Paper>
-
+      < IconePresentation />
     </div>
     )
   }

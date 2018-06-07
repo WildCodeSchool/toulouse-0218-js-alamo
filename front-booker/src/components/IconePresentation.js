@@ -1,11 +1,10 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
-import icone1 from '../images/icone1.png'
-import icone2 from '../images/icone2.png'
-import icone3 from '../images/icone3.png'
+import icone1 from '../images/icone1S.png'
+import icone2 from '../images/icone2S.png'
+import icone3 from '../images/icone3S.png'
 
 const styles = {
   root: {
@@ -33,21 +32,21 @@ class IconePresentation extends React.Component {
             direction={'row'}
             justify={'center'}
             alignItems={'center'}
-            style={{height: '60vh'}}
           >
             <Grid item xs={12}>
-              <h1 style={{textAlign: 'center'}}> En quelques clics ...</h1>
+              <h1 style={{textAlign: 'center', fontSize: '40px', color: '#49515F', paddingTop: '10vh'}}> En quelques clics...</h1>
             </Grid>
             <Grid item xs={4}>
-              <Paper className={classes.paper} >
-                <img src={icone1} className="icone" alt="icone" style={{width: '33%', paddingLeft: '50%', paddingBottom: '30%'}} />
-              </Paper>
+              <img src={icone1} className="icone" alt="icone1" style={{width: '60%', paddingLeft: '20%', paddingTop: '10vh'}} />
+              <h2 style={{paddingBottom: '30vh', color: '#49515F'}}> Trouver un club près de chez soi </h2>
             </Grid>
             <Grid item xs={4}>
-              <img src={icone2} className="icone" alt="icone" style={{width: '33%', paddingLeft: '30%', paddingBottom: '30%'}} />
+              <img src={icone2} className="icone" alt="icone2" style={{width: '60%', paddingLeft: '25%', paddingTop: '10vh'}} />
+              <h2 style={{paddingBottom: '30vh', color: '#49515F'}}> Reserver un terrain ou un cours </h2>
             </Grid>
             <Grid item xs={4}>
-              <img src={icone3} className="icone" alt="icone" style={{width: '33%', paddingBottom: '30%'}} />
+              <img src={icone3} className="icone" alt="icone3" style={{width: '60%', paddingLeft: '30%', paddingTop: '10vh'}} />
+              <h2 style={{paddingBottom: '30vh', color: '#49515F'}}> Enregistrer ses cours et clubs favoris </h2>
             </Grid>
           </Grid>
         </Grid>
