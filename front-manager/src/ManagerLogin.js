@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
+
 const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
@@ -15,6 +16,7 @@ const styles = theme => ({
     marginTop: 100,
     color: theme.palette.text.secondary,
     height: 350,
+    textAlign: 'center',
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -27,7 +29,7 @@ const styles = theme => ({
   },
 })
 
-class ManagerHome extends React.Component {
+class ManagerLogin extends React.Component {
 
   handleChange = name => event => {
     this.setState({
@@ -43,7 +45,7 @@ class ManagerHome extends React.Component {
           <Grid item xs={4} >
             <Paper className={classes.paper}>
               <FormControl className={classes.container} noValidate autoComplete="off">
-                <p>Login</p>
+                <h3>Login</h3>
                 <TextField
                   id="name"
                   label="Nom du club"
@@ -72,8 +74,8 @@ class ManagerHome extends React.Component {
   }
 }
 
-ManagerHome.propTypes = {
+ManagerLogin.propTypes = {
   classes : PropTypes.object
 }
 
-export default withStyles(styles)(ManagerHome)
+export default withStyles(styles)(ManagerLogin);
