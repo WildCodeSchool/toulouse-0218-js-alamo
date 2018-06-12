@@ -12,7 +12,7 @@ const styles = {
   }
 }
 
-class IconeSport extends React.Component {
+class Icones extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -32,13 +32,13 @@ class IconeSport extends React.Component {
             style={{height: '20vh'}}
           >
             <Grid item xs={4}>
-              <img src={icone6} className="icone" alt="icone" style={{width: '33%', paddingLeft: '50%', paddingBottom: '30%'}} />
+              <img src={icone6} className="icone" alt="icone" style={{width: '33%', paddingLeft: '20%', paddingBottom: '30%'}} />
             </Grid>
             <Grid item xs={4}>
-              <img src={icone5} className="icone" alt="icone" style={{width: '33%', paddingLeft: '30%', paddingBottom: '30%'}} />
+              <img src={icone5} className="icone" alt="icone" style={{width: '33%', paddingLeft: '25%', paddingBottom: '30%'}} />
             </Grid>
             <Grid item xs={4}>
-              <img src={icone4} className="icone" alt="icone" style={{width: '33%', paddingBottom: '30%'}} />
+              <img src={icone4} className="icone" alt="icone" style={{width: '33%', paddingLeft: '30%', paddingBottom: '30%'}} />
             </Grid>
           </Grid>
         </Grid>
@@ -47,8 +47,8 @@ class IconeSport extends React.Component {
   }
 }
 
-IconeSport.propTypes = {
+Icones.propTypes = {
   classes: PropTypes.object
 }
 
-export default withStyles(styles)(IconeSport)
+export default withStyles(styles)(Icones)
