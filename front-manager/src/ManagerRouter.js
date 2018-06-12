@@ -10,8 +10,7 @@ class ManagerRouter extends React.Component {
     return (
       <div>
         <Router>
-            <Route exact path="/" render={ManagerLogin} />
-            <Route path="/calendar" render={Calendar} />
+            
         </Router>
       </div>
     );

@@ -12,7 +12,7 @@ const styles = theme => ({
   }
 })
 
-class SimpleSearchBar extends React.Component {
+class SearchLocationBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -29,10 +29,10 @@ class SimpleSearchBar extends React.Component {
             direction={'row'}
             justify={'center'}
             alignItems={'center'}
-            style={{height: '60vh'}}
+            style={{height: '60vh'}} // A VOIR AVEC BENOIT MET UNE MARGE EN BAS DE PAGE !
           >
             <form>
-              <h1 style={{color: '#49515F'}} > RESERVEZ VOTRE SESSION SPORTIVE EN LIGNE </h1>
+              <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>
 
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={4}>
@@ -59,9 +59,16 @@ class SimpleSearchBar extends React.Component {
   }
 }
 
+<<<<<<< HEAD:front-booker/src/components/SearchBar.js
 SimpleSearchBar.propTypes = {
   classes: PropTypes.object,
   nextStep: PropTypes.func
 }
 
 export default withStyles(styles)(SimpleSearchBar)
+=======
+SearchLocationBar.propTypes = {
+  classes: PropTypes.object
+}
+export default withStyles(styles)(SearchLocationBar)
+>>>>>>> material:front-booker/src/components/SearchLocationBar.js
