@@ -2,16 +2,27 @@ import React from 'react'
 import ManagerRouter from './ManagerRouter'
 import Navbar from './Navbar'
 import Calendar from './Calendar'
-import { Router, withRouter } from 'react-router-dom'
+import ManagerLogin from './ManagerLogin'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+const withNavbar = Component => props => (
+  <div>
+    <Navbar />
+    <Component {...props}/>
+  </div>
+)
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <Calendar />
-      </div>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={ManagerLogin} />
+            <Route path="/calendar" render={withNavbar(Calendar)} />
+          </Switch>
+        </div>
+      </Router>
     )
   }
 }
