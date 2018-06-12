@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './components/NavBar'
-import SearchLocationBar from './components/SearchBar'
+import SearchLocationBar from './components/SearchLocationBar'
 import { withStyles } from '@material-ui/core/styles'
 import IconeSport from './components/Icones'
 import PropTypes from 'prop-types'

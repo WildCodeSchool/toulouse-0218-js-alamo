@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import permIdentity from '../images/permIdentity.png'
 import Button from '@material-ui/core/Button'
+import Hidden from '@material-ui/core/Hidden'
 
 const styles = {
   root: {
@@ -30,9 +31,18 @@ class NavBar extends React.Component {
           <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'ChampagneLimousines' }}>
           Alamo
           </Typography>
-          <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
+          <Hidden xsDown smDown>
+            <Button className={classes.btn}variant="raised" style={{backgroundColor: '#66FF33'}}>
         Vous êtes gérant de salle de sport ?
-          </Button> <a href ="#" ><img src={permIdentity} className="App-logo" alt="logo" /> </a>
+            </Button>
+          </Hidden>
+          <Hidden lgUp mdUp>
+            <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
+        gérant ?
+            </Button>
+          </Hidden>
+          <a href ="#" ><img src={permIdentity} className="App-logo" alt="logo" /> </a>
+
         </Toolbar>
       </AppBar>
     </div>
