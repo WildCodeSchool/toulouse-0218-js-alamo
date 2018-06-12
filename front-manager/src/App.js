@@ -12,6 +12,7 @@ const withNavbar = Component => props => (
   </div>
 )
 
+
 class App extends React.Component {
   render() {
     return (
