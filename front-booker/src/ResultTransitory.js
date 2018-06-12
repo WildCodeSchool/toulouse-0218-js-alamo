@@ -1,8 +1,10 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import {withStyles} from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
+// import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
+import CardResultDefault from './CardResultDefault'
+import Paper from '@material-ui/core/Paper'
 
 const styles = theme => ({
   container: {
@@ -13,6 +15,10 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200
+  },
+  paper: {
+    backgroundColor: '#E6EAF0',
+    height: 200
   }
 })
 
@@ -43,8 +49,9 @@ class ResultTransitory extends React.Component {
           </form>
         </div>
         <div>
-          <Grid container>
-          </Grid>
+          <Paper>
+            <CardResultDefault />
+          </Paper>
         </div>
       </div>
     )
