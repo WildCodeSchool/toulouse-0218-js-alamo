@@ -59,16 +59,8 @@ class SearchLocationBar extends React.Component {
   }
 }
 
-<<<<<<< HEAD:front-booker/src/components/SearchBar.js
-SimpleSearchBar.propTypes = {
+SearchLocationBar.propTypes = {
   classes: PropTypes.object,
   nextStep: PropTypes.func
 }
-
-export default withStyles(styles)(SimpleSearchBar)
-=======
-SearchLocationBar.propTypes = {
-  classes: PropTypes.object
-}
 export default withStyles(styles)(SearchLocationBar)
->>>>>>> material:front-booker/src/components/SearchLocationBar.js
