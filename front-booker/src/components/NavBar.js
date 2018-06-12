@@ -18,7 +18,7 @@ const styles = {
   }
 }
 
-class SimpleAppBar extends React.Component {
+class NavBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -28,7 +28,7 @@ class SimpleAppBar extends React.Component {
     return (<div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
-          <Typography variant="title" className={classes.flex}>
+          <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'ChampagneLimousines' }}>
           Alamo
           </Typography>
           <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
@@ -41,8 +41,8 @@ class SimpleAppBar extends React.Component {
   }
 }
 
-SimpleAppBar.propTypes = {
+NavBar.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(SimpleAppBar)
+export default withStyles(styles)(NavBar)

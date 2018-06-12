@@ -1,7 +1,12 @@
+@font-face {
+  font-family:"ChampagneLimousines";src:url("css/ChampagneLimousines/Champagne_Limousines.eot?") format("eot"),url("css/ChampagneLimousines/Champagne_Limousines.woff") format("woff"),url("css/ChampagneLimousines/Champagne_Limousines.ttf") format("truetype"),url("css/ChampagneLimousines/Champagne_Limousines.svg#Champagne&Limousines") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
 body {
   margin-left: 5vh;
   margin-right: 5vh;
   margin-top: 0;
-  font-family: sans-serif;
+  margin-bottom: 0;
 }
-
