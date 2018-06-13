@@ -1,10 +1,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Divider } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Login from '../Login'
+import Register from '../Register'
+
+
+
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -34,29 +39,36 @@ const styles = theme => ({
 class SimpleModal extends React.Component {
   state = {
     open: false,
+    display: 'login'
   };
 
   render() {
     const { classes } = this.props;
-
+    let text
+    let linktext
+    if (this.state.display==='login'){
+      text = 'Vous n\'avez pas de compte ?'
+      linktext = 'Inscription'
+    }
+    else {
+      text = 'Vous avez déjà un compte Alamo ?'
+      linktext = 'Connexion'
+    }
+  
     return (
       <div>
         {/* <Typography gutterBottom>Click to get the full Modal experience!</Typography>
         <Button onClick={this.handleOpen}>Open Modal</Button> */}
         <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
           open={this.props.open}
           onClose={this.props.close}
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <Typography variant="title" id="modal-title">
-              Text in a modal
-            </Typography>
-            <Typography variant="subheading" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-            <SimpleModalWrapped />
+          { this.state.display==='login'? <Login /> : <Register /> }
+          <Divider />
+          <div>
+            {text} <a href='#'>{linktext}</a>
+          </div>  
           </div>
         </Modal>
       </div>

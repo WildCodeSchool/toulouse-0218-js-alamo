@@ -1,46 +1,102 @@
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
-import AppBar from '@material-ui/core/AppBar'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import React, { Component} from 'react'
+import Input from '@material-ui/core/Input'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import InputLabel from '@material-ui/core/InputLabel'
+import MailIcon from '@material-ui/icons/Mail'
+import LockIcon from '@material-ui/icons/Lock'
 
-class Login extends Component {
-    constructor (props) {
+
+const styles = {
+  form: {
+    padding: 40
+  },
+  margin: {
+    width: '100%',
+    marginBottom: 30
+  },
+  center: {
+    textAlign:'center'
+  }
+}
+
+class Login extends React.Component {
+  constructor (props) {
     super(props)
     this.state = {
-     username: '',
-    password:  ''
+      email: '',
+      password: ''
     }
-}
-render() {
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+  onChange (e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  onSubmit (e) {
+    console.log('submit login', e)
+    e.preventDefault()
+    // Submit to login URL
+    fetch('/path/to/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(response => response.json())
+      .then(result => {
+        // do something
+      })
+  }
+  render () {
+    const { classes } = this.props
     return (
-      <div>
-        <MuiThemeProvider>
-          <div>
-          <AppBar
-             title="Login"
-           />
-           <TextField
-             hintText="Enter your Username"
-             floatingLabelText="Username"
-             onChange = {(event,newValue) => this.setState({username:newValue})}
-             />
-           <br/>
-             <TextField
-               type="password"
-               hintText="Enter your Password"
-               floatingLabelText="Password"
-               onChange = {(event,newValue) => this.setState({password:newValue})}
-               />
-             <br/>
-             <Button label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-         </div>
-         </MuiThemeProvider>
-      </div>
+      <form className={classes.form} onSubmit={this.onSubmit}>
+        <FormControl className={classes.margin}>
+          <InputLabel htmlFor="pseudo">Pseudo</InputLabel>
+          <Input
+            className={classes.input}
+            id="speudo"
+            type="pseudo"
+            name="pseudo"
+            onChange={this.onChange}
+          />
+        </FormControl>
+        <FormControl className={classes.margin}>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input
+            className={classes.input}
+            id="password"
+            type="password"
+            name="password"
+            onChange={this.onChange}
+            startAdornment={
+              <InputAdornment position="start">
+                <LockIcon />
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        <div className={classes.center}>
+          <Button type="submit"  color="green" variant="raised">
+            Sign in
+          </Button>
+        </div>
+      </form>
     )
   }
 }
-const style = {
- margin: 15,
-};
-export default Login;
+
+Login.propTypes = {
+  classes: PropTypes.object
+}
+
+export default withStyles(styles)(Login)
