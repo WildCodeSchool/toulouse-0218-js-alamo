@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import Link from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 
 const styles = theme => ({
@@ -43,7 +45,7 @@ class ManagerLogin extends React.Component {
       <div>
         <Grid container justify={'center'}>
           <Grid item xs={4} >
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper}>  
               <FormControl className={classes.container} noValidate autoComplete="off">
                 <h3>Login</h3>
                 <TextField
@@ -62,10 +64,10 @@ class ManagerLogin extends React.Component {
                   onChange={this.handleChange('password')}
                   margin="normal"
                 />
-                <Button color="primary" className={classes.button}>
-                  Login
+                <Button color="primary" className={classes.button} onClick={this.handleClick}>
+                  <Link to = "/calendar"></Link>
                 </Button>
-              </FormControl>
+              </FormControl> 
             </Paper>
           </Grid>
         </Grid>
@@ -78,4 +80,4 @@ ManagerLogin.propTypes = {
   classes : PropTypes.object
 }
 
-export default withStyles(styles)(ManagerLogin);
+export default withRouter(withStyles(styles)(ManagerLogin));

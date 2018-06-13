@@ -19,7 +19,7 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2,
     marginTop: 100,
     color: theme.palette.text.secondary,
-    height: 550
+    height: 550,
   },
   menuButton: {
     marginLeft: -12,
