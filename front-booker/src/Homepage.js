@@ -19,7 +19,7 @@ class Homepage extends React.Component {
     return (<div>
       <Paper className={classes.paper}>
         < NavBar />
-        < SearchLocationBar />
+        < SearchLocationBar nextStep={this.props.nextStep}/>
         < IconeSport />
       </Paper>
       < IconePresentation />
