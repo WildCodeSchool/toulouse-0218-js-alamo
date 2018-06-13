@@ -1,13 +1,14 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import {withStyles} from '@material-ui/core/styles'
-// import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
-import CardResultDefault from './CardResultDefault'
 import Paper from '@material-ui/core/Paper'
+import CardResultDefault from './CardResultDefault'
+import CardResultMember from './CardResultMember'
 
 const styles = theme => ({
-  container: {
+  formDate: {
     display: 'flex',
     flexWrap: 'wrap'
   },
@@ -18,9 +19,14 @@ const styles = theme => ({
   },
   paper: {
     backgroundColor: '#E6EAF0',
-    height: 200
+    padding: theme.spacing.unit * 2
   }
 })
+
+const clubs = [
+  { id: 1, name: 'Le club des cinq', member: true },
+  { id: 2, name: 'Le club de Rome', member: false }
+]
 
 class ResultTransitory extends React.Component {
   constructor (props) {
@@ -33,27 +39,38 @@ class ResultTransitory extends React.Component {
     const date = new Date()
     const defaultDate = date.toISOString().substr(0, 10)
     return (
-      <div>
-        <div>
-          <form className={classes.container} noValidate>
-            <TextField
-              id="date"
-              label="Date"
-              type="date"
-              defaultValue={defaultDate}
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          </form>
-        </div>
-        <div>
-          <Paper>
-            <CardResultDefault />
-          </Paper>
-        </div>
-      </div>
+      <Paper className={classes.paper}>
+        <Grid container>
+          <Grid item xs={12} md={12}>
+            <form className={classes.formDate} noValidate>
+              <TextField
+                id="date"
+                label="Date"
+                type="date"
+                defaultValue={defaultDate}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true
+                }}
+              />
+            </form>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <div>
+              {
+                clubs.map((club, k) => {
+                  return club.member ? <CardResultMember club={club}/> : <CardResultDefault club={club} />
+                })
+              }
+            </div>
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <div>
+              ici la map
+            </div>
+          </Grid>
+        </Grid>
+      </Paper>
     )
   }
 }
