@@ -64,8 +64,8 @@ class ManagerLogin extends React.Component {
                   onChange={this.handleChange('password')}
                   margin="normal"
                 />
-                <Button color="primary" className={classes.button} onClick={this.handleClick}>
-                  <Link to = "/calendar"></Link>
+                <Button color="primary" className={classes.button}>Login
+                  {/* <Link to = "/calendar"></Link> */}
                 </Button>
               </FormControl> 
             </Paper>
