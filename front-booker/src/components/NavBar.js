@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import permIdentity from '../images/permIdentity.png'
 import Button from '@material-ui/core/Button'
 import Hidden from '@material-ui/core/Hidden'
+import Modal from '../modal/modal'
 
 const styles = {
   root: {
@@ -21,10 +22,26 @@ const styles = {
 class NavBar extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      modalOpen: false
+    }
+
+    this.handleOpen= this.handleOpen.bind(this)
+    this.handleClose= this.handleClose.bind(this)
+
   }
+
+  handleOpen = () => {
+    this.setState({ modalOpen: true });
+  };
+
+  handleClose = () => {
+    this.setState({ modalOpen: false });
+  };
+
   render () {
     const { classes } = this.props
+    const { modalOpen}= this.state
     return (<div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
@@ -41,10 +58,12 @@ class NavBar extends React.Component {
         gérant ?
             </Button>
           </Hidden>
-          <a href ="#" ><img src={permIdentity} className="App-logo" alt="logo" /> </a>
+          <a href ="#" onClick={this.handleOpen}>< img src={permIdentity} className="App-logo" alt="logo" /> </a>
 
         </Toolbar>
       </AppBar>
+
+      < Modal open={modalOpen} close={this.handleClose} />
     </div>
     )
   }
