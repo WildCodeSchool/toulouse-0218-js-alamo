@@ -14,7 +14,6 @@ const styles = theme => ({
   }
 })
 class Homepage extends React.Component {
-
   render () {
     const { classes } = this.props
     return (<div>
