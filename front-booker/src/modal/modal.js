@@ -2,9 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Divider } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
 import Login from '../Login'
 import Register from '../Register'
 

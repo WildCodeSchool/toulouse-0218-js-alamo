@@ -1,14 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
-import MailIcon from '@material-ui/icons/Mail'
 import LockIcon from '@material-ui/icons/Lock'
 
 
@@ -52,9 +49,8 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     })
       .then(response => response.json())
-      .then(result => {
-        // do something
-      })
+      .then(() => {
+        })
   }
   render () {
     const { classes } = this.props
@@ -86,7 +82,7 @@ class Login extends React.Component {
           />
         </FormControl>
         <div className={classes.center}>
-          <Button type="submit"  color="green" variant="raised">
+          <Button type="submit" style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
             Sign in
           </Button>
         </div>
