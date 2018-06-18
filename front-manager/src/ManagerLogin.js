@@ -7,8 +7,7 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import Link from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { Link,  withRouter } from 'react-router-dom'
 
 
 const styles = theme => ({
@@ -27,7 +26,8 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
-    marginTop: 50
+    marginTop: 50,
+    variant: 'raised'
   },
 })
 
@@ -64,8 +64,8 @@ class ManagerLogin extends React.Component {
                   onChange={this.handleChange('password')}
                   margin="normal"
                 />
-                <Button color="primary" className={classes.button}>Login
-                  {/* <Link to = "/calendar"></Link> */}
+                <Button className={classes.button}>
+                  <Link to = "/calendar">Login</Link>
                 </Button>
               </FormControl> 
             </Paper>

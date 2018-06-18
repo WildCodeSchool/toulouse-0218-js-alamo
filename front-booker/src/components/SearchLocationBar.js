@@ -24,7 +24,6 @@ class SearchLocationBar extends React.Component {
         <Grid item xs={12}>
           <Grid
             container
-            spacing={8}
             className={classes.demo}
             direction={'row'}
             justify={'center'}
@@ -43,8 +42,10 @@ class SearchLocationBar extends React.Component {
                     onChange={() => console.log('onChange')}
                     onRequestSearch={() => console.log('onRequestSearch')} />
                 </Grid>
+
                 <Grid item xs={12} sm={4}>
-                  <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+                  <Button className={classes.btn} onClick={this.props.nextStep} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+
                 Recherchez
                   </Button>
                 </Grid>
@@ -58,6 +59,7 @@ class SearchLocationBar extends React.Component {
 }
 
 SearchLocationBar.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  nextStep: PropTypes.func
 }
 export default withStyles(styles)(SearchLocationBar)
