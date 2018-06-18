@@ -7,9 +7,7 @@ import icone5 from '../images/icone5.png'
 import icone6 from '../images/icone6.png'
 
 const styles = {
-  root: {
-    flexGrow: 1
-  }
+
 }
 
 class Icones extends React.Component {
@@ -29,16 +27,16 @@ class Icones extends React.Component {
             direction={'row'}
             justify={'center'}
             alignItems={'center'}
-            style={{height: '20vh'}}
+            style={{ height: '20vh' }}
           >
             <Grid item xs={4}>
-              <img src={icone6} className="icone" alt="icone" style={{width: '33%', paddingLeft: '20%', paddingBottom: '30%'}} />
+              <img src={icone6} className={classes.icone} alt="icone" style={{paddingBottom: '30%'}} />
             </Grid>
             <Grid item xs={4}>
-              <img src={icone5} className="icone" alt="icone" style={{width: '33%', paddingLeft: '25%', paddingBottom: '30%'}} />
+              <img src={icone5} className="icone" alt="icone" style={{paddingBottom: '30%'}} />
             </Grid>
             <Grid item xs={4}>
-              <img src={icone4} className="icone" alt="icone" style={{width: '33%', paddingLeft: '30%', paddingBottom: '30%'}} />
+              <img src={icone4} className="icone" alt="icone" style={{paddingBottom: '30%'}} />
             </Grid>
           </Grid>
         </Grid>

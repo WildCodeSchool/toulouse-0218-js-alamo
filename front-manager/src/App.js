@@ -1,9 +1,8 @@
 import React from 'react'
-import ManagerRouter from './ManagerRouter'
 import Navbar from './Navbar'
 import Calendar from './Calendar'
 import ManagerLogin from './ManagerLogin'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 const withNavbar = Component => props => (
   <div>

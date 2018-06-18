@@ -24,7 +24,6 @@ class SearchLocationBar extends React.Component {
         <Grid item xs={12}>
           <Grid
             container
-            spacing={8}
             className={classes.demo}
             direction={'row'}
             justify={'center'}
