@@ -25,6 +25,11 @@ const styles = theme => ({
   },
   verticalFill: {
     flexGrow: 1
+  },
+  button: {
+    backgroundColor: '#66FF33',
+    marginRight: 20,
+    color: 'white'
   }
 })
 

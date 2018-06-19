@@ -1,1 +1,1 @@
-export const apiKey = "insert google api key"
+export const apiKey = 'insert google api key'
