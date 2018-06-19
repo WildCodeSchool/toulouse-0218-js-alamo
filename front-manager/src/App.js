@@ -12,7 +12,16 @@ const withNavbar = Component => props => (
 )
 
 class App extends React.Component {
-  
+  constructor (props) {
+    super(props)
+    this.state = {
+      logged: false
+    }
+    this.handleLogin = this.handleLogin.bind(this)
+  }
+  handleClick () {
+    this.setState({ logged: {} })
+  }
   render() {
     return (
       <Router>
