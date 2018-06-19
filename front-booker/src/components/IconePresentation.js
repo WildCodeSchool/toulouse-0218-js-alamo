@@ -38,8 +38,16 @@ class IconePresentation extends React.Component {
               <h1 style={{textAlign: 'center', fontSize: '40px', color: '#49515F', paddingTop: '10vh'}}> En quelques clics...</h1>
             </Grid>
             <Grid item xs={4}>
-            <img src={iconesjointes} className="iconesjointes" alt="iconesjointes" style={{ paddingLeft: '5vh'}} />
-    
+            <img src={icone1} className="icone" alt="icone1" style={{width: '60%', paddingLeft: '20%', paddingTop: '10vh'}} />
+              <h2 style={{fontSize: '20px', paddingBottom: '30vh', color: '#49515F'}}> Trouver un club près de chez soi </h2>
+            </Grid>
+            <Grid item xs={4}>
+              <img src={icone2} className="icone" alt="icone2" style={{width: '60%', paddingLeft: '25%', paddingTop: '10vh'}} />
+              <h2 style={{fontSize: '20px', paddingBottom: '30vh', color: '#49515F'}}> Reserver un terrain ou un cours </h2>
+            </Grid>
+            <Grid item xs={4}>
+              <img src={icone3} className="icone" alt="icone3" style={{width: '60%', paddingLeft: '30%', paddingTop: '10vh'}} />
+              <h2 style={{fontSize: '20px', paddingBottom: '30vh', color: '#49515F'}}> Enregistrer ses cours et clubs favoris </h2>
             </Grid>
           </Grid>
         </Grid>

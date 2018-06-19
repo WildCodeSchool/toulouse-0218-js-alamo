@@ -12,23 +12,23 @@ const withNavbar = Component => props => (
 )
 
 class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      logged: false
-    }
-    this.handleLogin = this.handleLogin.bind(this)
-  }
-  handleClick () {
-    this.setState({ logged: {} })
-  }
+  // constructor (props) {
+  //   super(props)
+  //   this.state = {
+  //     logged: false
+  //   }
+  //   this.handleLogin = this.handleLogin.bind(this)
+  // }
+  // handleClick () {
+  //   this.setState({ logged: {} })
+  // }
   render() {
     return (
       <Router>
         <div>
           <Switch>
-            <Layout exact path="/" component={ManagerLogin} user={this.state.user} />
-            <Layout path="/calendar" render={withNavbar(Calendar)} />
+            <Route exact path="/" component={ManagerLogin}  />
+            <Route path="/calendar" render={withNavbar(Calendar)} />
           </Switch>
         </div>
       </Router>
