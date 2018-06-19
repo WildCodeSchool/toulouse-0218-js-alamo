@@ -32,8 +32,7 @@ class SearchLocationBar extends React.Component {
           >
             <form>
               <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>
-
-              <Grid container spacing={0}>
+              <Grid container >
                 <Grid item xs={12} sm={4}>
                   < MultiSelectField />
                 </Grid>
@@ -42,10 +41,8 @@ class SearchLocationBar extends React.Component {
                     onChange={() => console.log('onChange')}
                     onRequestSearch={() => console.log('onRequestSearch')} />
                 </Grid>
-
                 <Grid item xs={12} sm={4}>
                   <Button className={classes.btn} onClick={this.props.nextStep} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
-
                 Recherchez
                   </Button>
                 </Grid>

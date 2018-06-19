@@ -4,9 +4,7 @@ import { withStyles } from '@material-ui/core'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
-import LockIcon from '@material-ui/icons/Lock'
 
 const styles = {
   form: {
