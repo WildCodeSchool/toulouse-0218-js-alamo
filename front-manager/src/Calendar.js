@@ -6,6 +6,8 @@ import List from '@material-ui/core/List';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { ListItem } from '@material-ui/core';
+import MyClub from '../src/components/MyClub'
+
 
 const styles = theme => ({
   root: {
@@ -53,29 +55,9 @@ class Calendar extends React.Component {
     const { classes } = this.props
     return (
       <Grid container spacing={24}>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>Menu
-            <List>
-            <ListItem>
-              <Button variant="contained" color="secondary" className={classes.button1}>
-              Badminton 1
-              </Button>
-            </ListItem>
-            <ListItem>
-              <Button variant="contained" color="secondary" className={classes.button2}>
-              Badminton 2
-              </Button>
-            </ListItem>
-            <ListItem>
-              <Button variant="contained" color="secondary" className={classes.button3}>
-              Tennis
-              </Button>
-            </ListItem>
-            </List>
-          </Paper>
-        </Grid>
-        <Grid item xs={9}>
-          <Paper className={classes.paper}>Calendar</Paper>
+        
+        <Grid item xs={12}>
+          < MyClub />
         </Grid>
       </Grid>
       )
