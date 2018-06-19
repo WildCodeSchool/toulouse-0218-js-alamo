@@ -6,16 +6,18 @@ import PropTypes from 'prop-types'
 import Paper from '@material-ui/core/Paper'
 import CardResultDefault from './CardResultDefault'
 import CardResultMember from './CardResultMember'
+import AlamoMap from './AlamoMap'
 
 const styles = theme => ({
   formDate: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap'    
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200
+    width: 200,
+    marginBottom: theme.spacing.unit * 2
   },
   paper: {
     backgroundColor: '#E6EAF0',
@@ -59,14 +61,14 @@ class ResultTransitory extends React.Component {
             <div>
               {
                 clubs.map((club, k) => {
-                  return club.member ? <CardResultMember club={club}/> : <CardResultDefault club={club} />
+                  return club.member ? <CardResultMember club={club} key={k} /> : <CardResultDefault club={club} key={k} />
                 })
               }
             </div>
           </Grid>
           <Grid item xs={12} md={7}>
             <div>
-              ici la map
+              <AlamoMap />
             </div>
           </Grid>
         </Grid>
