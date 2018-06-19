@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Paper from '@material-ui/core/Paper'
 import CardResultDefault from './CardResultDefault'
 import CardResultMember from './CardResultMember'
-import AlamoMap from './AlamoMap';
+import AlamoMap from './AlamoMap'
 
 const styles = theme => ({
   formDate: {
