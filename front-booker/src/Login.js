@@ -8,17 +8,16 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import LockIcon from '@material-ui/icons/Lock'
 
-
 const styles = {
   form: {
-    padding: 40
+    padding: 10
   },
   margin: {
     width: '100%',
-    marginBottom: 30
+    marginBottom: 10
   },
   center: {
-    textAlign:'center'
+    textAlign: 'center'
   }
 }
 
@@ -50,7 +49,7 @@ class Login extends React.Component {
     })
       .then(response => response.json())
       .then(() => {
-        })
+      })
   }
   render () {
     const { classes } = this.props
@@ -83,7 +82,7 @@ class Login extends React.Component {
         </FormControl>
         <div className={classes.center}>
           <Button type="submit" style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
-            Sign in
+            Login
           </Button>
         </div>
       </form>

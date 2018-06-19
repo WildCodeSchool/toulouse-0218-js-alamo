@@ -10,11 +10,11 @@ import LockIcon from '@material-ui/icons/Lock'
 
 const styles = {
   form: {
-    padding: 40
+    padding: 10
   },
   margin: {
     width: '100%',
-    marginBottom: 30
+    marginBottom: 10
   },
   center: {
     textAlign: 'center'
@@ -25,6 +25,9 @@ class Register extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      nom: '',
+      prenom: '',
+      pseudo: '',
       email: '',
       password: ''
     }
@@ -37,10 +40,10 @@ class Register extends React.Component {
     })
   }
   onSubmit (e) {
-    console.log('submit login', e)
+    console.log('submit register', e)
     e.preventDefault()
     // Submit to login URL
-    fetch('/path/to/login', {
+    fetch('/path/to/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -49,12 +52,32 @@ class Register extends React.Component {
     })
       .then(response => response.json())
       .then(() => {
-        })
+      })
   }
   render () {
     const { classes } = this.props
     return (
       <form className={classes.form} onSubmit={this.onSubmit}>
+        <FormControl className={classes.margin}>
+          <InputLabel htmlFor="nom">Nom</InputLabel>
+          <Input
+            className={classes.input}
+            id="nom"
+            type="nom"
+            name="nom"
+            onChange={this.onChange}
+          />
+        </FormControl>
+        <FormControl className={classes.margin}>
+          <InputLabel htmlFor="prenom">Prénom</InputLabel>
+          <Input
+            className={classes.input}
+            id="prenom"
+            type="prenom"
+            name="prenom"
+            onChange={this.onChange}
+          />
+        </FormControl>
         <FormControl className={classes.margin}>
           <InputLabel htmlFor="pseudo">Pseudo</InputLabel>
           <Input
@@ -62,6 +85,17 @@ class Register extends React.Component {
             id="speudo"
             type="pseudo"
             name="pseudo"
+            onChange={this.onChange}
+          />
+        </FormControl>
+
+        <FormControl className={classes.margin}>
+          <InputLabel htmlFor="mail">Mail</InputLabel>
+          <Input
+            className={classes.input}
+            id="mail"
+            type="mail"
+            name="mail"
             onChange={this.onChange}
           />
         </FormControl>
@@ -73,15 +107,20 @@ class Register extends React.Component {
             type="password"
             name="password"
             onChange={this.onChange}
-            startAdornment={
-              <InputAdornment position="start">
-                <LockIcon />
-              </InputAdornment>
-            }
+          />
+        </FormControl>
+        <FormControl className={classes.margin}>
+          <InputLabel htmlFor="confirm password">confirm Password</InputLabel>
+          <Input
+            className={classes.input}
+            id="confirm password"
+            type="confirm password"
+            name="confirm password"
+            onChange={this.onChange}
           />
         </FormControl>
         <div className={classes.center}>
-          <Button type="submit" color="green" variant="raised">
+          <Button type="submit" style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
             Sign in
           </Button>
         </div>

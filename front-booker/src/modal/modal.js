@@ -14,20 +14,21 @@ function rand() {
 }
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = '15%';
+  const left = '30%';
+  const width = '40%';
 
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
+    width: width,
+    top: top,
+    left: left,
+      };
 }
 
 const styles = theme => ({
   paper: {
     position: 'absolute',
-    width: theme.spacing.unit * 50,
+    width: theme.spacing.unit * 5,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
@@ -39,6 +40,20 @@ class SimpleModal extends React.Component {
     open: false,
     display: 'login'
   };
+handleClick= ()=> {
+  let nextDisplay 
+  this.state.display==='login'
+  if (this.state.display==='login'){
+    nextDisplay = 'register'
+  }
+  else {
+    nextDisplay = 'login'
+  }
+
+  this.setState({ 
+    display : nextDisplay    
+  })
+}
 
   render() {
     const { classes } = this.props;
@@ -65,7 +80,7 @@ class SimpleModal extends React.Component {
           { this.state.display==='login'? <Login /> : <Register /> }
           <Divider />
           <div>
-            {text} <a href='#' >{linktext}</a>
+            {text} <a href='#' onClick={this.handleClick}>{linktext} </a>
           </div>  
           </div>
         </Modal>
