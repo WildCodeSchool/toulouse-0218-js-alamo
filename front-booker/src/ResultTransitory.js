@@ -11,12 +11,13 @@ import AlamoMap from './AlamoMap'
 const styles = theme => ({
   formDate: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap'    
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200
+    width: 200,
+    marginBottom: theme.spacing.unit * 2
   },
   paper: {
     backgroundColor: '#E6EAF0',

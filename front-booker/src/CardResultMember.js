@@ -28,7 +28,8 @@ const styles = theme => ({
   },
   button: {
     backgroundColor: '#66FF33',
-    marginRight: 20
+    marginRight: 20,
+    color: 'white'
   }
 })
 
