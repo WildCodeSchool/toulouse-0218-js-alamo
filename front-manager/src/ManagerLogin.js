@@ -47,7 +47,7 @@ class ManagerLogin extends React.Component {
           <Grid item xs={4} >
             <Paper className={classes.paper}>  
               <FormControl className={classes.container} noValidate autoComplete="off">
-                <h3>Login</h3>
+                <h3>Alamo</h3>
                 <TextField
                   id="name"
                   label="Nom du club"
