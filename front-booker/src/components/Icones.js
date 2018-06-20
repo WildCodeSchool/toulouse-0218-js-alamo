@@ -7,7 +7,9 @@ import icone5 from '../images/icone5.png'
 import icone6 from '../images/icone6.png'
 
 const styles = {
-
+  root: {
+    marginTop: '80px'
+  }
 }
 
 class Icones extends React.Component {

@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import CardResultDefault from './CardResultDefault'
 import CardResultMember from './CardResultMember'
 import AlamoMap from './AlamoMap'
+import clubs from './clubs'
 
 const styles = theme => ({
   formDate: {
@@ -25,10 +26,7 @@ const styles = theme => ({
   }
 })
 
-const clubs = [
-  { id: 1, name: 'Le club des cinq', member: true },
-  { id: 2, name: 'Le club de Rome', member: false }
-]
+
 
 class ResultTransitory extends React.Component {
   constructor (props) {
