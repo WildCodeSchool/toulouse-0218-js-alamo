@@ -29,7 +29,7 @@ class SelectBar extends React.Component {
 
   handleSelectChange (value) {
     console.log('You\'ve selected:', value)
-    this.setState({ value })
+    this.props.onSelect(value)
   }
 
   toggleCheckbox (e) {
