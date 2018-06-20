@@ -5,6 +5,7 @@ import SearchBar from 'material-ui-search-bar'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import MultiSelectField from './SelectBar'
+import Collapse from '@material-ui/core/Collapse'
 
 const styles = theme => ({
   root: {
@@ -15,12 +16,17 @@ const styles = theme => ({
 class SearchLocationBar extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      city: '',
+      sport: ''
+    }
   }
   render () {
-    const { classes } = this.props
+    const { classes, history, hasSearchResults } = this.props
+    const { sport, city } = this.state
+    const gridHeight = hasSearchResults ? '50px' : '60vh'
     return (
-      <div className={classes.root} >
+      <Collapse in={!hasSearchResults} collapsedHeight="100px">
         <Grid item xs={12}>
           <Grid
             container
@@ -28,21 +34,22 @@ class SearchLocationBar extends React.Component {
             direction={'row'}
             justify={'center'}
             alignItems={'center'}
-            style={{height: '60vh'}} // A VOIR AVEC BENOIT MET UNE MARGE EN BAS DE PAGE !
+            style={{height: gridHeight}} // A VOIR AVEC BENOIT MET UNE MARGE EN BAS DE PAGE !
           >
             <form>
-              <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>
-              <Grid container >
+              {!hasSearchResults && <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>}
+
+              <Grid container spacing={0}>
                 <Grid item xs={12} sm={4}>
-                  < MultiSelectField />
+                  <MultiSelectField onSelect={sport => this.setState({ sport })}/>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <SearchBar className={classes.search} style={{height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}} position="static"
-                    onChange={() => console.log('onChange')}
+                    onChange={city => this.setState({ city })}
                     onRequestSearch={() => console.log('onRequestSearch')} />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <Button className={classes.btn} onClick={this.props.nextStep} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+                  <Button className={classes.btn} onClick={e => history.push(`/s/${sport}/${city}`)} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
                 Recherchez
                   </Button>
                 </Grid>
@@ -50,7 +57,7 @@ class SearchLocationBar extends React.Component {
             </form>
           </Grid>
         </Grid>
-      </div>
+      </Collapse>
     )
   }
 }

@@ -5,7 +5,9 @@ import PropTypes from 'prop-types'
 import sport from '../images/sport.png'
 
 const styles = {
-
+  root: {
+    marginTop: '80px'
+  }
 }
 
 class Icones extends React.Component {
