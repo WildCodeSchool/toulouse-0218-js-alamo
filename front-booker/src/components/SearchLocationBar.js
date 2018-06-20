@@ -41,11 +41,11 @@ class SearchLocationBar extends React.Component {
 
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={4}>
-                  <MultiSelectField onSelect={sport => this.state({ sport })}/>
+                  <MultiSelectField onSelect={sport => this.setState({ sport })}/>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <SearchBar className={classes.search} style={{height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}} position="static"
-                    onChange={city => this.state({ city })}
+                    onChange={city => this.setState({ city })}
                     onRequestSearch={() => console.log('onRequestSearch')} />
                 </Grid>
 
