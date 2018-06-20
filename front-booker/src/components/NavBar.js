@@ -8,6 +8,7 @@ import permIdentity from '../images/permIdentity.png'
 import Button from '@material-ui/core/Button'
 import Hidden from '@material-ui/core/Hidden'
 import Modal from '../modal/modal'
+import { Link } from 'react-router-dom'
 
 const styles = {
   root: {
@@ -32,22 +33,24 @@ class NavBar extends React.Component {
   }
 
   handleOpen = () => {
-    this.setState({ modalOpen: true });
-  };
+    this.setState({ modalOpen: true })
+  }
 
   handleClose = () => {
-    this.setState({ modalOpen: false });
-  };
+    this.setState({ modalOpen: false })
+  }
 
   render () {
     const { classes } = this.props
-    const { modalOpen}= this.state
+    const { modalOpen } = this.state
     return (<div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
-          <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'ChampagneLimousines' }}>
-          Alamo
-          </Typography>
+          <Link to='/' style={{ textDecoration: 'none', flex: 1 }}>
+            <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'ChampagneLimousines' }}>
+            Alamo
+            </Typography>
+          </Link>
           <Hidden xsDown smDown>
             <Button className={classes.btn}variant="raised" style={{backgroundColor: '#66FF33'}}>
         Vous êtes gérant de salle de sport ?
@@ -63,7 +66,7 @@ class NavBar extends React.Component {
         </Toolbar>
       </AppBar>
 
-      < Modal open={modalOpen} close={this.handleClose} />
+      <Modal open={modalOpen} close={this.handleClose} />
     </div>
     )
   }
