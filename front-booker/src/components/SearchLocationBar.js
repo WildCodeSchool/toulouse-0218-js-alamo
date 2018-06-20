@@ -48,7 +48,6 @@ class SearchLocationBar extends React.Component {
                     onChange={city => this.setState({ city })}
                     onRequestSearch={() => console.log('onRequestSearch')} />
                 </Grid>
-
                 <Grid item xs={12} sm={4}>
                   <Button className={classes.btn} onClick={e => history.push(`/s/${sport}/${city}`)} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
                 Recherchez

@@ -31,12 +31,12 @@ class Homepage extends React.Component {
           <IconeSport />
         </Collapse>
       </Paper>
-        <Collapse in={!hasSearchResults}>
-          <IconePresentation />
-        </Collapse>
-        <Collapse in={hasSearchResults}>
-          <ResultTransitory />
-        </Collapse>
+      <Collapse in={!hasSearchResults}>
+        <IconePresentation />
+      </Collapse>
+      <Collapse in={hasSearchResults}>
+        <ResultTransitory />
+      </Collapse>
     </div>
     )
   }

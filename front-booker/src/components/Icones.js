@@ -2,9 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import icone4 from '../images/icone4.png'
-import icone5 from '../images/icone5.png'
-import icone6 from '../images/icone6.png'
+import sport from '../images/sport.png'
 
 const styles = {
   root: {
@@ -22,27 +20,14 @@ class Icones extends React.Component {
     return (
       <div className={classes.root}>
         <Grid item xs={12}>
-          <Grid
-            container
-            spacing={8}
-            className={classes.demo}
-            direction={'row'}
-            justify={'center'}
-            alignItems={'center'}
-            style={{ height: '20vh' }}
-          >
-            <Grid item xs={4}>
-              <img src={icone6} className={classes.icone} alt="icone" style={{paddingBottom: '30%'}} />
-            </Grid>
-            <Grid item xs={4}>
-              <img src={icone5} className="icone" alt="icone" style={{paddingBottom: '30%'}} />
-            </Grid>
-            <Grid item xs={4}>
-              <img src={icone4} className="icone" alt="icone" style={{paddingBottom: '30%'}} />
+          <Grid container item spacing={0} justify="center" >
+            <Grid item xs={9} style={{width: '90%'}}>
+              <img src={sport} className="sport" alt="sport" style={{width: '100%', paddingTop: '5vh'}} />
             </Grid>
           </Grid>
         </Grid>
       </div>
+
     )
   }
 }
