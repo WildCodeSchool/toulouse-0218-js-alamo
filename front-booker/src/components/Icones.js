@@ -6,7 +6,7 @@ import sport from '../images/sport.png'
 
 const styles = {
   root: {
-    marginTop: '80px'
+    marginTop: '30px'
   }
 }
 
