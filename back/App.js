@@ -4,6 +4,7 @@ const  express      =  require('express')
 const  bodyParser   =  require('body-parser')
 const  morgan       =  require('morgan')
 const  app          =  express()
+const  connection   =  require('./db.js');
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended:  false }))

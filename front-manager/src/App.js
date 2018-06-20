@@ -27,7 +27,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={ManagerLogin}  />
+            <Route exact path="/" component={ManagerLogin} />
             <Route path="/calendar" render={withNavbar(Calendar)} />
           </Switch>
         </div>
