@@ -9,6 +9,7 @@
     "date-fns": "^2.0.0-alpha.10",
     "fullcalendar": "^3.9.0",
     "fullcalendar-scheduler": "^1.9.4",
+    "material-ui-icons": "^1.0.0-beta.36",
     "material-ui-pickers": "^1.0.0-rc.10",
     "react": "^16.4.0",
     "react-calendar": "^2.15.2",
