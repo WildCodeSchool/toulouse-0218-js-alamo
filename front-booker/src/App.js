@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Homepage from './Homepage'
-import ResultTransitory from './ResultTransitory'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   constructor (props) {
@@ -27,19 +27,22 @@ class App extends Component {
   }
 
   render () {
-    const step = this.state.step
-    let componentToShow
-    if (step === 0) {
-      componentToShow = <Homepage nextStep={this.nextStep} />
-    } else if (step === 1) {
-      componentToShow = <ResultTransitory onResultDone={this.onResultDone}/>
-    }
+    // const step = this.state.step
+    // let componentToShow
+    // if (step === 0) {
+    //   componentToShow = <Homepage step={this.state.step} nextStep={this.nextStep} />
+    // } else if (step === 1) {
+    //   componentToShow = <ResultTransitory onResultDone={this.onResultDone}/>
+    // }
     return (
-      <Fragment>
+      <Router>
         <div className="App">
-          {componentToShow}
+          <Switch>
+            <Route exact path="/" component={Homepage} />
+            <Route exact path="/s/:sport/:city" component={Homepage} />
+          </Switch>
         </div>
-      </Fragment>
+      </Router>
     )
   }
 }
