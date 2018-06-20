@@ -1,0 +1,4 @@
+[
+  { "id": 1, "name": "Le club des cinq", "member": true },
+  { "id": 2, "name": "Le club de Rome", "member": false }
+]

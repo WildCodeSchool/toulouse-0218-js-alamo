@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
+import { Link,  withRouter } from 'react-router-dom'
 
 const styles = theme => ({
   card: {
@@ -30,6 +31,10 @@ const styles = theme => ({
     backgroundColor: '#66FF33',
     marginRight: 20,
     color: 'white'
+  },
+  link: {
+    color: 'white',
+    textDecoration: 'none'
   }
 })
 
@@ -55,7 +60,7 @@ class CardResultMember extends React.Component {
                   {this.props.club.phone}: <br />
                 </Typography>
                 <Button className={classes.button}>
-                    Réserver
+                  <Link to = {"/reservation/" + this.props.club.id} className={classes.link}>Réserver</Link>
                 </Button>
               </Grid>
               <Grid item xs={6}>
@@ -72,4 +77,4 @@ CardResultMember.propTypes = {
   classes: PropTypes.object,
   club: PropTypes.object
 }
-export default withStyles(styles)(CardResultMember)
+export default withRouter(withStyles(styles)(CardResultMember))

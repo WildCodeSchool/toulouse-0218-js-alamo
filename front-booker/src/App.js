@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import Homepage from './Homepage'
 import ResultTransitory from './ResultTransitory'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import Reservation from './Reservation'
 
 class App extends Component {
   constructor (props) {
@@ -35,11 +37,16 @@ class App extends Component {
       componentToShow = <ResultTransitory onResultDone={this.onResultDone}/>
     }
     return (
-      <Fragment>
-        <div className="App">
-          {componentToShow}
-        </div>
-      </Fragment>
+      <Router>
+        <Fragment>
+          <div className="App">
+            <Switch>
+              <Route exact path='/' render={() => componentToShow} />
+              <Route path='/reservation/:id' component={Reservation} />
+            </Switch>
+          </div>
+        </Fragment>
+      </Router>
     )
   }
 }
