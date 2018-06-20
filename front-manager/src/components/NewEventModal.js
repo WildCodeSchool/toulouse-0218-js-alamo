@@ -79,15 +79,15 @@ class NewEventModal extends React.Component {
                   Nouvel évènement
                 </Typography>
                 <Typography variant="body1" id="modal-title" className={classes.mb}>
-                  {date.format('YYYY-MM-DD')}
+                  {date.format('DD-MM-YYYY')}
                 </Typography>
-                {/*<TimePicker
+                {/* <TimePicker
                   utils={new FnsUtils()}
                   clearable
                   ampm={false}
                   label="24 hours"
                   value={moment()}
-                  onChange={this.handleDateChange} />*/}
+                  onChange={this.handleDateChange} /> */}
 
                 <FormControl className={classes.mb}>
                   <InputLabel htmlFor="timeStart">Heure de début</InputLabel>
@@ -113,6 +113,22 @@ class NewEventModal extends React.Component {
                     type="text"
                     name="timeEnd"
                     value={timeEnd}
+                    onChange={this.handleInputChange}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Timer />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <FormControl className={classes.mb}>
+                  <InputLabel htmlFor="selectedDate">Date</InputLabel>
+                  <Input
+                    className={classes.input}
+                    id="selectedDate"
+                    type="text"
+                    name="selectedDate"
+                    value={selectedDate}
                     onChange={this.handleInputChange}
                     startAdornment={
                       <InputAdornment position="start">

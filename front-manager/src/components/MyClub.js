@@ -105,7 +105,7 @@ class MyClub extends React.Component {
   onChange = date => {
     this.setState({ date })
     if(this.calendar) {
-      this.calendar.fullCalendar('changeView', 'agendaDay', date.format('YYYY-MM-DD'))
+      this.calendar.fullCalendar('changeView', 'agendaDay', date.format('DD-MM-YYYY'))
     }
   }
   constructor (props) {
@@ -115,20 +115,15 @@ class MyClub extends React.Component {
     // Créer un schedulerLicenseKey.json en s'inspirant de schedulerLicenseKey.sample.json
     this.calendarOptions = {
       schedulerLicenseKey,
-      defaultView: 'timelineWeek',
-      groupByDateAndResource: true,
+      defaultView: 'agendaDay',
+      groupByResource: true,
       header: {
         left: 'prev,next',
         // center: 'title',
         center: 'addEventButton',
-        right: 'timelineDay,timelineWeek'
+        right: 'agendaDay,agendaWeek'
       },
-      views: {
-        agendaFourDay: {
-          type: 'agenda',
-          duration: { days: 4 }
-        }
-      },
+
       resources: [
         { id: 'a', title: 'Room A' },
         { id: 'b', title: 'Room B' }
