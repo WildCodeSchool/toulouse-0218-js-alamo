@@ -115,13 +115,13 @@ class MyClub extends React.Component {
     // Créer un schedulerLicenseKey.json en s'inspirant de schedulerLicenseKey.sample.json
     this.calendarOptions = {
       schedulerLicenseKey,
-      defaultView: 'agendaWeek',
-      groupByResource: true,
+      defaultView: 'timelineWeek',
+      groupByDateAndResource: true,
       header: {
         left: 'prev,next',
         // center: 'title',
         center: 'addEventButton',
-        right: 'agendaDay,agendaWeek'
+        right: 'timelineDay,timelineWeek'
       },
       views: {
         agendaFourDay: {
@@ -141,21 +141,22 @@ class MyClub extends React.Component {
         // car "pas très React"
         addEventButton: {
           text: 'add event...',
-          click: () => {
-            const { date } = this.state
-
-            if (date.isValid()) {
-              $('#calendar').fullCalendar('renderEvent', {
-                title: 'dynamic event',
-                resourceId: 'b',
-                start: date,
-                allDay: true
-              })
-              // alert('Great. Now, update your database...');
-            } else {
-              alert('Invalid date.')
-            }
-          }
+          click: this.handleOpenModal
+          //  () => {
+          //   const { date } = this.state
+          
+          //   if (date.isValid()) {
+          //     $('#calendar').fullCalendar('renderEvent', {
+          //       title: 'dynamic event',
+          //       resourceId: 'b',
+          //       start: date,
+          //       allDay: true
+          //     })
+          //     // alert('Great. Now, update your database...');
+          //   } else {
+          //     alert('Invalid date.')
+          //   }
+          // }
         }
       }
     }
@@ -165,10 +166,13 @@ class MyClub extends React.Component {
     const { calendarOptions } = this
     const props = {...calendarOptions, events}
     return (
-      
+      <Grid container spacing={24}>
+        <Grid item xs={12} sm={12} md={12}>
+          <NewEventModal open={modalOpen} date={date} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
+          <Calendar utils={new MomentUtils()} date={date} {...calendarProps} onChange={this.onChange} />
           <FullCalendar options={{...props}} />
-    
-   
+        </Grid>
+      </Grid>
     )
   }
 }
