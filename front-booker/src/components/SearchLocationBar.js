@@ -21,9 +21,17 @@ class SearchLocationBar extends React.Component {
       sport: ''
     }
   }
+  onSubmit = () => this.props.history.push(`/s/${this.state.sport}/${this.state.city}`)
+
+  researchOnEnter = e => {
+    if(e.keyCode !== 13) {
+      return
+    }
+    this.onSubmit()
+  }
+
   render () {
-    const { classes, history, hasSearchResults } = this.props
-    const { sport, city } = this.state
+    const { classes, hasSearchResults } = this.props
     const gridHeight = hasSearchResults ? '50px' : '60vh'
     return (
       <Collapse in={!hasSearchResults} collapsedHeight="100px">
@@ -46,10 +54,10 @@ class SearchLocationBar extends React.Component {
                 <Grid item xs={12} sm={4}>
                   <SearchBar className={classes.search} style={{height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}} position="static"
                     onChange={city => this.setState({ city })}
-                    onRequestSearch={() => console.log('onRequestSearch')} />
+                    onRequestSearch={this.onSubmit} />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <Button className={classes.btn} onClick={e => history.push(`/s/${sport}/${city}`)} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+                  <Button className={classes.btn} onClick={this.onSubmit} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
                 Recherchez
                   </Button>
                 </Grid>
