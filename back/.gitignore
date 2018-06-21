@@ -1,3 +1,6 @@
 # dependencies
 /node_modules
-/db.js
+/db-settings.json
+/db.sql
+
+
