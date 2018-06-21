@@ -32,12 +32,17 @@ const styles = theme => ({
 })
 
 class ManagerLogin extends React.Component {
+  state = {
+    name: '',
+    password: ''
+  }
 
-  handleChange = name => event => {
+  handleInputChange = event => {
     this.setState({
-      [name]: event.target.value,
-    });
-  };
+      [event.target.name]: event.target.value,
+    })
+    console.log(event.target.value)
+  }
 
   render() {
     const { classes } = this.props
@@ -53,7 +58,7 @@ class ManagerLogin extends React.Component {
                   label="Nom du club"
                   className={classes.textField}
                   placeholder=" "
-                  onChange={this.handleChange('name')}
+                  onChange={this.handleInputChange}
                   margin="normal"
                 />
                 <TextField
@@ -61,7 +66,7 @@ class ManagerLogin extends React.Component {
                   label="Password"
                   className={classes.textField}
                   type="password"
-                  onChange={this.handleChange('password')}
+                  onChange={this.handleInputChange}
                   margin="normal"
                 />
                 <Button className={classes.button}>
