@@ -47,10 +47,14 @@ class NewEventModal extends React.Component {
     timeStart: '',
     timeEnd: ''
   }
-  handleInputChange = (date, e) => {
-    console.log(date,e)
+  handleInputChange = e => {
     this.setState({
-      // [e.target.name]: e.target.value
+      [e.target.name]: e.target.value
+    })
+  }
+  handleDateChange = date => {
+    this.setState({
+    selectedDate: date
     })
   }
   handleSubmit = e => {
@@ -131,7 +135,7 @@ class NewEventModal extends React.Component {
                   helperText="Possible manual entry via keyboard"
                   maxDateMessage="Date must be less than today"
                   value={selectedDate}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleDateChange}
                   animateYearScrolling={false}
                   startAdornment={
                     <InputAdornment position="start">
