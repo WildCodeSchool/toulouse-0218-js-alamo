@@ -10,6 +10,9 @@ import Collapse from '@material-ui/core/Collapse'
 const styles = theme => ({
   root: {
     flexGrow: 1
+  },
+  btn: {
+    color: 'white'
   }
 })
 
