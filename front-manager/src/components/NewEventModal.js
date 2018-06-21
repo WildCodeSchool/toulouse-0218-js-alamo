@@ -14,6 +14,7 @@ import Collapse from '@material-ui/core/Collapse'
 import PlusOne from '@material-ui/icons/PlusOne'
 import Timer from '@material-ui/icons/Timer'
 import { TimePicker as TimePickerBase } from 'material-ui-pickers'
+import { DatePicker } from 'material-ui-pickers';
 import withUtils from 'material-ui-pickers/_shared/WithUtils'
 import FnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 const TimePicker = withUtils(new FnsUtils())(TimePickerBase)
@@ -46,15 +47,16 @@ class NewEventModal extends React.Component {
     timeStart: '',
     timeEnd: ''
   }
-  handleInputChange = e => {
+  handleInputChange = (date, e) => {
+    console.log(date,e)
     this.setState({
-      [e.target.name]: e.target.value
+      // [e.target.name]: e.target.value
     })
   }
   handleSubmit = e => {
     e.preventDefault()
-    const { timeStart, timeEnd } = this.state
-    this.props.handleSubmit({ timeStart, timeEnd })
+    const { timeStart, timeEnd, selectedDate } = this.state
+    this.props.handleSubmit({ timeStart, timeEnd, selectedDate})
   }
   handleDateChange = (date) => {
     console.log(date)
@@ -122,21 +124,22 @@ class NewEventModal extends React.Component {
                   />
                 </FormControl>
                 <FormControl className={classes.mb}>
-                  <InputLabel htmlFor="selectedDate">Date</InputLabel>
-                  <Input
-                    className={classes.input}
-                    id="selectedDate"
-                    type="text"
-                    name="selectedDate"
-                    value={selectedDate}
-                    onChange={this.handleInputChange}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <Timer />
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
+                <DatePicker
+                  keyboard
+                  clearable
+                  label="Choose a date"
+                  helperText="Possible manual entry via keyboard"
+                  maxDateMessage="Date must be less than today"
+                  value={selectedDate}
+                  onChange={this.handleInputChange}
+                  animateYearScrolling={false}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <Timer />
+                    </InputAdornment>
+            }
+          />
+                </FormControl>  
                 <Button
                   variant="contained"
                   color="primary"

@@ -123,7 +123,6 @@ class MyClub extends React.Component {
         center: 'addEventButton',
         right: 'agendaDay,agendaWeek'
       },
-
       resources: [
         { id: 'a', title: 'Room A' },
         { id: 'b', title: 'Room B' }
