@@ -20,8 +20,7 @@ const styles = theme => ({
     textAlign: 'center',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    margin: theme.spacing.unit * 2,
     width: 200,
   },
   button: {
@@ -33,7 +32,7 @@ const styles = theme => ({
 
 class ManagerLogin extends React.Component {
   state = {
-    name: '',
+    name: 'Nom',
     password: ''
   }
 
@@ -42,6 +41,10 @@ class ManagerLogin extends React.Component {
       [event.target.name]: event.target.value,
     })
     console.log(event.target.value)
+  }
+
+  handleLoginSubmit = () => {
+    console.log(this.state)
   }
 
   render() {
@@ -54,23 +57,23 @@ class ManagerLogin extends React.Component {
               <FormControl className={classes.container} noValidate autoComplete="off">
                 <h3>Alamo</h3>
                 <TextField
-                  id="name"
+                  name="name"
                   label="Nom du club"
-                  className={classes.textField}
                   placeholder=" "
+                  className={classes.textField}
+                  value={this.state.name}
                   onChange={this.handleInputChange}
-                  margin="normal"
                 />
                 <TextField
-                  id="password-input"
+                  name="password"
                   label="Password"
-                  className={classes.textField}
                   type="password"
+                  className={classes.textField}
+                  value={this.state.password}
                   onChange={this.handleInputChange}
-                  margin="normal"
                 />
-                <Button className={classes.button}>
-                  <Link to = "/calendar">Login</Link>
+                <Button className={classes.button} onClick={this.handleLoginSubmit}>
+                  Login
                 </Button>
               </FormControl> 
             </Paper>
