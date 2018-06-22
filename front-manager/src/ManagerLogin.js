@@ -30,6 +30,11 @@ const styles = theme => ({
   },
 })
 
+const exempleLogin = {
+  name:'test',
+  password: 'pass'
+}
+
 class ManagerLogin extends React.Component {
   state = {
     name: 'Nom',
@@ -45,6 +50,12 @@ class ManagerLogin extends React.Component {
 
   handleLoginSubmit = () => {
     console.log(this.state)
+    if (this.state.name === exempleLogin.name && this.state.password === exempleLogin.password) {
+      console.log('youpi')
+    }
+    else {
+      console.log('échec')
+    }
   }
 
   render() {
@@ -58,6 +69,7 @@ class ManagerLogin extends React.Component {
                 <h3>Alamo</h3>
                 <TextField
                   name="name"
+                  type="text"
                   label="Nom du club"
                   placeholder=" "
                   className={classes.textField}
@@ -66,8 +78,8 @@ class ManagerLogin extends React.Component {
                 />
                 <TextField
                   name="password"
-                  label="Password"
                   type="password"
+                  label="Password"
                   className={classes.textField}
                   value={this.state.password}
                   onChange={this.handleInputChange}
