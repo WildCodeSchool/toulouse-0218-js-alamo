@@ -30,6 +30,7 @@ const styles = () => ({
   button: {
     backgroundColor: '#66FF33',
     marginRight: 20,
+    marginBottom: 20,
     color: 'white'
   },
   link: {
