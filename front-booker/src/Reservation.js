@@ -4,6 +4,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import clubs from './clubs'
+import CardReservation from './CardReservation';
 
 const styles = theme => ({
     paper: {
@@ -26,7 +27,7 @@ class Reservation extends React.Component {
             <Paper className={classes.paper}>
                 <Grid container>
                     <Grid item xs={12} md={5}>
-                        <CardResultMember club={club}/>
+                        <CardReservation club={club}/>
                     </Grid>
                 </Grid>
             </Paper>
