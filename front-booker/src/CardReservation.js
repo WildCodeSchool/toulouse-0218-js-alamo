@@ -11,7 +11,7 @@ import { Link,  withRouter } from 'react-router-dom'
 
 const styles = theme => ({
   card: {
-    height: 300
+    height: 300           
   },
   paper: {
     height: 500,
@@ -35,6 +35,10 @@ const styles = theme => ({
   link: {
     color: 'white',
     textDecoration: 'none'
+  },
+  titre: {
+    fontSize: 35,
+    padding: 15
   }
 })
 
@@ -42,7 +46,12 @@ class CardReservation extends React.Component {
   render () {
     const { classes } = this.props
     return (
-      <div>
+      <div className={classes.result}>
+        <Grid container justify='center'>
+        <Typography component="h1" className={classes.titre}>
+          Veuillez confirmer votre réservation
+        </Typography>
+        </Grid>
         <Card className={classes.card}>
           <CardContent>
             <Grid container>
@@ -60,7 +69,7 @@ class CardReservation extends React.Component {
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paperCalendar}>Calendar</Paper>
+                <Paper className={classes.paperCalendar}>Récap réservation</Paper>
               </Grid>
             </Grid>
           </CardContent>
