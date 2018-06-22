@@ -37,13 +37,13 @@ class CardResultDefault extends React.Component {
                   {this.props.club.name}
                 </Typography>
                 <Typography component="p">
-                    {this.props.club.adresse} : <br />
-                    {this.props.club.email}: <br />
-                    {this.props.club.phone}: <br />
+                  {this.props.club.adresse} : <br />
+                  {this.props.club.email}: <br />
+                  {this.props.club.phone}: <br />
                 </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paperCalendar}>Calendar</Paper>
+                <Paper className={classes.paperCalendar}>Sports pratiqués :</Paper>
               </Grid>
             </Grid>
           </CardContent>

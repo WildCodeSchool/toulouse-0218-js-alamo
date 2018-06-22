@@ -4,12 +4,12 @@ import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
-import { Link,  withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import MyCalendar from '../src/components/MyCalendar'
 
-const styles = theme => ({
+const styles = () => ({
   card: {
     height: 300
   },
@@ -30,6 +30,7 @@ const styles = theme => ({
   button: {
     backgroundColor: '#66FF33',
     marginRight: 20,
+    marginBottom: 20,
     color: 'white'
   },
   link: {
@@ -60,11 +61,11 @@ class CardResultMember extends React.Component {
                   {this.props.club.phone}: <br />
                 </Typography>
                 <Button className={classes.button}>
-                  <Link to = {"/reservation/" + this.props.club.id} className={classes.link}>Réserver</Link>
+                  <Link to = {'/reservation/' + this.props.club.id} className={classes.link}>Réserver</Link>
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paperCalendar}>Calendar</Paper>
+                <MyCalendar />
               </Grid>
             </Grid>
           </CardContent>
