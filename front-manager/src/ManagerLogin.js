@@ -1,5 +1,4 @@
 import React from 'react'
-import List from '@material-ui/core/List';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
@@ -7,7 +6,8 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import { Link,  withRouter } from 'react-router-dom'
+import Calendar from './Calendar'
+import { Redirect,  withRouter } from 'react-router-dom'
 
 
 const styles = theme => ({
@@ -37,7 +37,7 @@ const exempleLogin = {
 
 class ManagerLogin extends React.Component {
   state = {
-    name: 'Nom',
+    name: '',
     password: ''
   }
 
@@ -51,10 +51,10 @@ class ManagerLogin extends React.Component {
   handleLoginSubmit = () => {
     console.log(this.state)
     if (this.state.name === exempleLogin.name && this.state.password === exempleLogin.password) {
-      console.log('youpi')
+    this.props.history.push('/calendar')
     }
     else {
-      console.log('échec')
+      alert('Wrong way !')
     }
   }
 
