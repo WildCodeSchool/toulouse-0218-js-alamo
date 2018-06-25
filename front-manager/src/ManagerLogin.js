@@ -31,11 +31,6 @@ const styles = theme => ({
   },
 })
 
-const exempleLogin = {
-  name:'test',
-  password: 'pass'
-}
-
 class ManagerLogin extends React.Component {
   state = {
     name: '',
@@ -51,20 +46,25 @@ class ManagerLogin extends React.Component {
   }
 
   handleLoginSubmit = () => {
-    console.log(this.state)
-    fetch('/members/login', {
+    const data = {}
+    fetch('/api/clubs/login', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify(this.state)
     })
-    .then(console.log(JSON.stringify(this.state)))
     .then(res => res.json())
-    .then(
-      res => this.setState({'message': 'good' }),
-      err => this.setState({'message':'bad'})
-    )
+    .then(data => {
+      if (data.error) {
+        return this.setState({'message': 'bad' })
+      } 
+      else {
+        this.setState({'message':'good'})
+      } 
+    })
+    
+    
     // if (this.state.name === exempleLogin.name && this.state.password === exempleLogin.password) {
     // this.props.history.push('/calendar')
     // }
@@ -102,7 +102,7 @@ class ManagerLogin extends React.Component {
                 <Button className={classes.button} onClick={this.handleLoginSubmit}>
                   Login
                 </Button>
-                <p>{this.message}</p>
+                <p>{this.state.message}</p>
               </FormControl> 
             </Paper>
           </Grid>

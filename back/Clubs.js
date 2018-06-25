@@ -4,7 +4,9 @@ const connection = require('./db.js')
 
 
 router.post('/login', function(req, res) {
-  const query = 'SELECT * FROM manager'
+  console.log(req.body)
+  const query = `SELECT * FROM manager WHERE clubName='${req.body.name}' and password='${req.body.password}'`
+  const {name, password} = req.body
   connection.query(query, (error, result) => {
     if (error) {
       return res.status(500).json({
@@ -12,7 +14,7 @@ router.post('/login', function(req, res) {
       })
     }
     res.json(
-      result[0]
+      result
     )
     console.log(res.json)
   })
