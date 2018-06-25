@@ -65,7 +65,8 @@ class MyClub extends React.Component {
   }
   // C'est ici qu'on crée un nouvel évènement, une fois que
   // le formulaire de la modale de NewEventModal a été soumis
-  handleSubmitModal = ({ timeStart, timeEnd }) => {
+  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description }) => {
+    console.log(selectedDate)
     const { events, date } = this.state
     console.log('handleSubmitModal', timeStart, timeEnd)
     if(! timeStart || ! timeEnd) {
@@ -87,7 +88,7 @@ class MyClub extends React.Component {
     const offsetString = getOffsetString()
 
     const newEvent = {
-      title: 'dynamic event ' + i++,
+      title: description + i++,
       resourceId: 'b',
       // start: startMoment.format(),
       // end: endMoment.format(),

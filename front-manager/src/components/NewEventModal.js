@@ -1,5 +1,6 @@
 /* global moment */
 import React from 'react'
+import { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -47,7 +48,8 @@ class NewEventModal extends React.Component {
   state = {
     selectedDate: new Date(),
     timeStart: '',
-    timeEnd: ''
+    timeEnd: '',
+    description: ''
   }
   handleInputChange = e => {
     this.setState({
@@ -61,16 +63,16 @@ class NewEventModal extends React.Component {
   }
   handleSubmit = e => {
     e.preventDefault()
-    const { timeStart, timeEnd, selectedDate } = this.state
-    this.props.handleSubmit({ timeStart, timeEnd, selectedDate})
+    const { timeStart, timeEnd, selectedDate, description } = this.state
+    this.props.handleSubmit({ timeStart, timeEnd, selectedDate, description})
   }
   handleDateChange = (date) => {
     console.log(date)
     this.setState({ selectedDate: date });
   }
   render () {
-    const { classes, handleOpen, handleClose, handleSubmit, open, date } = this.props
-    const { selectedDate, timeStart, timeEnd } = this.state
+    const { classes, handleOpen, handleClose, handleSubmit, open, date} = this.props
+    const { selectedDate, timeStart, timeEnd, description} = this.state
 
     return (
       <div>
@@ -89,11 +91,12 @@ class NewEventModal extends React.Component {
                 <FormControl className={classes.mb}>
                <TextField
                 required
-                id="required"
-                label="Required"
-                defaultValue="Hello World"
+                id="description"
+                name="description"
+                label="My event"
+                value={description}
                 className={classes.textField}
-                margin="normal"
+                onChange={this.handleInputChange}
                 />
                 </FormControl>
                 <FormControl className={classes.mb}>
