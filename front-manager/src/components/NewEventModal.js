@@ -17,6 +17,8 @@ import { TimePicker as TimePickerBase } from 'material-ui-pickers'
 import { DatePicker } from 'material-ui-pickers';
 import withUtils from 'material-ui-pickers/_shared/WithUtils'
 import FnsUtils from 'material-ui-pickers/utils/date-fns-utils'
+import TextField from '@material-ui/core/TextField';
+
 const TimePicker = withUtils(new FnsUtils())(TimePickerBase)
 
 const styles = theme => ({
@@ -84,17 +86,16 @@ class NewEventModal extends React.Component {
                 <Typography variant="title" id="modal-title" className={classes.mb}>
                   Nouvel évènement
                 </Typography>
-                <Typography variant="body1" id="modal-title" className={classes.mb}>
-                  {date.format('DD-MM-YYYY')}
-                </Typography>
-                {/* <TimePicker
-                  utils={new FnsUtils()}
-                  clearable
-                  ampm={false}
-                  label="24 hours"
-                  value={moment()}
-                  onChange={this.handleDateChange} /> */}
-
+                <FormControl className={classes.mb}>
+               <TextField
+                required
+                id="required"
+                label="Required"
+                defaultValue="Hello World"
+                className={classes.textField}
+                margin="normal"
+                />
+                </FormControl>
                 <FormControl className={classes.mb}>
                   <InputLabel htmlFor="timeStart">Heure de début</InputLabel>
                   <Input
