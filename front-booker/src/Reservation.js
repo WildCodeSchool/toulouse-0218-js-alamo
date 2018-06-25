@@ -1,15 +1,16 @@
 import React from 'react'
-import CardResultMember from './CardResultMember'
 import {withStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import clubs from './clubs'
+import CardReservation from './CardReservation';
+import NavBar from './components/NavBar';
 
 const styles = theme => ({
     paper: {
       backgroundColor: '#E6EAF0',
       height: 500
-    }
+    },
   })
 
 class Reservation extends React.Component {
@@ -24,9 +25,10 @@ class Reservation extends React.Component {
     const club = clubs.find(club => club.id === id) 
         return (
             <Paper className={classes.paper}>
-                <Grid container>
+              <NavBar />
+                <Grid container item spacing={0} justify="center">
                     <Grid item xs={12} md={5}>
-                        <CardResultMember club={club}/>
+                        <CardReservation className={classes.item} club={club}/>
                     </Grid>
                 </Grid>
             </Paper>

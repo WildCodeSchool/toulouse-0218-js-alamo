@@ -14,6 +14,7 @@ import Collapse from '@material-ui/core/Collapse'
 import PlusOne from '@material-ui/icons/PlusOne'
 import Timer from '@material-ui/icons/Timer'
 import { TimePicker as TimePickerBase } from 'material-ui-pickers'
+import { DatePicker } from 'material-ui-pickers';
 import withUtils from 'material-ui-pickers/_shared/WithUtils'
 import FnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 const TimePicker = withUtils(new FnsUtils())(TimePickerBase)
@@ -51,10 +52,15 @@ class NewEventModal extends React.Component {
       [e.target.name]: e.target.value
     })
   }
+  handleDateChange = date => {
+    this.setState({
+    selectedDate: date
+    })
+  }
   handleSubmit = e => {
     e.preventDefault()
-    const { timeStart, timeEnd } = this.state
-    this.props.handleSubmit({ timeStart, timeEnd })
+    const { timeStart, timeEnd, selectedDate } = this.state
+    this.props.handleSubmit({ timeStart, timeEnd, selectedDate})
   }
   handleDateChange = (date) => {
     console.log(date)
@@ -79,15 +85,15 @@ class NewEventModal extends React.Component {
                   Nouvel évènement
                 </Typography>
                 <Typography variant="body1" id="modal-title" className={classes.mb}>
-                  {date.format('YYYY-MM-DD')}
+                  {date.format('DD-MM-YYYY')}
                 </Typography>
-                {/*<TimePicker
+                {/* <TimePicker
                   utils={new FnsUtils()}
                   clearable
                   ampm={false}
                   label="24 hours"
                   value={moment()}
-                  onChange={this.handleDateChange} />*/}
+                  onChange={this.handleDateChange} /> */}
 
                 <FormControl className={classes.mb}>
                   <InputLabel htmlFor="timeStart">Heure de début</InputLabel>
@@ -121,6 +127,23 @@ class NewEventModal extends React.Component {
                     }
                   />
                 </FormControl>
+                <FormControl className={classes.mb}>
+                <DatePicker
+                  keyboard
+                  clearable
+                  label="Choose a date"
+                  helperText="Possible manual entry via keyboard"
+                  maxDateMessage="Date must be less than today"
+                  value={selectedDate}
+                  onChange={this.handleDateChange}
+                  animateYearScrolling={false}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <Timer />
+                    </InputAdornment>
+            }
+          />
+                </FormControl>  
                 <Button
                   variant="contained"
                   color="primary"

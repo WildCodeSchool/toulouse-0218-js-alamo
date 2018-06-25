@@ -43,9 +43,9 @@ class ResultTransitory extends React.Component {
         <Grid container>
           <Grid item xs={12} md={12}>
             <form className={classes.formDate} noValidate>
+            <Grid container justify='center'>
               <TextField
                 id="date"
-                label="Date"
                 type="date"
                 defaultValue={defaultDate}
                 className={classes.textField}
@@ -53,6 +53,7 @@ class ResultTransitory extends React.Component {
                   shrink: true
                 }}
               />
+            </Grid>
             </form>
           </Grid>
           <Grid item xs={12} md={5}>
