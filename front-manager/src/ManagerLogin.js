@@ -1,13 +1,14 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import Button from '@material-ui/core/Button';
-import Calendar from './Calendar'
-import { Redirect,  withRouter } from 'react-router-dom'
+
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import { withStyles } from '@material-ui/core'
+import TextField from '@material-ui/core/TextField'
+import FormControl from '@material-ui/core/FormControl'
+import Button from '@material-ui/core/Button'
+
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 
 const styles = theme => ({
