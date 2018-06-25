@@ -39,7 +39,8 @@ const exempleLogin = {
 class ManagerLogin extends React.Component {
   state = {
     name: '',
-    password: ''
+    password: '',
+    message: ''
   }
 
   handleInputChange = event => {
@@ -51,12 +52,25 @@ class ManagerLogin extends React.Component {
 
   handleLoginSubmit = () => {
     console.log(this.state)
-    if (this.state.name === exempleLogin.name && this.state.password === exempleLogin.password) {
-    this.props.history.push('/calendar')
-    }
-    else {
-      alert('Wrong way !')
-    }
+    fetch('/members/login', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(this.state)
+    })
+    .then(console.log(JSON.stringify(this.state)))
+    .then(res => res.json())
+    .then(
+      res => this.setState({'message': 'good' }),
+      err => this.setState({'message':'bad'})
+    )
+    // if (this.state.name === exempleLogin.name && this.state.password === exempleLogin.password) {
+    // this.props.history.push('/calendar')
+    // }
+    // else {
+    //   alert('Wrong way !')
+    // }
   }
 
   render() {
@@ -64,7 +78,7 @@ class ManagerLogin extends React.Component {
     return (
       <div>
         <Grid container justify={'center'}>
-          <Grid item xs={4} >
+          <Grid item  xs={10} sm={6} md={4} >
             <Paper className={classes.paper}>  
               <FormControl className={classes.container} noValidate autoComplete="off">
                 <h3>Alamo</h3>
@@ -88,6 +102,7 @@ class ManagerLogin extends React.Component {
                 <Button className={classes.button} onClick={this.handleLoginSubmit}>
                   Login
                 </Button>
+                <p>{this.message}</p>
               </FormControl> 
             </Paper>
           </Grid>
