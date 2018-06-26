@@ -65,11 +65,11 @@ class ManagerLogin extends React.Component {
     })
     .then(res => res.json())
     .then(data => {
-      let id = data['0'].id
       if (data.error) {
         this.setState({'message':data.error})
       } 
       else {
+        let id = data['0'].id
         this.setState({'message':''})
         this.props.history.push(`/calendar/${id}`)
       } 
