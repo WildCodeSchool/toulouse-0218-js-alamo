@@ -4,6 +4,7 @@ const  express      =  require('express')
 const  bodyParser   =  require('body-parser')
 const  morgan       =  require('morgan')
 const  app          =  express()
+const  clubs        =  require('./Clubs')
 const  connection   =  require('./db.js');
 
 app.use(morgan('dev'))
@@ -14,6 +15,8 @@ app.use(express.static(__dirname  +  '/public'))
 app.get("/", (req,res) => {
     res.send("youhou")
 })
+
+app.use("/api/clubs", clubs)
 
 app.use(function(req, res, next) {
     var  err  =  new  Error('Not Found')
