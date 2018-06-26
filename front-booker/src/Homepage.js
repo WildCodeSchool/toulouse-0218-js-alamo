@@ -25,6 +25,7 @@ class Homepage extends React.Component {
     const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
     return (<div>
       <Paper className={classes.paper}>
+        <geolocated />
         <NavBar />
         <SearchLocationBar history={this.props.history} hasSearchResults={hasSearchResults} />
         <Collapse in ={!hasSearchResults}>

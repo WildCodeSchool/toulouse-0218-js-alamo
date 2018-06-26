@@ -6,8 +6,14 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import MultiSelectField from './SelectBar'
 import Collapse from '@material-ui/core/Collapse'
+import IntegrationAutosuggest from './Autosuggest'
+import handleSuggestionsFetchRequested from './Autosuggest'
 
-const styles = theme => ({
+
+
+
+
+const styles = _theme => ({
   root: {
     flexGrow: 1
   },
@@ -20,10 +26,13 @@ class SearchLocationBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      city: '',
+      handleSuggestionsFetchRequested,
       sport: ''
     }
   }
+
+
+  
   onSubmit = () => this.props.history.push(`/s/${this.state.sport}/${this.state.city}`)
 
   researchOnEnter = e => {
@@ -47,21 +56,20 @@ class SearchLocationBar extends React.Component {
             alignItems={'center'}
             style={{height: gridHeight}} // A VOIR AVEC BENOIT MET UNE MARGE EN BAS DE PAGE !
           >
+
             <form>
               {!hasSearchResults && <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>}
 
               <Grid container spacing={0}>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={5}>
                   <MultiSelectField onSelect={sport => this.setState({ sport })}/>
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                  <SearchBar className={classes.search} style={{height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}} position="static"
-                    onChange={city => this.setState({ city })}
-                    onRequestSearch={this.onSubmit} />
+                <Grid item xs={12} sm={5}>
+                <IntegrationAutosuggest onSelect={handleSuggestionsFetchRequested} />
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                  <Button className={classes.btn} onClick={this.onSubmit} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
-                Recherchez
+                <Grid item xs={12} sm={2}>
+                  <Button className={classes.btn} onClick={this.onSubmit} variant="raised" style={{backgroundColor: '#66FF33', height: '100%',padding: '10', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+                    Recherchez
                   </Button>
                 </Grid>
               </Grid>
