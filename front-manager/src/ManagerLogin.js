@@ -26,7 +26,7 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
-    marginTop: 50,
+    marginTop: 20,
     variant: 'raised'
   },
   message: {
@@ -63,7 +63,8 @@ class ManagerLogin extends React.Component {
         this.setState({'message':data.error})
       } 
       else {
-        this.setState({'message':'good'})
+        this.setState({'message':''})
+        this.props.history.push('/calendar')
       } 
     })
     
