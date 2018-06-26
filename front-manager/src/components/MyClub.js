@@ -65,7 +65,8 @@ class MyClub extends React.Component {
   }
   // C'est ici qu'on crée un nouvel évènement, une fois que
   // le formulaire de la modale de NewEventModal a été soumis
-  handleSubmitModal = ({ timeStart, timeEnd }) => {
+  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description }) => {
+    console.log(selectedDate)
     const { events, date } = this.state
     console.log('handleSubmitModal', timeStart, timeEnd)
     if(! timeStart || ! timeEnd) {
@@ -87,7 +88,7 @@ class MyClub extends React.Component {
     const offsetString = getOffsetString()
 
     const newEvent = {
-      title: 'dynamic event ' + i++,
+      title: description + i++,
       resourceId: 'b',
       // start: startMoment.format(),
       // end: endMoment.format(),
@@ -118,18 +119,33 @@ class MyClub extends React.Component {
       defaultView: 'agendaDay',
       groupByResource: true,
       header: {
-        left: 'prev,next',
+        left: 'promptResource, prev,next',
         // center: 'title',
         center: 'addEventButton',
-        right: 'agendaDay,agendaWeek'
+        right: 'agendaDay,agendaWeek,month'
       },
+      resourceLabelText: 'Rooms',
       resources: [
-        { id: 'a', title: 'Room A' },
-        { id: 'b', title: 'Room B' }
+        { id: 'a', title: 'Auditorium A' },
+        { id: 'b', title: 'Auditorium B' },
       ],
       events: this.state.events,
 
       customButtons: {
+ 
+          promptResource: {
+            text: '+ room',
+            click: function() {
+              var title = prompt('Room name');
+              if (title) {
+                $('#calendar').fullCalendar(
+                  'addResource',
+                  { title: title },
+                  true // scroll to the new resource?
+                );
+              }
+            }
+          },
         // Une façon d'ajouter un évènement en passant directement
         // par l'API du fullCalendar... a priori pas la bonne façon
         // car "pas très React"

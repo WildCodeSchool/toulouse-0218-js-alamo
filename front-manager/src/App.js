@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 const withNavbar = Component => props => (
   <div>
-    <Navbar />
+
     <Component {...props}/>
   </div>
 )

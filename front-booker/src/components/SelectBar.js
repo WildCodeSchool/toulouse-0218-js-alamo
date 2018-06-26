@@ -71,7 +71,8 @@ class SelectBar extends React.Component {
 
 SelectBar.propTypes = {
   classes: PropTypes.object,
-  label: PropTypes.string
+  label: PropTypes.string,
+  onSelect: PropTypes.func
 }
 
 export default withStyles(styles)(SelectBar)
