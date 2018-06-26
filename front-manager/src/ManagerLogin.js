@@ -57,7 +57,7 @@ class ManagerLogin extends React.Component {
     .then(res => res.json())
     .then(data => {
       if (data.error) {
-        return this.setState({'message': 'bad' })
+        alert (data.error)
       } 
       else {
         this.setState({'message':'good'})

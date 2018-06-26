@@ -13,6 +13,9 @@ router.post('/login', function(req, res) {
         error: error.message
       })
     }
+    if (result.length === 0) {
+      return res.json({error: 'login no exist'})
+    }
     res.json(
       result
     )
