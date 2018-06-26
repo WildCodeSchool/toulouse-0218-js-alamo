@@ -88,8 +88,8 @@ class NewEventModal extends React.Component {
                 <Typography variant="title" id="modal-title" className={classes.mb}>
                   Nouvel évènement
                 </Typography>
-                <FormControl className={classes.mb}>
-               <TextField
+              <FormControl className={classes.mb}>
+                <TextField
                 required
                 id="description"
                 name="description"
@@ -98,8 +98,8 @@ class NewEventModal extends React.Component {
                 className={classes.textField}
                 onChange={this.handleInputChange}
                 />
-                </FormControl>
-                <FormControl className={classes.mb}>
+              </FormControl>
+              <FormControl className={classes.mb}>
                   <InputLabel htmlFor="timeStart">Heure de début</InputLabel>
                   <Input
                     className={classes.input}

@@ -119,18 +119,33 @@ class MyClub extends React.Component {
       defaultView: 'agendaDay',
       groupByResource: true,
       header: {
-        left: 'prev,next',
+        left: 'promptResource, prev,next',
         // center: 'title',
         center: 'addEventButton',
-        right: 'agendaDay,agendaWeek'
+        right: 'agendaDay,agendaWeek,month'
       },
+      resourceLabelText: 'Rooms',
       resources: [
-        { id: 'a', title: 'Room A' },
-        { id: 'b', title: 'Room B' }
+        { id: 'a', title: 'Auditorium A' },
+        { id: 'b', title: 'Auditorium B' },
       ],
       events: this.state.events,
 
       customButtons: {
+ 
+          promptResource: {
+            text: '+ room',
+            click: function() {
+              var title = prompt('Room name');
+              if (title) {
+                $('#calendar').fullCalendar(
+                  'addResource',
+                  { title: title },
+                  true // scroll to the new resource?
+                );
+              }
+            }
+          },
         // Une façon d'ajouter un évènement en passant directement
         // par l'API du fullCalendar... a priori pas la bonne façon
         // car "pas très React"

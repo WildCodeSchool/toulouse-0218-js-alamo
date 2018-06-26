@@ -63,7 +63,6 @@ function ButtonAppBar (props) {
             <Button color="inherit">Mes salles</Button>
             <Button color="inherit" >Membres</Button>
           </List>
-          <Button color="inherit" >Login</Button>
         </Toolbar>
       </AppBar>
     </div>
