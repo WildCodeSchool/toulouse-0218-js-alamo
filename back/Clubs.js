@@ -14,7 +14,7 @@ router.post('/login', function(req, res) {
       })
     }
     if (result.length === 0) {
-      return res.json({error: 'login no exist'})
+      return res.json({error: "Your account or password is incorrect"})
     }
     res.json(
       result

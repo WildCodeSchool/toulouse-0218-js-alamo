@@ -29,6 +29,9 @@ const styles = theme => ({
     marginTop: 50,
     variant: 'raised'
   },
+  message: {
+    color: 'red'
+  }
 })
 
 class ManagerLogin extends React.Component {
@@ -57,7 +60,7 @@ class ManagerLogin extends React.Component {
     .then(res => res.json())
     .then(data => {
       if (data.error) {
-        alert (data.error)
+        this.setState({'message':data.error})
       } 
       else {
         this.setState({'message':'good'})
@@ -99,10 +102,10 @@ class ManagerLogin extends React.Component {
                   value={this.state.password}
                   onChange={this.handleInputChange}
                 />
+                <p className={classes.message}>{this.state.message}</p>
                 <Button className={classes.button} onClick={this.handleLoginSubmit}>
                   Login
                 </Button>
-                <p>{this.state.message}</p>
               </FormControl> 
             </Paper>
           </Grid>
