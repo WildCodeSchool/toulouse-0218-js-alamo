@@ -42,7 +42,7 @@ class MyClub extends React.Component {
   }
   // C'est ici qu'on crée un nouvel évènement, une fois que
   // le formulaire de la modale de NewEventModal a été soumis
-  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description }) => {
+  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description, resourceId }) => {
     console.log(selectedDate)
     const { events} = this.state
     console.log('handleSubmitModal', this.state, timeStart, timeEnd)
@@ -59,7 +59,7 @@ class MyClub extends React.Component {
       resourceId: 'b',
       start: date + startHours,
       end: date + endHours,
-    
+      resourceId,
       allDay: false
     }
     console.log([...events, newEvent])
@@ -156,7 +156,7 @@ class MyClub extends React.Component {
     return (
       <Grid container spacing={24}>
         <Grid item xs={12} sm={12} md={12}>
-          <NewEventModal open={modalOpen} date={date} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
+          <NewEventModal open={modalOpen} resources={resources} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
           <FullCalendar options={{...props}} />
         </Grid>
       </Grid>
