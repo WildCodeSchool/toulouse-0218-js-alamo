@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `alamo`.`booker` (
   `address` VARCHAR(250) NULL DEFAULT NULL,
   `phone` VARCHAR(15) NULL DEFAULT NULL,
   `email` VARCHAR(45) NULL DEFAULT NULL,
-  `favSport` INT UNSIGNED NOT NULL,
+  `favSport` INT UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `id_idx` (`favSport` ASC),
   CONSTRAINT `id`

@@ -61,6 +61,7 @@ class ManagerLogin extends React.Component {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
+      credentials: 'include',
       body: JSON.stringify(this.state)
     })
     .then(res => res.json())
@@ -69,7 +70,7 @@ class ManagerLogin extends React.Component {
         this.setState({'message':data.error})
       } 
       else {
-        let id = data['0'].id
+        let id = data.id
         this.setState({'message':''})
         this.props.history.push(`/calendar/${id}`)
       } 
