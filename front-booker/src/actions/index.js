@@ -1,8 +1,8 @@
 export const SIGNED_IN = 'SIGNED_IN'
 
-export function signedIn(userId) {
+export function signedIn(user) {
   return {
     type: SIGNED_IN,
-    id: userId
+    user
   }
 }

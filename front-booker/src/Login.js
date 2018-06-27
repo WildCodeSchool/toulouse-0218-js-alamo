@@ -7,6 +7,8 @@ import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import LockIcon from '@material-ui/icons/Lock'
+import { connect } from 'react-redux'
+import { signedIn } from './actions'
 
 const styles = {
   form: {
@@ -40,7 +42,7 @@ class Login extends React.Component {
     console.log('submit login', e)
     e.preventDefault()
     // Submit to login URL
-    fetch('/path/to/login', {
+    fetch('/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -48,7 +50,8 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     })
       .then(response => response.json())
-      .then(() => {
+      .then(user => {
+        this.props.signedIn(user)
       })
   }
   render () {
@@ -93,5 +96,9 @@ class Login extends React.Component {
 Login.propTypes = {
   classes: PropTypes.object
 }
-
-export default withStyles(styles)(Login)
+const mapDispatchToProps = dispatch => {
+  return {
+    signedIn: (user) => dispatch(signedIn(user))
+  }
+}
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Login))
