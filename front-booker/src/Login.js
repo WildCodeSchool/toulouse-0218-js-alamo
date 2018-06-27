@@ -27,7 +27,7 @@ class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: '',
+      pseudo: '',
       password: ''
     }
     this.onChange = this.onChange.bind(this)
@@ -39,7 +39,6 @@ class Login extends React.Component {
     })
   }
   onSubmit (e) {
-    console.log('submit login', e)
     e.preventDefault()
     // Submit to login URL
     fetch('/api/users/login', {
@@ -50,19 +49,30 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     })
       .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          this.setState({'message':data.error})
+        }
+        else {
+          this.setState({'message':'logged'})
+          this.props.onClose()
+          return data
+        }
+      })
       .then(user => {
-        this.props.signedIn(user)
+          this.props.signedIn(user)
+          console.log('retour de objet user', user)
       })
   }
   render () {
     const { classes } = this.props
     return (
-      <form className={classes.form} onSubmit={this.onSubmit}>
+      <form className={classes.form}>
         <FormControl className={classes.margin}>
           <InputLabel htmlFor="pseudo">Pseudo</InputLabel>
           <Input
             className={classes.input}
-            id="speudo"
+            id="pseudo"
             type="pseudo"
             name="pseudo"
             onChange={this.onChange}
@@ -82,9 +92,10 @@ class Login extends React.Component {
               </InputAdornment>
             }
           />
+          <p className={classes.message}>{this.state.message}</p>
         </FormControl>
         <div className={classes.center}>
-          <Button type="submit" style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
+          <Button type="submit" onClick={this.onSubmit} style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
             Login
           </Button>
         </div>

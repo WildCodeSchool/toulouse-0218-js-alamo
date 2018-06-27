@@ -32,7 +32,8 @@ class Register extends React.Component {
       firstName: '',
       pseudo: '',
       email: '',
-      password: ''
+      password: '',
+      favSport: ''
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -103,7 +104,6 @@ class Register extends React.Component {
             onChange={this.onChange}
           />
         </FormControl>
-
         <FormControl className={classes.margin}>
           <InputLabel htmlFor="mail">Mail</InputLabel>
           <Input
@@ -125,7 +125,7 @@ class Register extends React.Component {
             value={this.state.password}
             onChange={this.onChange}
           />
-           <p className={classes.message}>{this.state.message}</p>
+          <p className={classes.message}>{this.state.message}</p>
         </FormControl>
         {/* <FormControl className={classes.margin}>
           <InputLabel htmlFor="confirm password">confirm Password</InputLabel>
@@ -138,6 +138,18 @@ class Register extends React.Component {
             onChange={this.onChange}
           /> */}
         {/* </FormControl> */}
+        {/* <FormControl className={classes.margin}>
+          <InputLabel html="favSport">Sport Favori</InputLabel>
+          <Input
+            className={classes.input}
+            id="favSport"
+            type="text"
+            name="favSport"
+            value={this.state.favSport}
+            onChange={this.onChange}
+          />
+          
+        </FormControl> */}
         <div className={classes.center}>
           <Button type="submit" onClick={this.onSubmit} style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
             Sign in
