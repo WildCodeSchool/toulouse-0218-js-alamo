@@ -19,8 +19,7 @@ const styles = {
     color: '#66FF33'
   }
 }
-
-class NavBarGuest extends React.Component {
+class NavBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -51,17 +50,10 @@ class NavBarGuest extends React.Component {
             Alamo
             </Typography>
           </Link>
-          <Hidden xsDown smDown>
-            <Button className={classes.btn}variant="raised" style={{backgroundColor: '#66FF33'}}>
-        Vous êtes gérant de salle de sport ?
-            </Button>
-          </Hidden>
-          <Hidden lgUp mdUp>
-            <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
-        gérant ?
-            </Button>
-          </Hidden>
-          <a href ="#" onClick={this.handleOpen}>< img src={permIdentity} className="App-logo" alt="logo" /> </a>
+          <Button className={classes.btn}variant="raised" style={{backgroundColor: '#66FF33'}}>
+        Mes réservations
+          </Button>       
+          <a href ="#" onClick={this.handleOpen}><img src={permIdentity} className="App-logo" alt="logo" /> </a>
         </Toolbar>
       </AppBar>
 
@@ -71,8 +63,8 @@ class NavBarGuest extends React.Component {
   }
 }
 
-NavBarGuest.propTypes = {
+NavBar.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(NavBarGuest)
+export default withStyles(styles)(NavBar)

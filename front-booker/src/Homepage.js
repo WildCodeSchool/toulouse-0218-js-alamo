@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from './components/NavBar'
+import NavBar from './components/NavBarConnected'
 import SearchLocationBar from './components/SearchLocationBar'
 import { withStyles } from '@material-ui/core/styles'
 import IconeSport from './components/Icones'
