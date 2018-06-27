@@ -57,7 +57,7 @@ class Calendar extends React.Component {
       <Grid container spacing={24}>
         
         <Grid item xs={12}>
-          < MyClub />
+          < MyClub user={this.props.user} />
         </Grid>
       </Grid>
       )

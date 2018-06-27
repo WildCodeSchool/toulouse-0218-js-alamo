@@ -15,29 +15,6 @@ import $ from 'jquery'
 // https://github.com/vadym-vorobel/fullcalendar-react
 import { FullCalendar } from './fullcalendar-react/FullCalendar'
 
-// Une fonction pour calculer le décalage par rapport à GMT (temps universel)
-import { getOffsetHours, getOffsetString } from './helpers/computeTimeOffset'
-
-// DES VERSIONS QUE J'AI TESTEES ET QUI NE MARCHAIENT PAS
-// import FullCalendar from './FullCalendar'
-// import FullCalendar from 'fullcalendar-reactwrapper'
-
-const Calendar = withUtils()
-
-const calendarProps = {
-  minDate: '1900-01-01',
-  maxDate: '2100-01-01',
-  disablePast: false,
-  disableFuture: false,
-  allowKeyboardControl: false,
-  animateYearScrolling: undefined,
-  openToYearSelection: false,
-  children: null,
-  leftArrowIcon: undefined,
-  rightArrowIcon: undefined,
-  renderDay: undefined,
-  shouldDisableDate: undefined
-}
 let i = 1
 
 class MyClub extends React.Component {
@@ -103,10 +80,32 @@ class MyClub extends React.Component {
       this.calendar.fullCalendar('changeView', 'agendaDay', date.format('DD-MM-YYYY'))
     }
   }
+  createResource = () => {
+    var title = prompt('Room name');
+    if (!title) return
+    const data = {title, managerId:this.props.user.id}
+    fetch('/api/resources', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(resource => {
+      const {resources} = this.state
+      const newResources = [
+        ...resources, resource
+      ]
+      this.setState({
+        resources: newResources
+      })
+    })
+  }
+
+
   constructor (props) {
     super(props)
-    const that = this
-
     // Options du calendrier
     // Créer un schedulerLicenseKey.json en s'inspirant de schedulerLicenseKey.sample.json
     this.calendarOptions = {
@@ -115,7 +114,6 @@ class MyClub extends React.Component {
       groupByResource: true,
       header: {
         left: 'promptResource, prev,next',
-        // center: 'title',
         center: 'addEventButton',
         right: 'agendaDay,agendaWeek,month,deconnexion'
       },
@@ -131,27 +129,7 @@ class MyClub extends React.Component {
         },
           promptResource: {
             text: 'Salles',
-            click: function() {
-              var title = prompt('Room name');
-              if (title) {
-                const {resources} = that.state
-                const newResource = {
-                  title: title,
-                  id: 'C' + Date.now()
-                }
-                const newResources = [
-                  ...resources, newResource
-                ]
-                that.setState({
-                  resources: newResources
-                })
-                // $('#calendar').fullCalendar(
-                //   'addResource',
-                //   { title: title },
-                //   true // scroll to the new resource?
-                // );
-              }
-            }
+            click:this.createResource
           },
         // Une façon d'ajouter un évènement en passant directement
         // par l'API du fullCalendar... a priori pas la bonne façon
@@ -159,21 +137,6 @@ class MyClub extends React.Component {
         addEventButton: {
           text: 'Ajouter un évènement',
           click: this.handleOpenModal
-          //  () => {
-          //   const { date } = this.state
-          
-          //   if (date.isValid()) {
-          //     $('#calendar').fullCalendar('renderEvent', {
-          //       title: 'dynamic event',
-          //       resourceId: 'b',
-          //       start: date,
-          //       allDay: true
-          //     })
-          //     // alert('Great. Now, update your database...');
-          //   } else {
-          //     alert('Invalid date.')
-          //   }
-          // }
         }
       }
     }
@@ -186,7 +149,6 @@ class MyClub extends React.Component {
       <Grid container spacing={24}>
         <Grid item xs={12} sm={12} md={12}>
           <NewEventModal open={modalOpen} date={date} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
-          <Calendar utils={new MomentUtils()} date={date} {...calendarProps} onChange={this.onChange} />
           <FullCalendar options={{...props}} />
         </Grid>
       </Grid>

@@ -72,6 +72,7 @@ class ManagerLogin extends React.Component {
       else {
         let id = data.id
         this.setState({'message':''})
+        this.props.onLogin(data)
         this.props.history.push(`/calendar/${id}`)
       } 
     })

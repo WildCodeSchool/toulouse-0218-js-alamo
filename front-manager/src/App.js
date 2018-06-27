@@ -22,13 +22,19 @@ class App extends React.Component {
   // handleClick () {
   //   this.setState({ logged: {} })
   // }
+  state={
+    user: null
+  }
+  handleAuthChange = user => this.setState({
+    user
+  })
   render() {
     return (
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={ManagerLogin} />
-            <Route path="/calendar" render={withNavbar(Calendar)} />
+            <Route exact path="/" render={props => <ManagerLogin {...props} onLogin={this.handleAuthChange} />} />
+            <Route path="/calendar" render={props => <Calendar {...props} user={this.state.user} /> } />
           </Switch>
         </div>
       </Router>
