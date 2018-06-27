@@ -22,4 +22,24 @@ router.post('/register', function(req, res) {
   })
 })
 
+router.post('/login', function(req, res) {
+  console.log(req.body)
+  const query = `SELECT * FROM booker WHERE pseudo='${req.body.pseudo}' AND password='${req.body.password}'`
+  connection.query(query, (error, result) => {
+    if (error) {
+      return res.status(500).json({
+        error: error.message
+      })
+    }
+    if (result.length === 0) {
+      return res.json({error: "Your account or password is incorrect"})
+    }
+    res.json(
+      result
+    )
+    console.log(res.json)
+  })
+})
+
+
 module.exports = router
