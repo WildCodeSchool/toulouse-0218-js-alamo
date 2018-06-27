@@ -21,7 +21,7 @@ const calendarProps = {
 class MyCalendar extends React.Component {
   render () {
     return (
-      <Calendar utils={new MomentUtils()} date={moment()} {...calendarProps} onChange={this.onChange} />
+      <Calendar utils={new MomentUtils()} date={moment()} {...calendarProps} onChange={() => {}} />
     )
   }
 }

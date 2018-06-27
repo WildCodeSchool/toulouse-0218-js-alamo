@@ -18,7 +18,6 @@ router.post('/login', function(req, res) {
     res.json(
       result
     )
-    console.log(res.json)
   })
 })
 

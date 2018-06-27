@@ -1,5 +1,6 @@
 /* global moment */
 import React from 'react'
+import { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -17,6 +18,8 @@ import { TimePicker as TimePickerBase } from 'material-ui-pickers'
 import { DatePicker } from 'material-ui-pickers';
 import withUtils from 'material-ui-pickers/_shared/WithUtils'
 import FnsUtils from 'material-ui-pickers/utils/date-fns-utils'
+import TextField from '@material-ui/core/TextField';
+
 const TimePicker = withUtils(new FnsUtils())(TimePickerBase)
 
 const styles = theme => ({
@@ -45,7 +48,8 @@ class NewEventModal extends React.Component {
   state = {
     selectedDate: new Date(),
     timeStart: '',
-    timeEnd: ''
+    timeEnd: '',
+    description: ''
   }
   handleInputChange = e => {
     this.setState({
@@ -59,16 +63,16 @@ class NewEventModal extends React.Component {
   }
   handleSubmit = e => {
     e.preventDefault()
-    const { timeStart, timeEnd, selectedDate } = this.state
-    this.props.handleSubmit({ timeStart, timeEnd, selectedDate})
+    const { timeStart, timeEnd, selectedDate, description } = this.state
+    this.props.handleSubmit({ timeStart, timeEnd, selectedDate, description})
   }
   handleDateChange = (date) => {
     console.log(date)
     this.setState({ selectedDate: date });
   }
   render () {
-    const { classes, handleOpen, handleClose, handleSubmit, open, date } = this.props
-    const { selectedDate, timeStart, timeEnd } = this.state
+    const { classes, handleOpen, handleClose, handleSubmit, open, date} = this.props
+    const { selectedDate, timeStart, timeEnd, description} = this.state
 
     return (
       <div>
@@ -84,18 +88,18 @@ class NewEventModal extends React.Component {
                 <Typography variant="title" id="modal-title" className={classes.mb}>
                   Nouvel évènement
                 </Typography>
-                <Typography variant="body1" id="modal-title" className={classes.mb}>
-                  {date.format('DD-MM-YYYY')}
-                </Typography>
-                {/* <TimePicker
-                  utils={new FnsUtils()}
-                  clearable
-                  ampm={false}
-                  label="24 hours"
-                  value={moment()}
-                  onChange={this.handleDateChange} /> */}
-
-                <FormControl className={classes.mb}>
+              <FormControl className={classes.mb}>
+                <TextField
+                required
+                id="description"
+                name="description"
+                label="My event"
+                value={description}
+                className={classes.textField}
+                onChange={this.handleInputChange}
+                />
+              </FormControl>
+              <FormControl className={classes.mb}>
                   <InputLabel htmlFor="timeStart">Heure de début</InputLabel>
                   <Input
                     className={classes.input}
