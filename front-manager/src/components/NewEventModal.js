@@ -18,6 +18,7 @@ import { TimePicker as TimePickerBase } from 'material-ui-pickers'
 import { DatePicker } from 'material-ui-pickers';
 import withUtils from 'material-ui-pickers/_shared/WithUtils'
 import FnsUtils from 'material-ui-pickers/utils/date-fns-utils'
+import moment from 'moment'
 import TextField from '@material-ui/core/TextField';
 
 const TimePicker = withUtils(new FnsUtils())(TimePickerBase)
@@ -47,8 +48,8 @@ const styles = theme => ({
 class NewEventModal extends React.Component {
   state = {
     selectedDate: new Date(),
-    timeStart: '',
-    timeEnd: '',
+    timeStart:  moment(),
+    timeEnd:  moment(),
     description: ''
   }
   handleInputChange = e => {
@@ -61,6 +62,15 @@ class NewEventModal extends React.Component {
     selectedDate: date
     })
   }
+handleTimeChange = (date, name) => {
+  this.setState({
+    [name] : date
+  })
+  console.log(date)
+}
+
+
+
   handleSubmit = e => {
     e.preventDefault()
     const { timeStart, timeEnd, selectedDate, description } = this.state
@@ -100,36 +110,28 @@ class NewEventModal extends React.Component {
                 />
               </FormControl>
               <FormControl className={classes.mb}>
-                  <InputLabel htmlFor="timeStart">Heure de début</InputLabel>
-                  <Input
-                    className={classes.input}
-                    id="timeStart"
-                    type="text"
-                    name="timeStart"
-                    value={timeStart}
-                    onChange={this.handleInputChange}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <Timer />
-                      </InputAdornment>
-                    }
-                  />
+                  <div className="picker">
+          <TimePicker
+            clearable
+            name="timeStart"
+            ampm={false}
+            label="24 hours"
+            value={timeStart}
+            onChange={date => this.handleTimeChange(date, 'timeStart')}
+          />
+        </div>
                 </FormControl>
                 <FormControl className={classes.mb}>
-                  <InputLabel htmlFor="timeEnd">Heure de fin</InputLabel>
-                  <Input
-                    className={classes.input}
-                    id="timeEnd"
-                    type="text"
-                    name="timeEnd"
-                    value={timeEnd}
-                    onChange={this.handleInputChange}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <Timer />
-                      </InputAdornment>
-                    }
-                  />
+                  <div className="picker">
+          <TimePicker
+            clearable
+            name="timeEnd"
+            ampm={false}
+            label="24 hours"
+            value={timeEnd}
+            onChange={date => this.handleTimeChange(date, 'timeEnd')}
+          />
+        </div>
                 </FormControl>
                 <FormControl className={classes.mb}>
                 <DatePicker
