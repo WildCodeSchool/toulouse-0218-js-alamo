@@ -66,6 +66,7 @@ class SearchLocationBar extends React.Component {
                 </Grid>
                 <Grid item xs={12} sm={5}>
                 <IntegrationAutosuggest onSelect={handleSuggestionsFetchRequested} />
+                
                 </Grid>
                 <Grid item xs={12} sm={2}>
                   <Button className={classes.btn} onClick={this.onSubmit} variant="raised" style={{backgroundColor: '#66FF33', height: '100%',padding: '10', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
