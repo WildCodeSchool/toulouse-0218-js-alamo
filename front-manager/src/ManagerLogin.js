@@ -48,21 +48,29 @@ class ManagerLogin extends React.Component {
     console.log(event.target.value)
   }
 
+  onEnter = e => {
+    if (e.keyCode !== 13) {
+      return
+    }
+    this.handleLoginSubmit()
+  }
+
   handleLoginSubmit = () => {
     fetch('/api/clubs/login', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
+      credentials: 'include',
       body: JSON.stringify(this.state)
     })
     .then(res => res.json())
     .then(data => {
-      let id = data['0'].id
       if (data.error) {
         this.setState({'message':data.error})
       } 
       else {
+        let id = data.id
         this.setState({'message':''})
         this.props.history.push(`/calendar/${id}`)
       } 
@@ -84,7 +92,7 @@ class ManagerLogin extends React.Component {
         <Grid container justify={'center'}>
           <Grid item  xs={10} sm={6} md={4} >
             <Paper className={classes.paper}>  
-              <FormControl className={classes.container} noValidate autoComplete="off">
+              <FormControl className={classes.container} noValidate autoComplete="off" >
                 <h3>Alamo</h3>
                 <TextField
                   name="name"
@@ -102,6 +110,7 @@ class ManagerLogin extends React.Component {
                   className={classes.textField}
                   value={this.state.password}
                   onChange={this.handleInputChange}
+                  onKeyDown={this.onEnter}
                 />
                 <p className={classes.message}>{this.state.message}</p>
                 <Button className={classes.button} onClick={this.handleLoginSubmit}>

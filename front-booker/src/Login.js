@@ -7,6 +7,8 @@ import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import LockIcon from '@material-ui/icons/Lock'
+import { connect } from 'react-redux'
+import { signedIn } from './actions'
 
 const styles = {
   form: {
@@ -25,7 +27,7 @@ class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      email: '',
+      pseudo: '',
       password: ''
     }
     this.onChange = this.onChange.bind(this)
@@ -37,10 +39,9 @@ class Login extends React.Component {
     })
   }
   onSubmit (e) {
-    console.log('submit login', e)
     e.preventDefault()
     // Submit to login URL
-    fetch('/path/to/login', {
+    fetch('/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -48,18 +49,30 @@ class Login extends React.Component {
       body: JSON.stringify(this.state)
     })
       .then(response => response.json())
-      .then(() => {
+      .then(data => {
+        if (data.error) {
+          this.setState({'message':data.error})
+        }
+        else {
+          this.setState({'message':'logged'})
+          this.props.onClose()
+          return data
+        }
+      })
+      .then(user => {
+          this.props.signedIn(user)
+          console.log('retour de objet user', user)
       })
   }
   render () {
     const { classes } = this.props
     return (
-      <form className={classes.form} onSubmit={this.onSubmit}>
+      <form className={classes.form}>
         <FormControl className={classes.margin}>
           <InputLabel htmlFor="pseudo">Pseudo</InputLabel>
           <Input
             className={classes.input}
-            id="speudo"
+            id="pseudo"
             type="pseudo"
             name="pseudo"
             onChange={this.onChange}
@@ -79,9 +92,10 @@ class Login extends React.Component {
               </InputAdornment>
             }
           />
+          <p className={classes.message}>{this.state.message}</p>
         </FormControl>
         <div className={classes.center}>
-          <Button type="submit" style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
+          <Button type="submit" onClick={this.onSubmit} style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
             Login
           </Button>
         </div>
@@ -93,5 +107,9 @@ class Login extends React.Component {
 Login.propTypes = {
   classes: PropTypes.object
 }
-
-export default withStyles(styles)(Login)
+const mapDispatchToProps = dispatch => {
+  return {
+    signedIn: (user) => dispatch(signedIn(user))
+  }
+}
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Login))
