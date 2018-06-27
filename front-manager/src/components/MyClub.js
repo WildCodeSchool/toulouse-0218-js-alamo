@@ -21,20 +21,15 @@ class MyClub extends React.Component {
   state = {
     date: moment(),
     modalOpen: false,
-    resources: [
-      { id: 'a', title: 'Auditorium A' },
-      { id: 'b', title: 'Auditorium B' },
-    ],
+    resources: [],
     events: [
-      {"resourceId":"a","title":"Conference","start":"2018-06-16","end":"2018-06-18"},
-      {"resourceId":"b","title":"Birthday Party","start":"2018-06-18T07:00:00+00:00"},
-      {
-        "allDay": false,
-        "end": "2018-06-18T13:30:04+00:00",
-        "resourceId": "b",
-        "start": "2018-06-18T12:00:04+00:00",
-        "title": "dynamic event 0"
-      }
+      // {
+      //   "allDay": false,
+      //   "end": "2018-06-18T13:30:04+00:00",
+      //   "resourceId": "b",
+      //   "start": "2018-06-18T12:00:04+00:00",
+      //   "title": "dynamic event 0"
+      // }
     ]
   }
 
@@ -141,6 +136,19 @@ class MyClub extends React.Component {
       }
     }
   }
+
+  componentDidMount (){
+    fetch('/api/resources', {
+      credentials: 'include'
+    })
+    .then (res => res.json())
+    .then (resources => {
+      this.setState({
+        resources
+      })
+    })
+  }
+
   render () {
     const { date, modalOpen, events, resources } = this.state
     const { calendarOptions } = this

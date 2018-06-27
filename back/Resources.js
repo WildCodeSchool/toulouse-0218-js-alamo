@@ -26,6 +26,21 @@ router.post('/', function(req, res) {
   })
 })
 
+router.get('/', (req, res) => {
+  const managerId = req.session.user.id
+
+  connection.query(`SELECT * FROM resource WHERE managerId = ?`,
+  [managerId], (error, resources) => {
+    if (error) {
+      return res.status(500).json({
+        error: error.message
+      })
+    }
+    res.json(
+      resources
+    )
+  })
+})
 
 
 module.exports = router
