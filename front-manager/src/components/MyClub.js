@@ -130,7 +130,7 @@ class MyClub extends React.Component {
           }
         },
           promptResource: {
-            text: '+ room',
+            text: 'Salles',
             click: function() {
               var title = prompt('Room name');
               if (title) {
