@@ -11,6 +11,17 @@ app.use(bodyParser.urlencoded({ extended:  false }))
 app.use(bodyParser.json())
 app.use(express.static(__dirname  +  '/public'))
 
+app.get('/api/cities',(req, res)=> {
+    const search = req.query.search
+    connection.query(`select ville_nom_reel as label From villes_france_free where ville_nom_reel LIKE '${search}%' limit 6`,(error, result)=>{
+        if (error){
+            return res.status(500).json([])
+        }
+        console.log(result['O'])
+        res.json(result)
+    })
+   })
+
 app.get("/", (req,res) => {
     res.send("youhou")
 })
