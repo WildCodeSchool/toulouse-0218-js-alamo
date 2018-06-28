@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 const withNavbar = Component => props => (
   <div>
-
     <Component {...props}/>
   </div>
 )
@@ -41,7 +40,7 @@ class App extends React.Component {
               <ManagerLogin {...props} onLogin={this.handleAuthChange} /> :
               <Redirect to={{ pathname: `/calendar/${this.state.user.id}`}}  {...props} /> } 
             />
-            <Route path="/calendar" render={props => <Calendar {...props} user={this.state.user} /> } />
+            <Route path="/calendar" render={props => <Calendar {...props} user={this.state.user} onLogout={this.handleAuthChange}/> } />
           </Switch>
         </div>
       </Router>
