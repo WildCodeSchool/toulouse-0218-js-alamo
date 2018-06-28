@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `alamo`.`booker` (
   `address` VARCHAR(250) NULL DEFAULT NULL,
   `phone` VARCHAR(15) NULL DEFAULT NULL,
   `email` VARCHAR(45) NULL DEFAULT NULL,
-  `favSport` INT UNSIGNED NOT NULL,
+  `favSport` INT UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `id_idx` (`favSport` ASC),
   CONSTRAINT `id`
@@ -131,7 +131,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alamo`.`timeSlot` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `calendarId` INT NULL,
+  `resourceId` INT(11) UNSIGNED NULL DEFAULT NULL,
   `startHour` TIME NULL,
   `endHour` TIME NULL,
   `dayOfWeek` INT UNSIGNED NULL
@@ -146,6 +146,17 @@ ENGINE = InnoDB;
 -- --     ON DELETE NO ACTION
 --     ON UPDATE NO ACTION;
 -- 
+
+-- Modification du schéma 27/06/18
+create table resource(
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  managerId INTEGER UNSIGNED NOT NULL,
+  title VARCHAR(64)
+);
+
+ALTER TABLE resource
+ADD CONSTRAINT fk_resource_1 FOREIGN KEY (managerId) REFERENCES manager(id);
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

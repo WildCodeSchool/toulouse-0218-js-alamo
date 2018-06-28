@@ -15,45 +15,22 @@ import $ from 'jquery'
 // https://github.com/vadym-vorobel/fullcalendar-react
 import { FullCalendar } from './fullcalendar-react/FullCalendar'
 
-// Une fonction pour calculer le décalage par rapport à GMT (temps universel)
-import { getOffsetHours, getOffsetString } from './helpers/computeTimeOffset'
-
-// DES VERSIONS QUE J'AI TESTEES ET QUI NE MARCHAIENT PAS
-// import FullCalendar from './FullCalendar'
-// import FullCalendar from 'fullcalendar-reactwrapper'
-
-const Calendar = withUtils()
-
-const calendarProps = {
-  minDate: '1900-01-01',
-  maxDate: '2100-01-01',
-  disablePast: false,
-  disableFuture: false,
-  allowKeyboardControl: false,
-  animateYearScrolling: undefined,
-  openToYearSelection: false,
-  children: null,
-  leftArrowIcon: undefined,
-  rightArrowIcon: undefined,
-  renderDay: undefined,
-  shouldDisableDate: undefined
-}
 let i = 1
 
 class MyClub extends React.Component {
   state = {
     date: moment(),
     modalOpen: false,
+    resources: [],
     events: [
-    {"resourceId":"a","title":"Conference","start":"2018-06-16","end":"2018-06-18"},
-    {"resourceId":"b","title":"Birthday Party","start":"2018-06-18T07:00:00+00:00"},
-    {
-      "allDay": false,
-      "end": "2018-06-18T13:30:04+00:00",
-      "resourceId": "b",
-      "start": "2018-06-18T12:00:04+00:00",
-      "title": "dynamic event 0"
-    }]
+      // {
+      //   "allDay": false,
+      //   "end": "2018-06-18T13:30:04+00:00",
+      //   "resourceId": "b",
+      //   "start": "2018-06-18T12:00:04+00:00",
+      //   "title": "dynamic event 0"
+      // }
+    ]
   }
 
   handleOpenModal = () => {
@@ -65,38 +42,26 @@ class MyClub extends React.Component {
   }
   // C'est ici qu'on crée un nouvel évènement, une fois que
   // le formulaire de la modale de NewEventModal a été soumis
-  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description }) => {
+  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description, resourceId }) => {
     console.log(selectedDate)
-    const { events, date } = this.state
-    console.log('handleSubmitModal', timeStart, timeEnd)
+    const { events} = this.state
+    console.log('handleSubmitModal', this.state, timeStart, timeEnd)
     if(! timeStart || ! timeEnd) {
       return
     }
 
-    const start = new Date()
-    const [hoursStart, minutesStart] = timeStart.split(':')
-    start.setHours(Number(hoursStart) + getOffsetHours())
-    start.setMinutes(Number(minutesStart))
-    const startMoment = moment(start)
-
-    const end = new Date()
-    const [hoursEnd, minutesEnd] = timeEnd.split(':')
-    end.setHours(Number(hoursEnd) + getOffsetHours())
-    end.setMinutes(Number(minutesEnd))
-    const endMoment = moment(end)
-
-    const offsetString = getOffsetString()
+    const date = selectedDate.format('YYYY-MM-DD')
+    const startHours = timeStart.format().substr(10)
+    const endHours = timeEnd.format().substr(10)
 
     const newEvent = {
       title: description + i++,
-      resourceId: 'b',
-      // start: startMoment.format(),
-      // end: endMoment.format(),
-      start: start.toISOString().substr(0, 19) + offsetString,
-      end: end.toISOString().substr(0, 19) + offsetString,
+      start: date + startHours,
+      end: date + endHours,
+      resourceId,
       allDay: false
     }
-    console.log([].concat(events, newEvent))
+    console.log([...events, newEvent])
     this.setState({
       events: [].concat(events, newEvent),
       modalOpen: false
@@ -109,9 +74,32 @@ class MyClub extends React.Component {
       this.calendar.fullCalendar('changeView', 'agendaDay', date.format('DD-MM-YYYY'))
     }
   }
+  createResource = () => {
+    var title = prompt('Room name');
+    if (!title) return
+    const data = {title, managerId:this.props.user.id}
+    fetch('/api/resources', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(resource => {
+      const {resources} = this.state
+      const newResources = [
+        ...resources, resource
+      ]
+      this.setState({
+        resources: newResources
+      })
+    })
+  }
+
+
   constructor (props) {
     super(props)
-
     // Options du calendrier
     // Créer un schedulerLicenseKey.json en s'inspirant de schedulerLicenseKey.sample.json
     this.calendarOptions = {
@@ -120,66 +108,54 @@ class MyClub extends React.Component {
       groupByResource: true,
       header: {
         left: 'promptResource, prev,next',
-        // center: 'title',
         center: 'addEventButton',
-        right: 'agendaDay,agendaWeek,month'
+        right: 'agendaDay,agendaWeek,month,deconnexion'
       },
       resourceLabelText: 'Rooms',
-      resources: [
-        { id: 'a', title: 'Auditorium A' },
-        { id: 'b', title: 'Auditorium B' },
-      ],
       events: this.state.events,
 
       customButtons: {
- 
+        deconnexion: {
+          text: 'deconnexion',
+          click: function() {
+            alert('bientôt la déco');
+          }
+        },
           promptResource: {
-            text: '+ room',
-            click: function() {
-              var title = prompt('Room name');
-              if (title) {
-                $('#calendar').fullCalendar(
-                  'addResource',
-                  { title: title },
-                  true // scroll to the new resource?
-                );
-              }
-            }
+            text: 'Salles',
+            click:this.createResource
           },
         // Une façon d'ajouter un évènement en passant directement
         // par l'API du fullCalendar... a priori pas la bonne façon
         // car "pas très React"
         addEventButton: {
-          text: 'add event...',
+          text: 'Ajouter un évènement',
           click: this.handleOpenModal
-          //  () => {
-          //   const { date } = this.state
-          
-          //   if (date.isValid()) {
-          //     $('#calendar').fullCalendar('renderEvent', {
-          //       title: 'dynamic event',
-          //       resourceId: 'b',
-          //       start: date,
-          //       allDay: true
-          //     })
-          //     // alert('Great. Now, update your database...');
-          //   } else {
-          //     alert('Invalid date.')
-          //   }
-          // }
         }
       }
     }
   }
+
+  componentDidMount (){
+    fetch('/api/resources', {
+      credentials: 'include'
+    })
+    .then (res => res.json())
+    .then (resources => {
+      this.setState({
+        resources
+      })
+    })
+  }
+
   render () {
-    const { date, modalOpen, events } = this.state
+    const { date, modalOpen, events, resources } = this.state
     const { calendarOptions } = this
-    const props = {...calendarOptions, events}
+    const props = {...calendarOptions, events, resources}
     return (
       <Grid container spacing={24}>
         <Grid item xs={12} sm={12} md={12}>
-          <NewEventModal open={modalOpen} date={date} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
-          <Calendar utils={new MomentUtils()} date={date} {...calendarProps} onChange={this.onChange} />
+          <NewEventModal open={modalOpen} resources={resources} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
           <FullCalendar options={{...props}} />
         </Grid>
       </Grid>
