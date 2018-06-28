@@ -7,9 +7,11 @@ const reducer = (state = initialState, action) => {
     case 'SIGNED_IN':
       const {user} = action
       return {user}
+    case 'SIGNED_OUT':
+      return {user: null}
     default:
       return state
-  }
+    }
 }
 
 export default reducer
