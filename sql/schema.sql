@@ -131,7 +131,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alamo`.`timeSlot` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `calendarId` INT NULL,
+  `resourceId` INT(11) UNSIGNED NULL DEFAULT NULL,
   `startHour` TIME NULL,
   `endHour` TIME NULL,
   `dayOfWeek` INT UNSIGNED NULL

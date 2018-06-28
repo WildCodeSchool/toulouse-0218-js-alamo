@@ -7,3 +7,5 @@ create table resource(
 
 ALTER TABLE resource
 ADD CONSTRAINT fk_resource_1 FOREIGN KEY (managerId) REFERENCES manager(id);
+
+ALTER TABLE `timeSlot` CHANGE `calendarId` `resourceId` INT(11) UNSIGNED NULL DEFAULT NULL;

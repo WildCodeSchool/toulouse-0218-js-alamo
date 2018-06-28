@@ -56,7 +56,6 @@ class MyClub extends React.Component {
 
     const newEvent = {
       title: description + i++,
-      resourceId: 'b',
       start: date + startHours,
       end: date + endHours,
       resourceId,
