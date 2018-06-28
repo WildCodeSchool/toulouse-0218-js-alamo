@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import Calendar from './Calendar'
 import ManagerLogin from './ManagerLogin'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 const withNavbar = Component => props => (
   <div>
@@ -36,7 +36,11 @@ class App extends React.Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" render={props => <ManagerLogin {...props} onLogin={this.handleAuthChange} />} />
+            <Route exact path="/" render={props => 
+              this.state.user === null ? 
+              <ManagerLogin {...props} onLogin={this.handleAuthChange} /> :
+              <Redirect to={{ pathname: `/calendar/${this.state.user.id}`}}  {...props} /> } 
+            />
             <Route path="/calendar" render={props => <Calendar {...props} user={this.state.user} /> } />
           </Switch>
         </div>
