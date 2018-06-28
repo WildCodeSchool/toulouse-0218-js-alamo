@@ -10,6 +10,7 @@ import Collapse from '@material-ui/core/Collapse'
 import IconePresentation from './components/IconePresentation'
 import './index.css'
 
+
 const styles = theme => ({
   paper: {
     backgroundColor: '#E6EAF0'
