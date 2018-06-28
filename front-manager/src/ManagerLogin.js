@@ -74,16 +74,8 @@ class ManagerLogin extends React.Component {
         this.setState({'message':''})
         this.props.onLogin(data)
         this.props.history.push(`/calendar/${id}`)
-      } 
+      }
     })
-    
-    
-    // if (this.state.name === exempleLogin.name && this.state.password === exempleLogin.password) {
-    // this.props.history.push('/calendar')
-    // }
-    // else {
-    //   alert('Wrong way !')
-    // }
   }
 
   render() {
