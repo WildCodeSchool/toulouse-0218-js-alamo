@@ -5,9 +5,10 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import logout from '../images/logout.png'
-import NavBarGuest from './NavBar'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { signedOut } from '../actions'
 
 const styles = {
   root: {
@@ -28,7 +29,7 @@ const styles = {
     paddingTop: 3
   }
 }
-class NavBar extends React.Component {
+class NavBarConnected extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -49,7 +50,7 @@ class NavBar extends React.Component {
           <Button className={classes.btn}variant="raised" style={{backgroundColor: '#66FF33'}}>
             <Link to = {'/reservation/'} className={classes.link}>Mes réservations</Link>
           </Button>
-          <a href ="#"><img src={logout} className={classes.logout} alt="logo" /></a>
+          <a href ="#" onClick={this.props.signedOut}><img src={logout} className={classes.logout} alt="logo" /></a>
         </Toolbar>
       </AppBar>      
     </div>
@@ -57,8 +58,13 @@ class NavBar extends React.Component {
   }
 }
 
-NavBar.propTypes = {
+NavBarConnected.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(NavBar)
+const mapDispatchToProps = dispatch => {
+  return {
+    signedOut: () => dispatch(signedOut())
+  }
+}
+export default connect(null, mapDispatchToProps)(withStyles(styles)(NavBarConnected))
