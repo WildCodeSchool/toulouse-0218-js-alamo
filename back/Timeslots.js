@@ -30,10 +30,10 @@ router.post('/', function(req, res) {
 })
 
 router.get('/', (req, res) => {
-  const managerId = req.session.user.id
+  const resourceId = req.session.user.id
 
-  connection.query(`SELECT * FROM timeSlot WHERE managerId = ?`,
-  [managerId], (error, resources) => {
+  connection.query(`SELECT * FROM timeSlot WHERE resourceId = ?`,
+  [resourceId], (error, resources) => {
     if (error) {
       return res.status(500).json({
         error: error.message
