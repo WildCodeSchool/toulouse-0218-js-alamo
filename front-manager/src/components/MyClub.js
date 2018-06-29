@@ -140,9 +140,7 @@ class MyClub extends React.Component {
       customButtons: {
         deconnexion: {
           text: 'deconnexion',
-          click: function() {
-            alert('bientôt la déco');
-          }
+          click: () => this.props.onLogout(null)
         },
           promptResource: {
             text: 'Salles',

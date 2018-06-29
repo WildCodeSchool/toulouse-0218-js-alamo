@@ -24,11 +24,13 @@ app.get("/", (req,res) => {
   res.send("youhou")
 })
 
+//routes d'échange avec BDD
 app.use("/api/clubs", clubs)
 app.use("/api/users", users)
 app.use("/api/resources", resources)
 app.use("/api/timeslots",timeslots)
 
+//erreur
 app.use(function(req, res, next) {
   var  err  =  new  Error('Not Found')
   err.status  =  404

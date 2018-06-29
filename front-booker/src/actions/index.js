@@ -6,3 +6,11 @@ export function signedIn(user) {
     user
   }
 }
+
+export const SIGNED_OUT = 'SIGNED_OUT'
+
+export function signedOut() {
+  return {
+    type: SIGNED_OUT
+  }
+}
