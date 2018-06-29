@@ -77,7 +77,7 @@ handleClick= ()=> {
           onClose={this.props.close}
         >
           <div style={getModalStyle()} className={classes.paper}>
-          { this.state.display==='login'? <Login /> : <Register /> }
+          { this.state.display==='login'? <Login onClose={this.props.close}/> : <Register /> }
           <Divider />
           <div>
             {text} <a href='#' onClick={this.handleClick}>{linktext} </a>

@@ -75,6 +75,7 @@ class ResultTransitory extends React.Component {
     )
   }
 }
+
 ResultTransitory.propTypes = {
   classes: PropTypes.object,
   nextStep: PropTypes.func

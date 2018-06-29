@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
+import { withRouter } from 'react-router-dom'
 
 const styles = {
   form: {
@@ -16,53 +17,68 @@ const styles = {
   },
   center: {
     textAlign: 'center'
+  },
+  message: {
+    color: 'red'
   }
 }
+
 
 class Register extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      nom: '',
-      prenom: '',
+      familyName: '',
+      firstName: '',
       pseudo: '',
       email: '',
-      password: ''
+      password: '',
+      favSport: ''
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
-  onChange (e) {
+  onChange = event => {
     this.setState({
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     })
+    console.log(event.target.value)
   }
-  onSubmit (e) {
-    console.log('submit register', e)
+
+  onSubmit = (e) => {
     e.preventDefault()
     // Submit to login URL
-    fetch('/path/to/register', {
+    const data = {}
+    fetch('/api/users/register', {
       method: 'POST',
-      headers: {
+      headers: new Headers({
         'Content-Type': 'application/json'
-      },
+      }),
       body: JSON.stringify(this.state)
     })
-      .then(response => response.json())
-      .then(() => {
-      })
+    .then(res => res.json())
+    .then(data  => {
+      if (data.error) {
+        this.setState({'message':data.error})
+      }
+      else {
+        this.setState({'message':'good'})
+      }       
+    })
   }
+
   render () {
     const { classes } = this.props
     return (
-      <form className={classes.form} onSubmit={this.onSubmit}>
+      <form className={classes.form}>
         <FormControl className={classes.margin}>
           <InputLabel htmlFor="nom">Nom</InputLabel>
           <Input
             className={classes.input}
-            id="nom"
-            type="nom"
-            name="nom"
+            id="familyName"
+            type="name"
+            name="familyName"
+            value={this.state.familyName}
             onChange={this.onChange}
           />
         </FormControl>
@@ -70,9 +86,10 @@ class Register extends React.Component {
           <InputLabel htmlFor="prenom">Prénom</InputLabel>
           <Input
             className={classes.input}
-            id="prenom"
-            type="prenom"
-            name="prenom"
+            id="firstName"
+            type="firstName"
+            name="firstName"
+            value={this.state.firstName}
             onChange={this.onChange}
           />
         </FormControl>
@@ -80,20 +97,21 @@ class Register extends React.Component {
           <InputLabel htmlFor="pseudo">Pseudo</InputLabel>
           <Input
             className={classes.input}
-            id="speudo"
+            id="pseudo"
             type="pseudo"
             name="pseudo"
+            value={this.state.pseudo}
             onChange={this.onChange}
           />
         </FormControl>
-
         <FormControl className={classes.margin}>
           <InputLabel htmlFor="mail">Mail</InputLabel>
           <Input
             className={classes.input}
-            id="mail"
-            type="mail"
-            name="mail"
+            id="email"
+            type="email"
+            name="email"
+            value={this.state.email}
             onChange={this.onChange}
           />
         </FormControl>
@@ -104,21 +122,36 @@ class Register extends React.Component {
             id="password"
             type="password"
             name="password"
+            value={this.state.password}
             onChange={this.onChange}
           />
+          <p className={classes.message}>{this.state.message}</p>
         </FormControl>
-        <FormControl className={classes.margin}>
+        {/* <FormControl className={classes.margin}>
           <InputLabel htmlFor="confirm password">confirm Password</InputLabel>
           <Input
             className={classes.input}
-            id="confirm password"
-            type="confirm password"
-            name="confirm password"
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            value={this.state.confirmPassword}
+            onChange={this.onChange}
+          /> */}
+        {/* </FormControl> */}
+        {/* <FormControl className={classes.margin}>
+          <InputLabel html="favSport">Sport Favori</InputLabel>
+          <Input
+            className={classes.input}
+            id="favSport"
+            type="text"
+            name="favSport"
+            value={this.state.favSport}
             onChange={this.onChange}
           />
-        </FormControl>
+          
+        </FormControl> */}
         <div className={classes.center}>
-          <Button type="submit" style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
+          <Button type="submit" onClick={this.onSubmit} style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
             Sign in
           </Button>
         </div>
@@ -128,7 +161,8 @@ class Register extends React.Component {
 }
 
 Register.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  onChange: PropTypes.func
 }
 
-export default withStyles(styles)(Register)
+export default withRouter(withStyles(styles)(Register))
