@@ -54,17 +54,39 @@ class MyClub extends React.Component {
     const startHours = timeStart.format().substr(10)
     const endHours = timeEnd.format().substr(10)
 
-    const newEvent = {
+
+    const timeslotData = {
       title: description + i++,
-      start: date + startHours,
-      end: date + endHours,
       resourceId,
-      allDay: false
+      dayOfWeek: selectedDate.day(),
+      startHour: timeStart.format('HH:mm'),
+      endHour: timeEnd.format('HH:mm')
     }
-    console.log([...events, newEvent])
-    this.setState({
-      events: [].concat(events, newEvent),
-      modalOpen: false
+    fetch('/api/timeslots', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(timeslotData)
+    })
+    .then(response => response.json())
+    .then(timeslot => {
+      const newEvent = {
+        id: timeslot.id,
+        title: description + i++,
+        start: date + startHours,
+        end: date + endHours,
+        resourceId,
+        allDay: false
+      }
+      const {events} = this.state
+      const newEvents = [
+        ...events, newEvent
+      ]
+      this.setState({
+        events: newEvents,
+        modalOpen: false
+      })
     })
   }
 
@@ -74,6 +96,7 @@ class MyClub extends React.Component {
       this.calendar.fullCalendar('changeView', 'agendaDay', date.format('DD-MM-YYYY'))
     }
   }
+  
   createResource = () => {
     var title = prompt('Room name');
     if (!title) return

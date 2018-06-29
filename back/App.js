@@ -10,7 +10,8 @@ const  app          =  express()
 const  clubs        =  require('./Clubs')
 const  users        =  require('./Users')
 const  connection   =  require('./db.js')
-const  resources    =  require('./Resources')
+const resources = require('./Resources')
+const timeslots = require('./Timeslots')
 
 app.use(morgan('dev'))
 // Voir Benoit pour secret
@@ -27,6 +28,7 @@ app.get("/", (req,res) => {
 app.use("/api/clubs", clubs)
 app.use("/api/users", users)
 app.use("/api/resources", resources)
+app.use("/api/timeslots",timeslots)
 
 //erreur
 app.use(function(req, res, next) {
