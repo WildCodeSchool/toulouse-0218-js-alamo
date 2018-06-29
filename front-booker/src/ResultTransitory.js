@@ -12,7 +12,7 @@ import clubs from './clubs'
 const styles = theme => ({
   formDate: {
     display: 'flex',
-    flexWrap: 'wrap'    
+    flexWrap: 'wrap'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -25,8 +25,6 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   }
 })
-
-
 
 class ResultTransitory extends React.Component {
   constructor (props) {
@@ -43,17 +41,17 @@ class ResultTransitory extends React.Component {
         <Grid container>
           <Grid item xs={12} md={12}>
             <form className={classes.formDate} noValidate>
-            <Grid container justify='center'>
-              <TextField
-                id="date"
-                type="date"
-                defaultValue={defaultDate}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-            </Grid>
+              <Grid container justify='center'>
+                <TextField
+                  id="date"
+                  type="date"
+                  defaultValue={defaultDate}
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
+              </Grid>
             </form>
           </Grid>
           <Grid item xs={12} md={5}>
