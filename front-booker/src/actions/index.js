@@ -14,3 +14,12 @@ export function signedOut() {
     type: SIGNED_OUT
   }
 }
+
+export const GET_CITY = 'GET_CITY'
+
+export function getTown(city) {
+  return {
+    type: GET_CITY,
+    city
+  }
+}
