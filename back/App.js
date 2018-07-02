@@ -10,8 +10,8 @@ const  app          =  express()
 const  clubs        =  require('./Clubs')
 const  users        =  require('./Users')
 const  connection   =  require('./db.js')
-const resources = require('./Resources')
-const timeslots = require('./Timeslots')
+const  resources    =  require('./Resources')
+const  timeslots    =  require('./Timeslots')
 
 app.use(morgan('dev'))
 // Voir Benoit pour secret
@@ -21,15 +21,14 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname  +  '/public'))
 
 app.get('/api/cities',(req, res)=> {
-    const search = req.query.search
-    connection.query(`select ville_nom_reel as label From villes_france_free where ville_nom_reel LIKE '${search}%' limit 6`,(error, result)=>{
-        if (error){
-            return res.status(500).json([])
-        }
-        console.log(result['O'])
-        res.json(result)
-    })
-   })
+  const search = req.query.search
+  connection.query(`select ville_nom_reel as label From villes_france_free where ville_nom_reel LIKE '${search}%' limit 6`,(error, result)=>{
+    if (error){
+      return res.status(500).json([])
+    }
+    res.json(result)
+  })
+})
 
 app.get("/", (req,res) => {
   res.send("youhou")

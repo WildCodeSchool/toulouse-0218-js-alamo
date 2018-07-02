@@ -85,7 +85,10 @@ class ManagerLogin extends React.Component {
         <Grid container justify={'center'}>
           <Grid item  xs={10} sm={6} md={4} >
             <Paper className={classes.paper}>  
-              <FormControl className={classes.container} noValidate autoComplete="off" >
+              <FormControl 
+                className={classes.container} 
+                noValidate autoComplete="off" 
+              >
                 <h3>Alamo</h3>
                 <TextField
                   name="name"
@@ -106,7 +109,10 @@ class ManagerLogin extends React.Component {
                   onKeyDown={this.onEnter}
                 />
                 <p className={classes.message}>{this.state.message}</p>
-                <Button className={classes.button} onClick={this.handleLoginSubmit}>
+                <Button 
+                  className={classes.button} 
+                  onClick={this.handleLoginSubmit}
+                >
                   Login
                 </Button>
               </FormControl> 

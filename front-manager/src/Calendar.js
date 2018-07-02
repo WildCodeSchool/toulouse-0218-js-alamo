@@ -1,11 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import List from '@material-ui/core/List'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import { ListItem } from '@material-ui/core'
+
 import MyClub from '../src/components/MyClub'
 
 const styles = theme => ({
@@ -54,7 +51,6 @@ class Calendar extends React.Component {
     const { classes } = this.props
     return (
       <Grid container spacing={24}>
-
         <Grid item xs={12}>
           < MyClub user={this.props.user} onLogout={this.props.onLogout} />
         </Grid>

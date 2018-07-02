@@ -4,7 +4,6 @@ const connection  = require('./db.js')
 
 //route de vérification si les identifiants entrés existent et récupération de ses données
 router.post('/login', function(req, res) {
-  console.log(req.body)
   const { name, password } = req.body
   const query = `SELECT * FROM manager WHERE clubName='${name}' and password='${password}'`
   connection.query(query, (error, result) => {
@@ -29,6 +28,14 @@ router.get('/status', function(req,res) {
   res.json(
     {user: user}
   )
+  // if (user === null) {
+  //   req.session.destroy
+  // }
+})
+
+router.get('/logout', function(req, res) {
+  req.session.destroy()
+  res.json(null)
 })
 
 module.exports = router
