@@ -36,7 +36,7 @@ class IconePresentation extends React.Component {
             </Grid>
             <Grid container item spacing={0} justify="center" >
               <Grid item xs={9} style={{width: '100%'}}>
-                <img src={footer} className="footer" alt="footer" style={{width: '100%'}} />
+                <img src={footer} className="footer" alt="footer" style={{width: '100%', marginBottom: '5%'}} />
               </Grid>
             </Grid>
           </Grid>
