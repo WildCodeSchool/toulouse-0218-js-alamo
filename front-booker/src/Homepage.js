@@ -26,10 +26,6 @@ class Homepage extends React.Component {
   componentWillReceiveProps(nextProps) {
     const params = nextProps.match.params
     console.log(params)
-  // // // }
-
-  // componentDidMount() {
-    // const params = this.props.match.params
     const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
     if(!hasSearchResults) {
       return
