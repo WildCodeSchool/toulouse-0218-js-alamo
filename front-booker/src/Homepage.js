@@ -36,7 +36,7 @@ class Homepage extends React.Component {
         <IconePresentation />
       </Collapse>
       <Collapse in={hasSearchResults}>
-        <ResultTransitory />
+        <ResultTransitory city={this.state.city} />
       </Collapse>
     </div>
     )
