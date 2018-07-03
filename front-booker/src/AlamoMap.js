@@ -7,7 +7,7 @@ const defaultCenter = {lat: 43.600000, lng: 1.433333}
 const AlamoMapDefault = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={12}
-    defaultCenter={props.center}
+    center={props.center}
   >
   </GoogleMap>
 ))
@@ -15,7 +15,7 @@ const AlamoMapDefault = withScriptjs(withGoogleMap((props) =>
 class AlamoMap extends React.Component {
   render () {
     const center = this.props.city ? this.props.city : defaultCenter
-    console.log(center, this.props)
+    console.log(this.props.city, center)
     return (
       <AlamoMapDefault
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&maptype=roadmap&style=feature:poi.attraction%7Cvisibility:off&style=feature:poi.business%7Cvisibility:off&style=feature:poi.medical%7Cvisibility:off&style=feature:poi.school%7Cvisibility:off&size=480x360`}

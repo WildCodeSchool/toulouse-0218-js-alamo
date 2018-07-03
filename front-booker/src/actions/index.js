@@ -15,11 +15,3 @@ export function signedOut() {
   }
 }
 
-export const GET_CITY = 'GET_CITY'
-
-export function getTown(city) {
-  return {
-    type: GET_CITY,
-    city
-  }
-}

@@ -26,7 +26,7 @@ class Homepage extends React.Component {
   componentWillReceiveProps(nextProps) {
     const params = nextProps.match.params
     console.log(params)
-  // }
+  // // // }
 
   // componentDidMount() {
     // const params = this.props.match.params
@@ -34,6 +34,7 @@ class Homepage extends React.Component {
     if(!hasSearchResults) {
       return
     }
+    console.log('fetch', params.city)
     fetch(`/api/cities/by-slug/${params.city}`)
     .then(res => res.json())
     .then(city => this.setState({

@@ -10,9 +10,6 @@ const reducer = (state = initialState, action) => {
       return {user}
     case 'SIGNED_OUT':
       return {user: null}
-    case 'GET_CITY':
-      const {city} = action
-      return {city}
     default:
       return state
     }
