@@ -22,17 +22,27 @@ app.use(express.static(__dirname  +  '/public'))
 
 app.get('/api/cities',(req, res)=> {
   const search = req.query.search
-  connection.query(`select ville_nom_reel as label From villes_france_free where ville_nom_reel LIKE '${search}%' limit 6`,(error, result)=>{
-    if (error){
-      return res.status(500).json([])
-    }
-    res.json(result)
+  const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 6`
+  connection.query(query,(error, result)=>{
+      if (error){
+          return res.status(500).json([])
+      }
+      console.log(result['O'])
+      res.json(result)
   })
 })
 
-app.get("/", (req,res) => {
-  res.send("youhou")
+app.get('/api/cities/by-slug/:slug', (req, res) => {
+  const urlSlug = req.params.slug
+  const query = `SELECT * From villes_france_free where ville_slug = '${urlSlug}'`
+  connection.query(query, (error, result) => {
+    if (error) {
+      return res.status(500).json({error: error.message})
+    }
+    res.json(result[0])
+  })
 })
+
 
 //routes d'échange avec BDD
 app.use("/api/clubs", clubs)
