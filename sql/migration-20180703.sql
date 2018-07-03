@@ -1,0 +1,1 @@
+ALTER TABLE resource ADD COLUMN `sportId` INT(10) UNSIGNED NOT NULL AFTER title;
