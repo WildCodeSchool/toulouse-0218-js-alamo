@@ -144,12 +144,12 @@ class IntegrationAutosuggest extends React.Component {
   handleChange = (event, { newValue }) => {
     this.setState({
       value: newValue,
-    });
-    this.props.onChange(newValue)
-    };
-
-  
-  
+    })
+    const city = this.state.suggestions.find( city => city.label === newValue)
+    if(city) {
+      this.props.onChange(city.slug)
+    }
+  }
 
   render() {
     const { classes } = this.props;

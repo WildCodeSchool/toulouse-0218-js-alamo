@@ -1,5 +1,6 @@
 const initialState = {
-  user : null
+  user : null,
+  city: null
 }
 
 const reducer = (state = initialState, action) => {

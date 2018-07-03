@@ -1,5 +1,4 @@
 import React from 'react'
-
 import SearchLocationBar from './components/SearchLocationBar'
 import { withStyles } from '@material-ui/core/styles'
 import IconeSport from './components/Icones'
@@ -20,24 +19,46 @@ const styles = theme => ({
 const noEmpty = str => str && str !== ''
 
 class Homepage extends React.Component {
+  state = {
+    city: null,
+    markers : []
+  }
+  componentWillReceiveProps(nextProps) {
+    const params = nextProps.match.params
+    console.log(params)
+  // // // }
+
+  // componentDidMount() {
+    // const params = this.props.match.params
+    const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
+    if(!hasSearchResults) {
+      return
+    }
+    console.log('fetch', params.city)
+    fetch(`/api/cities/by-slug/${params.city}`)
+    .then(res => res.json())
+    .then(city => this.setState({
+      city: city
+    }))
+  }
   render () {
     const { classes, match } = this.props
     const { params } = match
     const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
     return (<div>
       <Paper className={classes.paper}>
-      <NavBar />
-      <SearchLocationBar history={this.props.history} hasSearchResults={hasSearchResults} />
-        <Collapse in ={!hasSearchResults}>
-          <IconeSport />
-        </Collapse>
+        <NavBar />
+        <SearchLocationBar history={this.props.history} hasSearchResults={hasSearchResults} />
+          <Collapse in ={!hasSearchResults}>
+            <IconeSport />
+          </Collapse>
       </Paper>
-      <Collapse in={!hasSearchResults}>
-        <IconePresentation />
-      </Collapse>
-      <Collapse in={hasSearchResults}>
-        <ResultTransitory />
-      </Collapse>
+        <Collapse in={!hasSearchResults}>
+          <IconePresentation />
+        </Collapse>
+        <Collapse in={hasSearchResults}>
+          <ResultTransitory city={this.state.city} />
+        </Collapse>
     </div>
     )
   }

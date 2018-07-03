@@ -14,3 +14,4 @@ export function signedOut() {
     type: SIGNED_OUT
   }
 }
+
