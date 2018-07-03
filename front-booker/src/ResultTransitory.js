@@ -31,7 +31,7 @@ class ResultTransitory extends React.Component {
     super(props)
     this.state = {}
   }
-
+  
   render () {
     const { classes } = this.props
     const date = new Date()
@@ -65,7 +65,7 @@ class ResultTransitory extends React.Component {
           </Grid>
           <Grid item xs={12} md={7}>
             <div>
-              <AlamoMap />
+              <AlamoMap city={this.props.city} />
             </div>
           </Grid>
         </Grid>
