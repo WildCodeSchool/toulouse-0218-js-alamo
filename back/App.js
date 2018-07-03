@@ -43,6 +43,32 @@ app.get('/api/cities/by-slug/:slug', (req, res) => {
   })
 })
 
+app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
+  const sport = req.params.sport
+  const city = req.params.city
+  const query1 = `SELECT * from villes_france_free where ville_slug = ?`
+  connection.query(query1, [city], (error, result) => {
+    if (error) {
+      return res.status(500).json({error: error.message})
+    }
+    const city = result[0]
+    const margin = 0.2
+    const latMin = city.lat - margin
+    const latMax = city.lat + margin
+    const lngMin = city.lng - margin
+    const lngMax = city.lng + margin
+    const query2 = `SELECT ts.*, m.id AS managerId, m.clubName, m.address, m.city, m.lat, m.lng FROM timeSlot ts 
+    INNER JOIN resource r ON ts.resourceId = r.id 
+    INNER JOIN sport s ON r.sportId = s.id 
+    INNER JOIN manager m ON r.managerId = m.id 
+    WHERE m.lng >= ${lngMin} AND m.lng <= ${lngMax} AND m.lat >= ${latMin} AND m.lat <= ${latMax}
+    AND s.slug = ?`
+    console.log(query2)
+    connection.query(query2, [sport], (error, timeSlots) => {
+      res.json(timeSlots)
+    })
+  })
+})
 
 //routes d'échange avec BDD
 app.use("/api/clubs", clubs)
