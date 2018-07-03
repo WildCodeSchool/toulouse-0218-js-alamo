@@ -25,16 +25,22 @@ class Homepage extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     const params = nextProps.match.params
-    console.log(params)
     const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
     if(!hasSearchResults) {
       return
     }
-    console.log('fetch', params.city)
     fetch(`/api/cities/by-slug/${params.city}`)
     .then(res => res.json())
     .then(city => this.setState({
       city: city
+    }))
+  }
+  componentDidMount() {
+    const params = this.props.match.params
+    fetch(`/api/cities/${params.city}/sport-match/${params.sport}`)
+    .then(res => res.json())
+    .then(data => this.setState({
+      markers: data.markers
     }))
   }
   render () {
@@ -53,7 +59,7 @@ class Homepage extends React.Component {
           <IconePresentation />
         </Collapse>
         <Collapse in={hasSearchResults}>
-          <ResultTransitory city={this.state.city} />
+          <ResultTransitory city={this.state.city} clubs={this.state.markers} />
         </Collapse>
     </div>
     )
