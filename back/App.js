@@ -10,8 +10,8 @@ const  app          =  express()
 const  clubs        =  require('./Clubs')
 const  users        =  require('./Users')
 const  connection   =  require('./db.js')
-const resources = require('./Resources')
-const timeslots = require('./Timeslots')
+const  resources    =  require('./Resources')
+const  timeslots    =  require('./Timeslots')
 
 app.use(morgan('dev'))
 // Voir Benoit pour secret

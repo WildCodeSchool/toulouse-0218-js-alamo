@@ -2,14 +2,11 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 // import CalendarBase from 'material-ui-pickers/DatePicker/Calendar'
-import withUtils from 'material-ui-pickers/_shared/WithUtils'
 import moment from 'moment'
-import MomentUtils from 'material-ui-pickers/utils/moment-utils'
 import { schedulerLicenseKey } from '../schedulerLicenseKey.json'
-import IconButton from '@material-ui/core/IconButton'
-import PlusOne from '@material-ui/icons/PlusOne'
 import NewEventModal from './NewEventModal'
-import $ from 'jquery'
+import { withRouter } from 'react-router-dom'
+
 
 // Une version qui marche, modifiée à partir de:
 // https://github.com/vadym-vorobel/fullcalendar-react
@@ -120,6 +117,16 @@ class MyClub extends React.Component {
     })
   }
 
+  backToLogin = () => {
+    fetch("/api/clubs/logout", {
+      credentials: 'include'
+    })
+    .then(() => {
+      this.props.onLogout(null)
+      this.props.history.push('/')
+    })
+  }
+
 
   constructor (props) {
     super(props)
@@ -140,7 +147,9 @@ class MyClub extends React.Component {
       customButtons: {
         deconnexion: {
           text: 'deconnexion',
-          click: () => this.props.onLogout(null)
+          click: () => {
+            this.backToLogin()
+          }
         },
           promptResource: {
             text: 'Salles',
@@ -184,4 +193,4 @@ class MyClub extends React.Component {
   }
 }
 
-export default MyClub
+export default withRouter(MyClub)

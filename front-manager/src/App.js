@@ -15,9 +15,8 @@ class App extends React.Component {
     user: null
   }
   //définition du state user : soit objet soit null
-  handleAuthChange = user => this.setState({
-    user
-  })
+  handleAuthChange = user => this.setState({ user })
+  
   //route d'échange avec serveur pour récupération session existante
   componentDidMount () {
     fetch("/api/clubs/status", {
@@ -30,6 +29,13 @@ class App extends React.Component {
       }
     })
   }
+  // componentDidUpdate (user) {
+  //   if (user === null){
+  //     fetch("/api/clubs/status", {
+  //       credentials: 'include'
+  //     })
+  //   }
+  // }
   render() {
     return (
       <Router>
