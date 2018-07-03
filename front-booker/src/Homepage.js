@@ -39,8 +39,8 @@ class Homepage extends React.Component {
     const params = this.props.match.params
     fetch(`/api/cities/${params.city}/sport-match/${params.sport}`)
     .then(res => res.json())
-    .then(markers => this.setState({
-      markers: markers
+    .then(data => this.setState({
+      markers: data.markers
     }))
   }
   render () {
@@ -59,7 +59,7 @@ class Homepage extends React.Component {
           <IconePresentation />
         </Collapse>
         <Collapse in={hasSearchResults}>
-          <ResultTransitory city={this.state.city} />
+          <ResultTransitory city={this.state.city} clubs={this.state.markers} />
         </Collapse>
     </div>
     )

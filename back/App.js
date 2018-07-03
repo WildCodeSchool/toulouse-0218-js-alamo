@@ -43,6 +43,34 @@ app.get('/api/cities/by-slug/:slug', (req, res) => {
   })
 })
 
+// Le tableau timeSlots renvoyé par la 2è requête SQL ci-dessous
+// contient tous les évènements qui matchent les critères de ville
+// et de sport.
+// Problème: même s'ils contiennent les infos de latitude et longitude des clubs,
+// on ne peut pas s'en servir directement côté front, car les infos des clubs sont
+// en doublons (on peut avoir plusieurs time slots avec le même club)
+// Cette fonction va extraire une liste de clubs à partir des time slots, en éliminant
+// les doublons
+const getUniqueMarkers = timeSlots => timeSlots.reduce(
+  (markers, timeSlot) => {
+    // Extrait juste les infos du clubs à partir du timeslot
+    const {managerId, clubName, address, city, lat, lng} = timeSlot
+    // Crée un nouvel objet contenant ces infos
+    const newMarker = {managerId, clubName, address, city, lat, lng}
+    // Le tableau markers (accumulateur du reduce) contient les marqueurs/clubs
+    // qu'on veut renvoyer au client. Avant d'ajouter newMarker à markers,
+    // on vérifie d'abord qu'il n'y est pas déjà
+    const marker = markers.find(m => m.managerId === managerId)
+    // Si le marqueur existe déjà, on retourne markers non modifié
+    if(marker) {
+      return markers
+    }
+    // Sinon on l'ajoute:
+    // concatenation du tableau markers et de l'élément newMarker
+    return [...markers, newMarker]
+  }, []
+)
+
 app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
   const sport = req.params.sport
   const city = req.params.city
@@ -65,7 +93,8 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
     AND s.slug = ?`
     console.log(query2)
     connection.query(query2, [sport], (error, timeSlots) => {
-      res.json(timeSlots)
+      const markers = getUniqueMarkers(timeSlots) 
+      res.json({markers: markers, timeSlots: timeSlots})
     })
   })
 })

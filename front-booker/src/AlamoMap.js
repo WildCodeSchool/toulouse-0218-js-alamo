@@ -1,14 +1,18 @@
 import React from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 import { apiKey } from './config'
+
 
 const defaultCenter = {lat: 43.600000, lng: 1.433333}
 
 const AlamoMapDefault = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
-    defaultZoom={14}
+    defaultZoom={13}
     center={props.center}
-  >  
+  >
+  {props.markers.map((marker, index) => (
+    <Marker position={marker} key={index} />
+  ))}
   </GoogleMap>
 ))
 
@@ -22,6 +26,7 @@ class AlamoMap extends React.Component {
         containerElement={<div style={{ height: `600px` }} />}
         mapElement={<div style={{ height: `100%` }} />}
         center={center}
+        markers={this.props.markers}
       />
     )
   }

@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import CardResultDefault from './CardResultDefault'
 import CardResultMember from './CardResultMember'
 import AlamoMap from './AlamoMap'
-import clubs from './clubs'
+
 
 const styles = theme => ({
   formDate: {
@@ -33,7 +33,7 @@ class ResultTransitory extends React.Component {
   }
   
   render () {
-    const { classes } = this.props
+    const { classes, clubs } = this.props
     const date = new Date()
     const defaultDate = date.toISOString().substr(0, 10)
     return (
@@ -65,7 +65,7 @@ class ResultTransitory extends React.Component {
           </Grid>
           <Grid item xs={12} md={7}>
             <div>
-              <AlamoMap city={this.props.city} />
+              <AlamoMap city={this.props.city} markers={clubs} />
             </div>
           </Grid>
         </Grid>
