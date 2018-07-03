@@ -15,7 +15,8 @@ const calendarProps = {
   leftArrowIcon: undefined,
   rightArrowIcon: undefined,
   renderDay: undefined,
-  shouldDisableDate: undefined
+  shouldDisableDate: undefined,
+  showToday: true
 }
 
 class MyCalendar extends React.Component {
