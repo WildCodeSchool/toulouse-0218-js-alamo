@@ -22,6 +22,7 @@ USE `alamo` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alamo`.`sport` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `slug` VARCHAR(45),
   `label` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -152,6 +153,7 @@ ENGINE = InnoDB;
 create table resource(
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   managerId INTEGER UNSIGNED NOT NULL,
+  sportId INTEGER UNSIGNED NOT NULL,
   title VARCHAR(64)
 );
 
