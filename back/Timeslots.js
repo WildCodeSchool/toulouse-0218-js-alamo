@@ -32,7 +32,7 @@ router.post('/', function(req, res) {
 router.get('/', (req, res) => {
   const managerId = req.session.user.id
 
-  connection.query(`SELECT * FROM resource WHERE managerId = ?`,
+  connection.query(`SELECT t.id, t.title, t.startHour, t.endHour, t.dayOfWeek, t.resourceId FROM timeSlot t INNER JOIN resource r ON t.resourceId=r.id WHERE r.managerId=?`,
   [managerId], (error, timeslots) => {
     if (error) {
       return res.status(500).json({ 

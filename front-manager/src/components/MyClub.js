@@ -6,6 +6,8 @@ import moment from 'moment'
 import { schedulerLicenseKey } from '../schedulerLicenseKey.json'
 import NewEventModal from './NewEventModal'
 import { withRouter } from 'react-router-dom'
+import api from './helpers/api'
+import createEvents from './helpers/createEvents'
 
 
 // Une version qui marche, modifiée à partir de:
@@ -53,7 +55,7 @@ class MyClub extends React.Component {
 
 
     const timeslotData = {
-      title: description + i++,
+      title: description,
       resourceId,
       dayOfWeek: selectedDate.day(),
       startHour: timeStart.format('HH:mm'),
@@ -70,7 +72,7 @@ class MyClub extends React.Component {
     .then(timeslot => {
       const newEvent = {
         id: timeslot.id,
-        title: description + i++,
+        title: description,
         start: date + startHours,
         end: date + endHours,
         resourceId,
@@ -167,13 +169,15 @@ class MyClub extends React.Component {
   }
 
   componentDidMount (){
-    fetch('/api/resources', {
-      credentials: 'include'
-    })
-    .then (res => res.json())
-    .then (resources => {
+      Promise.all([
+        api.get('/api/resources'),
+        api.get('/api/timeslots')
+      ])
+
+    .then (([resources, timeslots]) => {
+      const events = createEvents(timeslots)
       this.setState({
-        resources
+        resources, events
       })
     })
   }
