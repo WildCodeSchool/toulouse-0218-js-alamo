@@ -28,4 +28,16 @@ const put = (url, data) =>
   })
     .then(res => res.json())
 
-export default {get, post, put}
+const _delete = (url) =>
+  fetch(url, {
+    method: 'DELETE',
+    credentials: 'include'
+  })
+    .then(res => res.json())
+
+export default {
+  get,
+  post,
+  put,
+  delete: _delete
+}

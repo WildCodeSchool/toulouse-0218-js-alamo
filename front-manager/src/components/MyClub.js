@@ -71,6 +71,7 @@ class MyClub extends React.Component {
     api.put(`/api/timeslots/${timeslotId}`, timeslotData)
     .then(timeslot => {
       const eventsForTimeslot = createEvents([timeslot])
+      // enlève les évenements correspondant au timeslot mis à jour
       const events = this.state.events.filter(event => timeslotId !== event.timeslotId)
       const newEvents = [
         ...events, ...eventsForTimeslot
@@ -78,6 +79,16 @@ class MyClub extends React.Component {
       this.setState({
         events: newEvents,
         modalOpen: false
+      })
+    })
+  }
+
+  deleteTimeslot = (timeslotId) => {
+    api.delete(`/api/timeslots/${timeslotId}`)
+    .then(() =>{
+      const events = this.state.events.filter(event => timeslotId !== event.timeslotId)
+      this.setState({
+        events, modalOpen:false
       })
     })
   }
@@ -191,7 +202,7 @@ class MyClub extends React.Component {
       <Grid container spacing={24}>
      
         <Grid item xs={12} sm={12} md={12}>
-          { modalOpen && <NewEventModal event={selectedEvent} open={modalOpen} resources={resources} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} /> } 
+          { modalOpen && <NewEventModal event={selectedEvent} open={modalOpen} resources={resources} handleDelete={this.deleteTimeslot} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} /> } 
           <FullCalendar options={{...props}} />
         </Grid>
       </Grid>

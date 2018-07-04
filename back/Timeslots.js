@@ -71,5 +71,18 @@ router.get('/', (req, res) => {
   })
 })
 
+router.delete('/:id', (req, res) => {
+  connection.query(`DELETE FROM timeSlot WHERE id = ?`, [req.params.id], (error) => { 
+    if (error) {
+      return res.status(500).json({ 
+        error: error.message
+      })
+    } 
+    res.json({
+      id: req.params.id
+    }) 
+  })
+})
+
 
 module.exports = router

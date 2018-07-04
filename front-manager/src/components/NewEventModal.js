@@ -13,6 +13,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import Collapse from '@material-ui/core/Collapse'
 import PlusOne from '@material-ui/icons/PlusOne'
+import Delete from '@material-ui/icons/Delete'
 import Timer from '@material-ui/icons/Timer'
 import { TimePicker as TimePickerBase } from 'material-ui-pickers'
 import { DatePicker } from 'material-ui-pickers'
@@ -90,6 +91,7 @@ handleTimeChange = (date, name) => {
     e.preventDefault()
     this.props.handleSubmit(this.state)
   }
+
   handleDateChange = (date) => {
     console.log(date)
     this.setState({ selectedDate: date });
@@ -191,8 +193,15 @@ handleTimeChange = (date, name) => {
               color="primary"
               className={classes.mb}
               onClick={this.handleSubmit}>
-              <PlusOne className={classes.logo} onClick={handleSubmit} /> Créer
+              <PlusOne className={classes.logo}/> Créer
             </Button>
+            {this.props.event !== null && <Button
+              variant="contained"
+              color="secondary"
+              className={classes.mb}
+              onClick={()=>this.props.handleDelete(this.state.timeslotId)}>
+              <Delete className={classes.logo} /> Effacer
+            </Button>}
           </Grid>
         </Grid>
       </div>
