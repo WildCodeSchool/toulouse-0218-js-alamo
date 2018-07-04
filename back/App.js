@@ -77,7 +77,7 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
   const query1 = `SELECT * from villes_france_free where ville_slug = ?`
   connection.query(query1, [city], (error, result) => {
     if (error) {
-      return res.status(500).json({error: error.message})
+      return res.status(500).json({error: 'erreur query1' + error.message})
     }
     const city = result[0]
     const margin = 0.2
@@ -93,6 +93,9 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
     AND s.slug = ?`
     console.log(query2)
     connection.query(query2, [sport], (error, timeSlots) => {
+      if (error) {
+        return res.status(500).json({error: 'erreur query2' + error.message})
+      }
       const markers = getUniqueMarkers(timeSlots) 
       res.json({markers: markers, timeSlots: timeSlots})
     })

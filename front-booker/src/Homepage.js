@@ -35,7 +35,7 @@ class Homepage extends React.Component {
       city: city
     }))
   }
-  componentDidMount() {
+  componentDidUpdate() {
     const params = this.props.match.params
     fetch(`/api/cities/${params.city}/sport-match/${params.sport}`)
     .then(res => res.json())
