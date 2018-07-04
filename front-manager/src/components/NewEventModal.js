@@ -47,13 +47,25 @@ const styles = theme => ({
 })
 
 class NewEventModal extends React.Component {
-  state = {
-    selectedDate: moment(),
-    timeStart:  moment(),
-    timeEnd:  moment(),
-    description: '',
-    resourceId: 0
+  constructor (props) {
+    super(props)
+    const event = this.props.event
+    this.state = event ? {
+      selectedDate: event.start,
+      timeStart: event.start,
+      timeEnd: event.end,
+      description: event.title,
+      resourceId: event.resourceId
+    } :
+    {
+      selectedDate: moment(),
+      timeStart:  moment(),
+      timeEnd:  moment(),
+      description: '',
+      resourceId: 0
+    }
   }
+
   handleInputChange = e => {
     this.setState({
       [e.target.name]: e.target.value

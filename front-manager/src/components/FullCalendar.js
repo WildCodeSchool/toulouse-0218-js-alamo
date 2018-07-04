@@ -5,7 +5,6 @@ class FullCalendar extends React.Component {
   componentDidMount () {
     this.calendar = $('#calendar')
     this.calendar.fullCalendar(this.props.options)
-    
   }
 
   componentWillReceiveProps (nextProps) {

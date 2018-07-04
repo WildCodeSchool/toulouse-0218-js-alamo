@@ -21,15 +21,8 @@ class MyClub extends React.Component {
     date: moment(),
     modalOpen: false,
     resources: [],
-    events: [
-      // {
-      //   "allDay": false,
-      //   "end": "2018-06-18T13:30:04+00:00",
-      //   "resourceId": "b",
-      //   "start": "2018-06-18T12:00:04+00:00",
-      //   "title": "dynamic event 0"
-      // }
-    ]
+    events: [],
+    selectedEvent: null
   }
 
   handleOpenModal = () => {
@@ -119,6 +112,14 @@ class MyClub extends React.Component {
     })
   }
 
+  eventClick = (calEvent, jsEvent, view) => {
+  this.setState({
+    selectedEvent: calEvent,
+    modalOpen: true
+  })
+  console.log(calEvent.timeslotId)
+}
+
   backToLogin = () => {
     fetch("/api/clubs/logout", {
       credentials: 'include'
@@ -145,7 +146,7 @@ class MyClub extends React.Component {
       },
       resourceLabelText: 'Rooms',
       events: this.state.events,
-
+      eventClick: this.eventClick,
       customButtons: {
         deconnexion: {
           text: 'deconnexion',
@@ -183,13 +184,14 @@ class MyClub extends React.Component {
   }
 
   render () {
-    const { date, modalOpen, events, resources } = this.state
+    const { date, modalOpen, events, resources, selectedEvent } = this.state
     const { calendarOptions } = this
     const props = {...calendarOptions, events, resources}
     return (
       <Grid container spacing={24}>
+     
         <Grid item xs={12} sm={12} md={12}>
-          <NewEventModal open={modalOpen} resources={resources} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
+          { modalOpen && <NewEventModal event={selectedEvent} open={modalOpen} resources={resources} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} /> } 
           <FullCalendar options={{...props}} />
         </Grid>
       </Grid>
