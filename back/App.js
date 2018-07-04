@@ -93,6 +93,9 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
     AND s.slug = ?`
     console.log(query2)
     connection.query(query2, [sport], (error, timeSlots) => {
+      if (error) {
+        return res.status(500).json({error: error.message})
+      }
       const markers = getUniqueMarkers(timeSlots) 
       res.json({markers: markers, timeSlots: timeSlots})
     })
