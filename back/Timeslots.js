@@ -29,6 +29,32 @@ router.post('/', function(req, res) {
   })
 })
 
+router.put('/:id', function(req, res) {
+  const {
+    title, startHour, endHour, dayOfWeek, resourceId
+  } = req.body
+  const query = `UPDATE timeSlot SET title = ?, startHour = ?, endHour = ?, dayOfWeek = ?, resourceId = ? WHERE id = ?`
+  connection.query(query,[title, startHour, endHour, dayOfWeek, resourceId, req.params.id], (error, result) => {
+    if (error) {
+      return res.status(500).json({
+        error: error.message
+      })
+    }
+    console.log(result)
+    connection.query(`SELECT * FROM timeSlot WHERE id = ?`,
+      [req.params.id], (error, timeslots) => {
+        if (error) {
+          return res.status(500).json({
+            error: error.message
+          })
+        }
+        res.json(
+          timeslots[0]
+        )
+    })
+  })
+})
+
 router.get('/', (req, res) => {
   const managerId = req.session.user.id
 

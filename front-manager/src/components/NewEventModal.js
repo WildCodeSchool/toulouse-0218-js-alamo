@@ -55,7 +55,8 @@ class NewEventModal extends React.Component {
       timeStart: event.start,
       timeEnd: event.end,
       description: event.title,
-      resourceId: event.resourceId
+      resourceId: event.resourceId,
+      timeslotId: event.timeslotId
     } :
     {
       selectedDate: moment(),

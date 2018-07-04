@@ -30,23 +30,14 @@ class MyClub extends React.Component {
   }
 
   handleCloseModal = () => {
-    this.setState({ modalOpen: false })
+    this.setState({ modalOpen: false, selectedEvent: null})
   }
   // C'est ici qu'on crée un nouvel évènement, une fois que
   // le formulaire de la modale de NewEventModal a été soumis
-  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description, resourceId }) => {
-    console.log(selectedDate)
-    const { events} = this.state
-    console.log('handleSubmitModal', this.state, timeStart, timeEnd)
+  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description, resourceId, timeslotId }) => {
     if(! timeStart || ! timeEnd) {
       return
     }
-
-    const date = selectedDate.format('YYYY-MM-DD')
-    const startHours = timeStart.format().substr(10)
-    const endHours = timeEnd.format().substr(10)
-
-
     const timeslotData = {
       title: description,
       resourceId,
@@ -54,26 +45,35 @@ class MyClub extends React.Component {
       startHour: timeStart.format('HH:mm'),
       endHour: timeEnd.format('HH:mm')
     }
-    fetch('/api/timeslots', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(timeslotData)
-    })
-    .then(response => response.json())
+    if (timeslotId) {
+      this.updateTimeslot(timeslotId, timeslotData)
+    } else {
+      this.createTimeslot(timeslotData)
+    }
+  }
+
+  createTimeslot = (timeslotData) => {
+    api.post('/api/timeslots', timeslotData)
     .then(timeslot => {
-      const newEvent = {
-        id: timeslot.id,
-        title: description,
-        start: date + startHours,
-        end: date + endHours,
-        resourceId,
-        allDay: false
-      }
+      const eventsForTimeslot = createEvents([timeslot])
       const {events} = this.state
       const newEvents = [
-        ...events, newEvent
+        ...events, ...eventsForTimeslot
+      ]
+      this.setState({
+        events: newEvents,
+        modalOpen: false
+      })
+    })
+  }
+
+  updateTimeslot = (timeslotId, timeslotData) => {
+    api.put(`/api/timeslots/${timeslotId}`, timeslotData)
+    .then(timeslot => {
+      const eventsForTimeslot = createEvents([timeslot])
+      const events = this.state.events.filter(event => timeslotId !== event.timeslotId)
+      const newEvents = [
+        ...events, ...eventsForTimeslot
       ]
       this.setState({
         events: newEvents,
