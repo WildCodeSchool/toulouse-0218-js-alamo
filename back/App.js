@@ -101,6 +101,7 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
       }
       const markers = getUniqueMarkers(timeSlots) 
       res.json({markers: markers, timeSlots: timeSlots, city: city})
+      console.log(res.body)
     })
   })
 })
