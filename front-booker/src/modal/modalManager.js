@@ -53,7 +53,7 @@ class SimpleModal extends React.Component {
           <Button
             className={classes.btn}
             onClick={this.handleOpen}
-            onClvariant="raised"
+            variant="raised"
             style={{ backgroundColor: "#66FF33" }}
           >
             Vous êtes gérant de salle de sport ?

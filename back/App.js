@@ -80,6 +80,9 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
       return res.status(500).json({error: 'erreur query1' + error.message})
     }
     const city = result[0]
+    if(result.length === 0) {
+      return res.json({markers: [], timeSlots: [], city: null})
+    }
     const margin = 0.2
     const latMin = city.lat - margin
     const latMax = city.lat + margin
@@ -97,7 +100,7 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
         return res.status(500).json({error: error.message})
       }
       const markers = getUniqueMarkers(timeSlots) 
-      res.json({markers: markers, timeSlots: timeSlots})
+      res.json({markers: markers, timeSlots: timeSlots, city: city})
     })
   })
 })
