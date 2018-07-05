@@ -28,21 +28,9 @@ const styles = theme => ({
 
 class ResultTransitory extends React.Component {
   state = {
-    member: false
+    
   }
 
-  IsMember() {
-    const member = this.state
-    if(member === 0) {
-      return
-    }
-    fetch(`/api/clubs/member`)
-    .then(res => res.json())
-    .then(member => this.setState({
-      member: true
-    }))
-  }
-  
   render () {
     const { classes, clubs } = this.props
     const date = new Date()

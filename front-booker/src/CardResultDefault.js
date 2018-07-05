@@ -43,7 +43,7 @@ class CardResultDefault extends React.Component {
                 </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paperCalendar}>Sports pratiqués :</Paper>
+                <Paper className={classes.paperCalendar}>Sports pratiqués : {this.props.club.sport}></Paper>
               </Grid>
             </Grid>
           </CardContent>

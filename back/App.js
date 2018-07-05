@@ -22,7 +22,7 @@ app.use(express.static(__dirname  +  '/public'))
 
 app.get('/api/cities',(req, res)=> {
   const search = req.query.search
-  const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 6`
+  const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 2`
   connection.query(query,(error, result)=>{
       if (error){
           return res.status(500).json([])
@@ -70,16 +70,6 @@ const getUniqueMarkers = timeSlots => timeSlots.reduce(
     return [...markers, newMarker]
   }, []
 )
-app.get('/api/clubs/member', (req, res) => {
-  const query = `SELECT * from manager WHERE member = 1`
-  connection.query(query, (error, result) => {
-    if (error) {
-      return res.status(500).json({error: error.message})
-    }
-    console.log(query)
-    res.json(result)
-  })
-})
 
 app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
   const sport = req.params.sport
