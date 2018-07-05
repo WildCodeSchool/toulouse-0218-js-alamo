@@ -169,6 +169,7 @@ class MyClub extends React.Component {
             text: 'Salles',
             click:this.createResource
           },
+
         // Une façon d'ajouter un évènement en passant directement
         // par l'API du fullCalendar... a priori pas la bonne façon
         // car "pas très React"

@@ -31,7 +31,7 @@ class ResultTransitory extends React.Component {
     super(props)
     this.state = {}
   }
-  
+
   render () {
     const { classes } = this.props
     const date = new Date()
