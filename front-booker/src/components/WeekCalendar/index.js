@@ -25,16 +25,20 @@ const getTimeSlots = (dayIndex, timeSlots) => {
     })
 }
 
-const getSlotStyle = ts => {
+const getSlotStyle = (ts, isBooked) => {
   const top = CAL_HEIGHT * (ts.mStart - HOUR_MIN) / 1440 + 30
   const height = CAL_HEIGHT * (ts.mEnd - ts.mStart) / 1440
   return {
     position: 'absolute',
     border: '1px solid #ccc',
     top: `${top}px`,
-    height: `${height}px`
+    height: `${height}px`,
+    background: isBooked ? '#ffcccc' : '#ccffcc'
   }
 }
+
+const isSlotBooked = (ts, reservations) =>
+  reservations.find(r => r.timeSlotId === ts.id) !== undefined
 
 const WeekDay = props => (
   <div style={dayStyles}>
@@ -42,7 +46,7 @@ const WeekDay = props => (
     <div>{props.date.getDate()}</div>
     {
       props.timeSlots.map(
-        (ts, k) => <div key={k} style={getSlotStyle(ts)}>
+        (ts, k) => <div key={k} style={getSlotStyle(ts, isSlotBooked(ts, props.reservations))}>
           {ts.id}
         </div>
       )
@@ -59,6 +63,23 @@ const getDates = nowDate => {
     dates.push(date)
   }
   return dates
+}
+
+const formatDate = date => {
+    const d = new Date(date)
+    let month = '' + (d.getMonth() + 1)
+    let day = '' + d.getDate()
+    const year = d.getFullYear()
+
+    if (month.length < 2) month = '0' + month
+    if (day.length < 2) day = '0' + day
+
+    return [year, month, day].join('-')
+}
+
+const getReservations = (date, reservations) => {
+  console.log(formatDate(date), reservations)
+  return reservations.filter(r => r.date === formatDate(date))
 }
 
 class WeekCalendar extends React.Component {
@@ -88,6 +109,7 @@ class WeekCalendar extends React.Component {
   }
   render () {
     const { weekIndex, dates } = this.state
+    const { timeSlots, reservations } = this.props
     const sow = dates[0]
     const sowStr = `${sow.getDate()}/${sow.getMonth() + 1 }`
     const eow = dates[6]
@@ -104,7 +126,7 @@ class WeekCalendar extends React.Component {
           </div>
           {
             days.map((d, k) => (
-              <WeekDay key={k} day={d} date={this.state.dates[k]} timeSlots={getTimeSlots(k, this.props.timeSlots)} />
+              <WeekDay key={k} day={d} date={dates[k]} timeSlots={getTimeSlots(k, timeSlots)} reservations={getReservations(dates[k], reservations)} />
             ))
           }
         </div>

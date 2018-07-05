@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import MyCalendar from '../src/components/MyCalendar'
+import WeekCalendar from './components/WeekCalendar'
 
 const styles = () => ({
   card: {
@@ -45,7 +46,7 @@ class CardResultMember extends React.Component {
     this.state = {}
   }
   render () {
-    const { classes } = this.props
+    const { classes, timeSlots, reservations } = this.props
     return (
       <div>
         <Card className={classes.card}>
@@ -65,7 +66,7 @@ class CardResultMember extends React.Component {
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <MyCalendar />
+                <WeekCalendar reservations={reservations} timeSlots={timeSlots.filter(ts => ts.managerId === this.props.club.managerId)} />
               </Grid>
             </Grid>
           </CardContent>

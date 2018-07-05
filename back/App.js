@@ -27,7 +27,7 @@ app.get('/api/cities',(req, res)=> {
       if (error){
           return res.status(500).json([])
       }
-      console.log(result['O'])
+      console.log(result[0])
       res.json(result)
   })
 })
@@ -54,9 +54,9 @@ app.get('/api/cities/by-slug/:slug', (req, res) => {
 const getUniqueMarkers = timeSlots => timeSlots.reduce(
   (markers, timeSlot) => {
     // Extrait juste les infos du clubs à partir du timeslot
-    const {managerId, clubName, address, city, lat, lng} = timeSlot
+    const {managerId, clubName, address, city, lat, lng, member} = timeSlot
     // Crée un nouvel objet contenant ces infos
-    const newMarker = {managerId, clubName, address, city, lat, lng}
+    const newMarker = {managerId, clubName, address, city, lat, lng, member}
     // Le tableau markers (accumulateur du reduce) contient les marqueurs/clubs
     // qu'on veut renvoyer au client. Avant d'ajouter newMarker à markers,
     // on vérifie d'abord qu'il n'y est pas déjà
@@ -88,7 +88,7 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
     const latMax = city.lat + margin
     const lngMin = city.lng - margin
     const lngMax = city.lng + margin
-    const query2 = `SELECT ts.*, m.id AS managerId, m.clubName, m.address, m.city, m.lat, m.lng FROM timeSlot ts 
+    const query2 = `SELECT ts.*, m.id AS managerId, m.clubName, m.address, m.city, m.lat, m.lng, m.member FROM timeSlot ts
     INNER JOIN resource r ON ts.resourceId = r.id 
     INNER JOIN sport s ON r.sportId = s.id 
     INNER JOIN manager m ON r.managerId = m.id 
@@ -99,8 +99,23 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
       if (error) {
         return res.status(500).json({error: error.message})
       }
-      const markers = getUniqueMarkers(timeSlots) 
-      res.json({markers: markers, timeSlots: timeSlots, city: city})
+      const markers = getUniqueMarkers(timeSlots)
+      const where = timeSlots.length === 0 ? 'false' :
+        `timeSlotId IN (${timeSlots.map(ts => ts.id).join(',')})`
+      const query3 = `SELECT id, bookerId, timeSlotId, DATE_FORMAT(date, "%Y-%m-%d") as date from reservation WHERE ${where}`
+      console.log(query3)
+      connection.query(query3, (error, reservations) => {
+        if (error) {
+          return res.status(500).json({error: error.message})
+        }
+        console.log(reservations)
+        res.json({
+          markers: markers,
+          timeSlots: timeSlots,
+          city: city,
+          reservations: reservations
+        })
+      })
     })
   })
 })
