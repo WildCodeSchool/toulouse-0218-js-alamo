@@ -37,9 +37,9 @@ class CardResultDefault extends React.Component {
                   {this.props.club.clubName}
                 </Typography>
                 <Typography component="p">
-                  {this.props.club.address} : <br />
-                  {this.props.club.email}: <br />
-                  {this.props.club.phone}: <br />
+                  {this.props.club.address} <br />
+                  {this.props.club.email} <br />
+                  {this.props.club.phone} <br />
                 </Typography>
               </Grid>
               <Grid item xs={6}>

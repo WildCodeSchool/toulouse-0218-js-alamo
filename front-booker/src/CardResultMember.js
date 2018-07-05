@@ -56,9 +56,9 @@ class CardResultMember extends React.Component {
                   {this.props.club.name}
                 </Typography>
                 <Typography component="p" className={classes.verticalFill}>
-                  {this.props.club.adresse} : <br />
-                  {this.props.club.email}: <br />
-                  {this.props.club.phone}: <br />
+                  {this.props.club.adresse} <br />
+                  {this.props.club.email} <br />
+                  {this.props.club.phone} <br />
                 </Typography>
                 <Button className={classes.button}>
                   <Link to = {'/reservation/' + this.props.club.id} className={classes.link}>Réserver</Link>
