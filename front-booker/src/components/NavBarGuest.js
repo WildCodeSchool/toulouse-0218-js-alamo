@@ -8,6 +8,7 @@ import permIdentity from '../images/permIdentity.png'
 import Button from '@material-ui/core/Button'
 import Hidden from '@material-ui/core/Hidden'
 import Modal from '../modal/modal'
+import ModalManager from '../modal/modalManager'
 import { Link } from 'react-router-dom'
 
 const styles = {
@@ -51,7 +52,8 @@ class NavBarGuest extends React.Component {
             Alamo
             </Typography>
           </Link>
-          <Hidden xsDown smDown>
+          < ModalManager />
+          {/* <Hidden xsDown smDown>
             <Button className={classes.btn}variant="raised" style={{backgroundColor: '#66FF33'}}>
         Vous êtes gérant de salle de sport ?
             </Button>
@@ -60,7 +62,7 @@ class NavBarGuest extends React.Component {
             <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
         gérant ?
             </Button>
-          </Hidden>
+          </Hidden> */}
           <a href ="#" onClick={this.handleOpen}>< img src={permIdentity} className="App-logo" alt="logo" /> </a>
         </Toolbar>
       </AppBar>
