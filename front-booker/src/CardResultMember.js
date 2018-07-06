@@ -52,18 +52,25 @@ class CardResultMember extends React.Component {
     super(props)
     this.state = {
       selectedTimeSlot: null,
-      canBook: false
+      canBook: false,
+      date: null
     }
   }
-  onClickSlot = (timeSlot, isBookable, isBooked) => {
+  onClickSlot = (timeSlot, date, isBookable, isBooked) => {
     this.setState({
       selectedTimeSlot: timeSlot,
-      canBook: isBookable && ! isBooked
+      canBook: isBookable && ! isBooked,
+      date
     })
   }
   render () {
-    const { classes, timeSlots, reservations } = this.props
+    const { classes, timeSlots, club, reservations, history } = this.props
     const { selectedTimeSlot, canBook } = this.state
+    // Si on a sélectionné un créneau, on prend la date dans le state,
+    // sinon on met la date du jour
+    const date = this.state.date ? this.state.date : new Date()
+    // On formate sa date en YYYY-MM-DD
+    const formattedDate = date.toISOString().substr(0, 10)
     const buttonClass = canBook ? classes.enabledButton : classes.disabledButton
     return (
       <div>
@@ -72,22 +79,25 @@ class CardResultMember extends React.Component {
             <Grid container>
               <Grid item xs={6} className={classes.verticalItems}>
                 <Typography gutterBottom variant="headline" component="h2">
-                  {this.props.club.clubName}
+                  {club.clubName}
                 </Typography>
                 <Typography component="p" className={classes.verticalFill}>
-                  {this.props.club.address} <br />
-                  {this.props.club.email} <br />
-                  {this.props.club.phone} <br />
+                  {club.address} <br />
+                  {club.email} <br />
+                  {club.phone} <br />
                 </Typography>
-                <Button className={classNames(classes.button, buttonClass)} disabled={! canBook}>
-                  <Link to={'/reservation/' + this.props.club.id} className={classes.link}>Réserver</Link>
+                <Button
+                  className={classNames(classes.button, buttonClass)}
+                  disabled={! canBook}
+                  onClick={ () => history.push(`/reservation/${club.id}/${selectedTimeSlot.id}/${formattedDate}`) }>
+                  Réserver
                 </Button>
               </Grid>
               <Grid item xs={6}>
                 <WeekCalendar
                   onClickSlot={this.onClickSlot}
                   reservations={reservations}
-                  timeSlots={timeSlots.filter(ts => ts.managerId === this.props.club.managerId)} />
+                  timeSlots={timeSlots.filter(ts => ts.managerId === club.id)} />
               </Grid>
             </Grid>
           </CardContent>

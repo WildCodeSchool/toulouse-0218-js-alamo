@@ -42,7 +42,7 @@ const WeekDay = ({ classes, day, date, now, reservations, timeSlots, onClickSlot
             const isBooked = isSlotBooked(ts, reservations)
             return (
               <Typography
-                onClick={e => onClickSlot(ts, isBookable, isBooked, e)}
+                onClick={e => onClickSlot(ts, date, isBookable, isBooked, e)}
                 component="div"
                 className={classes.slot}
                 key={k}
