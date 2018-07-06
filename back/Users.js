@@ -34,8 +34,10 @@ router.post('/login', function(req, res) {
     if (result.length === 0) {
       return res.json({error: "Your account or password is incorrect"})
     }
+    const user = result[0]
+    req.session.user = user
     res.json(
-      result
+      user
     )
     console.log(res.json)
   })

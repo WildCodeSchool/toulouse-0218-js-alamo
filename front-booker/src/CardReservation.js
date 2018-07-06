@@ -45,6 +45,23 @@ const styles = theme => ({
 })
 
 class CardReservation extends React.Component {
+  sendBookingRequest = e => {
+    const { slotId, date } = this.props
+    fetch(`/api/bookings/${slotId}/${date}`, {
+      method: 'POST',
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(response => {
+        if(response.error) {
+          alert('y a un blème')
+        }
+        else {
+          alert('Votre réservation a bien été enregistrée')
+        }
+      })
+
+  }
   render () {
     const { classes, data } = this.props
     const date = new Date(this.props.date)
@@ -83,8 +100,8 @@ class CardReservation extends React.Component {
                   <strong>Lieu</strong>: {data.resource} <br />
                   <strong>Date</strong>: {formattedDate} de {startHour} &agrave; {endHour} <br />
                 </Typography>
-                <Button className={classes.button}>
-                  <Link to = {'/reservation/' + data.id} className={classes.link}>Confirmer</Link>
+                <Button className={classes.button} onClick={this.sendBookingRequest}>
+                  Confirmer
                 </Button>
               </CardContent>
             </Card>

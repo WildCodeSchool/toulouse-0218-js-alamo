@@ -42,4 +42,40 @@ router.get('/:managerId/:slotId/:date', (req, res) => {
   })
 })
 
+router.post('/:slotId/:date', (req, res) => {
+  console.log('session', req.session)
+  const user = req.session.user
+  if(! user) {
+    return res.status(401).json({
+      error: 'user not logged-in'
+    })
+  }
+  const bookerId = user.id
+  // Extrait l'id du club, du slot, et la date de réservation demandée, depuis l'URL
+  const { slotId, date } = req.params
+
+  const query1 = 'SELECT * FROM reservation WHERE timeSlotId = ? AND date = ?'
+  const query2 = 'INSERT INTO reservation (timeSlotId, bookerId, date) VALUES (?, ?, ?)'
+  connection.query(query1, [slotId, date], (error, bookings) => {
+    if (error) {
+      return res.status(500).json({
+        error: error.message
+      })
+    }
+    if(bookings.length > 0) {
+      return res.status(403).json({
+        error: `already has booking for timeslot ${slotId} on ${date}`
+      })
+    }
+    connection.query(query2, [slotId, bookerId, date], (error, result) => {
+      if (error) {
+        return res.status(500).json({
+          error: error.message
+        })
+      }
+      res.json({ success: true })
+    })
+  })
+})
+
 module.exports = router
