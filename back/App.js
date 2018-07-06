@@ -126,6 +126,7 @@ app.use("/api/clubs", clubs)
 app.use("/api/users", users)
 app.use("/api/resources", resources)
 app.use("/api/timeslots",timeslots)
+app.use("/api/bookings", bookings)
 
 //erreur
 app.use(function(req, res, next) {

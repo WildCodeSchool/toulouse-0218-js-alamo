@@ -1,0 +1,2 @@
+ALTER TABLE `reservation` CHANGE `id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `reservation` CHANGE `calendarId` `timeSlotId` INT(10) UNSIGNED NOT NULL;

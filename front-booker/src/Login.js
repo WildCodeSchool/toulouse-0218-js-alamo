@@ -43,6 +43,7 @@ class Login extends React.Component {
     // Submit to login URL
     fetch('/api/users/login', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
