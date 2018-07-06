@@ -7,11 +7,15 @@ const defaultCenter = {lat: 43.600000, lng: 1.433333}
 
 const AlamoMapDefault = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
-    defaultZoom={13}
+    defaultZoom={12}
     center={props.center}
   >
   {props.markers.map((marker, index) => (
-    <Marker position={marker} key={index} />
+    <Marker 
+    position={marker} 
+    key={index}
+    icon={{url: marker.member ? '/images/alamo.png' : '/images/nonalamo.png'}}
+    />
   ))}
   </GoogleMap>
 ))

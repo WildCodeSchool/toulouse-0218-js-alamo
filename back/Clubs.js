@@ -38,4 +38,31 @@ router.get('/logout', function(req, res) {
   res.json(null)
 })
 
+router.get('/:id', (req, res) => {
+  // Extrait l'id du club depuis l'URL
+  const { id } = req.params
+  // Prépare la query
+  const query = 'SELECT * FROM manager WHERE id = ?'
+  // Envoie la query
+  connection.query(query, [id], (error, managers) => {
+    if (error) {
+      return res.status(500).json({
+        error: error.message
+      })
+    }
+    // Si le manager avec l'id demandé n'existe pas,
+    // il faut renvoyer une 404
+    if(managers.length === 0) {
+      return res.status(404).json({
+        error: `Manager with id ${id} could not be found`
+      })
+    }
+    // Le résultat est un tableau, on extrait son unique élément
+    const manager = managers[0]
+    // On doit supprimer le password des données à renvoyer au client
+    delete manager.password
+    res.json(manager)
+  })
+})
+
 module.exports = router

@@ -44,7 +44,7 @@ const styles = theme => ({
 
 class CardReservation extends React.Component {
   render () {
-    const { classes } = this.props
+    const { classes, club } = this.props
     return (
       <div className={classes.result}>
         <Grid container justify='center'>
@@ -57,15 +57,15 @@ class CardReservation extends React.Component {
             <Grid container>
               <Grid item xs={6} className={classes.verticalItems}>
                 <Typography gutterBottom variant="headline" component="h2">
-                  {this.props.club.name}
+                  {club.clubName}
                 </Typography>
                 <Typography component="p" className={classes.verticalFill}>
-                  {this.props.club.adresse} : <br />
-                  {this.props.club.email}: <br />
-                  {this.props.club.phone}: <br />
+                  {club.address}, {club.city}<br />
+                  E-mail: {club.email} <br />
+                  {/* {club.phone} <br /> */}
                 </Typography>
                 <Button className={classes.button}>
-                  <Link to = {'/reservation/' + this.props.club.id} className={classes.link}>Confirmer</Link>
+                  <Link to = {'/reservation/' + club.id} className={classes.link}>Confirmer</Link>
                 </Button>
               </Grid>
               <Grid item xs={6}>

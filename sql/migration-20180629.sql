@@ -42,7 +42,7 @@ CREATE TABLE `villes_france_free` (
 -- Déchargement des données de la table `villes_france_free`
 --
 
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (1, '01', 'ozan', 'Ozan', '01190', 4.91667, 46.3833),
 (2, '01', 'cormoranche-sur-saone', 'Cormoranche-sur-Saône', '01290', 4.83333, 46.2333),
 (3, '01', 'plagne-01', 'Plagne', '01130', 5.73333, 46.1833),
