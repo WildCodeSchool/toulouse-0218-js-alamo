@@ -41,8 +41,7 @@ class MyClub extends React.Component {
   handleCloseResourceModal = () => {
     this.setState({ modalResourceOpen: false, selectedResource: null})
   }
-  // C'est ici qu'on crée un nouvel évènement, une fois que
-  // le formulaire de la modale de NewEventModal a été soumis
+
   handleResourceSubmitModal = ({ title, resourceId }) => {
     console.log(title, resourceId)
     if (resourceId) {
@@ -147,7 +146,6 @@ updateResource = (resourceId, resourceData) => {
       const resourceIndex = this.state.resources.findIndex(
         r => r.id === resource.id
       )
-      // enlève les évenements correspondant au timeslot mis à jour
       const newResources = [
         ...this.state.resources
       ]
@@ -197,8 +195,6 @@ resourceClick = (calResource, jsEvent, view) => {
 
   constructor (props) {
     super(props)
-    // Options du calendrier
-    // Créer un schedulerLicenseKey.json en s'inspirant de schedulerLicenseKey.sample.json
     this.calendarOptions = {
       schedulerLicenseKey,
       defaultView: 'agendaDay',
@@ -230,9 +226,6 @@ resourceClick = (calResource, jsEvent, view) => {
             click:this.resourceClick
           },
 
-        // Une façon d'ajouter un évènement en passant directement
-        // par l'API du fullCalendar... a priori pas la bonne façon
-        // car "pas très React"
         addEventButton: {
           text: 'Ajouter un évènement',
           click: this.handleOpenModal
