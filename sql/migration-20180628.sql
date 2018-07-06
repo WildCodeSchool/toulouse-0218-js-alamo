@@ -1,0 +1,1 @@
+ALTER TABLE timeSlot ADD COLUMN `title` VARCHAR(60) NULL DEFAULT '' AFTER resourceId;

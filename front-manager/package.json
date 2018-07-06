@@ -2,15 +2,36 @@
   "name": "front-manager",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000/",
   "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "@material-ui/icons": "^1.1.0",
+    "core-js": "^2.5.7",
+    "date-fns": "^2.0.0-alpha.10",
+    "fullcalendar": "^3.9.0",
+    "fullcalendar-scheduler": "^1.9.4",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "material-ui-pickers": "^1.0.0-rc.10",
     "react": "^16.4.0",
+    "react-calendar": "^2.15.2",
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "symbol-observable": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0"
   }
 }
