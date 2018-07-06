@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
+import formatMonth from './components/WeekCalendar/helpers/formatMonth'
+import formatHour from './components/WeekCalendar/helpers/formatHour'
 
 const styles = theme => ({
   card: {
@@ -44,36 +46,50 @@ const styles = theme => ({
 
 class CardReservation extends React.Component {
   render () {
-    const { classes, club } = this.props
+    const { classes, data } = this.props
+    const date = new Date(this.props.date)
+    const dayOfMonth = date.getDate()
+    const month = formatMonth(date.getMonth())
+    const year = 1900 + date.getYear()
+    const formattedDate = `${dayOfMonth} ${month} ${year}`
+    const startHour = formatHour(data.startHour)
+    const endHour = formatHour(data.endHour)
     return (
       <div className={classes.result}>
         <Grid container justify='center'>
-          <Typography component="h1" className={classes.titre}>
-          Veuillez confirmer votre réservation
-          </Typography>
+          <Grid item xs={12}>
+            <Typography component="h1" className={classes.titre}>
+            Veuillez confirmer votre réservation
+            </Typography>
+          </Grid>
         </Grid>
-        <Card className={classes.card}>
-          <CardContent>
-            <Grid container>
-              <Grid item xs={6} className={classes.verticalItems}>
+        <Grid container justify='center'>
+          <Grid item xs={8} className={classes.verticalItems}>
+            <Card className={classes.card}>
+              <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
-                  {club.clubName}
+                  {data.clubName}
                 </Typography>
                 <Typography component="p" className={classes.verticalFill}>
-                  {club.address}, {club.city}<br />
-                  E-mail: {club.email} <br />
-                  {/* {club.phone} <br /> */}
+                  <strong>Adresse</strong>: {data.address}, {data.city}<br />
+                  <strong>E-mail</strong>: {data.email} <br /> <br />
+                  {/* {data.phone} <br /> */}
+                </Typography>
+                <Typography gutterBottom variant="headline" component="h3">
+                Réservation
+                </Typography>
+                <Typography component="p" className={classes.verticalFill}>
+                  <strong>Sport</strong>: {data.sport} <br />
+                  <strong>Lieu</strong>: {data.resource} <br />
+                  <strong>Date</strong>: {formattedDate} de {startHour} &agrave; {endHour} <br />
                 </Typography>
                 <Button className={classes.button}>
-                  <Link to = {'/reservation/' + club.id} className={classes.link}>Confirmer</Link>
+                  <Link to = {'/reservation/' + data.id} className={classes.link}>Confirmer</Link>
                 </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Paper className={classes.paperCalendar}>Récap réservation</Paper>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
       </div>
     )
   }
