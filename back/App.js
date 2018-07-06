@@ -22,7 +22,7 @@ app.use(express.static(__dirname  +  '/public'))
 
 app.get('/api/cities',(req, res)=> {
   const search = req.query.search
-  const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 6`
+  const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 2`
   connection.query(query,(error, result)=>{
       if (error){
           return res.status(500).json([])
@@ -54,9 +54,9 @@ app.get('/api/cities/by-slug/:slug', (req, res) => {
 const getUniqueMarkers = timeSlots => timeSlots.reduce(
   (markers, timeSlot) => {
     // Extrait juste les infos du clubs à partir du timeslot
-    const {managerId, clubName, address, city, lat, lng, member} = timeSlot
+    const {managerId, clubName, address, city, lat, lng, member, email} = timeSlot
     // Crée un nouvel objet contenant ces infos
-    const newMarker = {managerId, clubName, address, city, lat, lng, member}
+    const newMarker = {managerId, clubName, address, city, lat, lng, member, email}
     // Le tableau markers (accumulateur du reduce) contient les marqueurs/clubs
     // qu'on veut renvoyer au client. Avant d'ajouter newMarker à markers,
     // on vérifie d'abord qu'il n'y est pas déjà
@@ -88,7 +88,7 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
     const latMax = city.lat + margin
     const lngMin = city.lng - margin
     const lngMax = city.lng + margin
-    const query2 = `SELECT ts.*, m.id AS managerId, m.clubName, m.address, m.city, m.lat, m.lng, m.member FROM timeSlot ts
+    const query2 = `SELECT ts.*, m.id AS managerId, m.clubName, m.address, m.email, m.city, m.lat, m.lng, m.member FROM timeSlot ts 
     INNER JOIN resource r ON ts.resourceId = r.id 
     INNER JOIN sport s ON r.sportId = s.id 
     INNER JOIN manager m ON r.managerId = m.id 

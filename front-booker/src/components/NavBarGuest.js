@@ -53,16 +53,6 @@ class NavBarGuest extends React.Component {
             </Typography>
           </Link>
           < ModalManager />
-          {/* <Hidden xsDown smDown>
-            <Button className={classes.btn}variant="raised" style={{backgroundColor: '#66FF33'}}>
-        Vous êtes gérant de salle de sport ?
-            </Button>
-          </Hidden>
-          <Hidden lgUp mdUp>
-            <Button className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33'}}>
-        gérant ?
-            </Button>
-          </Hidden> */}
           <a href ="#" onClick={this.handleOpen}>< img src={permIdentity} className="App-logo" alt="logo" /> </a>
         </Toolbar>
       </AppBar>

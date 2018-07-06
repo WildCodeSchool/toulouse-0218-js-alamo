@@ -27,11 +27,10 @@ const styles = theme => ({
 })
 
 class ResultTransitory extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {}
+  state = {
+    
   }
-  
+
   render () {
     const { classes, clubs, timeSlots, reservations } = this.props
     const date = new Date()

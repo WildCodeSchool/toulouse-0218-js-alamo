@@ -13,6 +13,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import Collapse from '@material-ui/core/Collapse'
 import PlusOne from '@material-ui/icons/PlusOne'
+import Delete from '@material-ui/icons/Delete'
 import Timer from '@material-ui/icons/Timer'
 import { TimePicker as TimePickerBase } from 'material-ui-pickers'
 import { DatePicker } from 'material-ui-pickers'
@@ -47,13 +48,26 @@ const styles = theme => ({
 })
 
 class NewEventModal extends React.Component {
-  state = {
-    selectedDate: moment(),
-    timeStart:  moment(),
-    timeEnd:  moment(),
-    description: '',
-    resourceId: 0
+  constructor (props) {
+    super(props)
+    const event = this.props.event
+    this.state = event ? {
+      selectedDate: event.start,
+      timeStart: event.start,
+      timeEnd: event.end,
+      description: event.title,
+      resourceId: event.resourceId,
+      timeslotId: event.timeslotId
+    } :
+    {
+      selectedDate: moment(),
+      timeStart:  moment(),
+      timeEnd:  moment(),
+      description: '',
+      resourceId: 0
+    }
   }
+
   handleInputChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -77,6 +91,7 @@ handleTimeChange = (date, name) => {
     e.preventDefault()
     this.props.handleSubmit(this.state)
   }
+
   handleDateChange = (date) => {
     console.log(date)
     this.setState({ selectedDate: date });
@@ -178,8 +193,15 @@ handleTimeChange = (date, name) => {
               color="primary"
               className={classes.mb}
               onClick={this.handleSubmit}>
-              <PlusOne className={classes.logo} onClick={handleSubmit} /> Créer
+              <PlusOne className={classes.logo}/> Créer
             </Button>
+            {this.props.event !== null && <Button
+              variant="contained"
+              color="secondary"
+              className={classes.mb}
+              onClick={()=>this.props.handleDelete(this.state.timeslotId)}>
+              <Delete className={classes.logo} /> Effacer
+            </Button>}
           </Grid>
         </Grid>
       </div>

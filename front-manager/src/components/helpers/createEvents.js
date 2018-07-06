@@ -18,6 +18,7 @@ const createEventsForTimeslot = (acc, timeslot) => {
   for (let i = 0; i < 52; i++) {
     events.push({
       title: timeslot.title,
+      timeslotId: timeslot.id,
       start: dateStart.format(),
       end: dateEnd.format(),
       resourceId: timeslot.resourceId
