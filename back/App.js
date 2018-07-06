@@ -56,11 +56,11 @@ const getUniqueMarkers = timeSlots => timeSlots.reduce(
     // Extrait juste les infos du clubs à partir du timeslot
     const {managerId, clubName, address, city, lat, lng, member, email} = timeSlot
     // Crée un nouvel objet contenant ces infos
-    const newMarker = {managerId, clubName, address, city, lat, lng, member, email}
+    const newMarker = {id: managerId, clubName, address, city, lat, lng, member, email}
     // Le tableau markers (accumulateur du reduce) contient les marqueurs/clubs
     // qu'on veut renvoyer au client. Avant d'ajouter newMarker à markers,
     // on vérifie d'abord qu'il n'y est pas déjà
-    const marker = markers.find(m => m.managerId === managerId)
+    const marker = markers.find(m => m.id === managerId)
     // Si le marqueur existe déjà, on retourne markers non modifié
     if(marker) {
       return markers
