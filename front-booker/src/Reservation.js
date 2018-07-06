@@ -16,27 +16,32 @@ class Reservation extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      club: null
+      data: null,
+      available: false
     }
   }
 
   componentDidMount () {
     const { match } = this.props
-    fetch(`/api/clubs/${match.params.clubId}`)
+    const { clubId, slotId, date } = match.params
+    fetch(`/api/bookings/${clubId}/${slotId}/${date}`)
       .then(res => res.json())
-      .then(club => this.setState({ club }))
+      .then(response => this.setState({
+        data: response.data,
+        available: response.available
+      }))
   }
   render () {
     const { classes, match } = this.props
     const id = Number(match.params.id)
-    // const club = clubs.find(club => club.id === id)
-    const { club } = this.state
+    const { date, slotId } = match.params
+    const { data, available } = this.state
     return (
       <Paper className={classes.paper}>
         <NavBar />
         <Grid container item spacing={0} justify="center">
           <Grid item xs={12} md={5}>
-            {club && <CardReservation className={classes.item} club={club} />}
+            {data && available && <CardReservation className={classes.item} data={data} date={date} slotId={slotId} />}
           </Grid>
         </Grid>
       </Paper>
