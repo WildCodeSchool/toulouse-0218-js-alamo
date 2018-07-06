@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 
 import getSlotStyle from './helpers/getSlotStyle'
 import isSlotBooked from './helpers/isSlotBooked'
+import formatHour from './helpers/formatHour'
 import { CAL_HEIGHT } from './constants'
 
 const styles = {
@@ -13,6 +14,14 @@ const styles = {
     fontSize: '11px',
     position: 'relative',
     textAlign: 'center'
+  },
+  slot: {
+    position: 'absolute',
+    width: '96%',
+    marginLeft: '2%',
+    color: '#fff',
+    fontSize: '10px',
+    paddingTop: '1px'
   }
 }
 
@@ -22,8 +31,12 @@ const WeekDay = props => (
     <Typography component="div">{props.date.getDate()}</Typography>
     {
       props.timeSlots.map(
-        (ts, k) => <Typography component="div" key={k} style={getSlotStyle(ts, isSlotBooked(ts, props.reservations))}>
-          {ts.id}
+        (ts, k) => <Typography
+          component="div"
+          className={props.classes.slot}
+          key={k}
+          style={getSlotStyle(ts, isSlotBooked(ts, props.reservations))}>
+          {formatHour(ts.startHour)}
         </Typography>
       )
     }
