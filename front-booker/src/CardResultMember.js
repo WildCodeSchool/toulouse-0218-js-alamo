@@ -54,7 +54,7 @@ class CardResultMember extends React.Component {
             <Grid container>
               <Grid item xs={6} className={classes.verticalItems}>
                 <Typography gutterBottom variant="headline" component="h2">
-                  {this.props.club.name}
+                  {this.props.club.clubName}
                 </Typography>
                 <Typography component="p" className={classes.verticalFill}>
                   {this.props.club.adresse} : <br />
