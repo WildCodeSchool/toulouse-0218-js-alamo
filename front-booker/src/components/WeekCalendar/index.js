@@ -1,85 +1,21 @@
 import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 
-const CAL_HEIGHT = 300
+import formatMonth from './helpers/formatMonth'
+import getTimeSlots from './helpers/getTimeSlots'
+import getDates from './helpers/getDates'
+import getReservations from './helpers/getReservations'
+
+import WeekDay from './WeekDay'
+
 const days = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
 const dayHeadStyles = {width: '9%'}
-const dayStyles = {width: '13%', height: `${CAL_HEIGHT}px`, fontSize: '11px', position: 'relative', textAlign: 'center'}
 
-const HOUR_MIN = 360
-
-const mapDayIndex = i => (i + 1) % 7
-
-const hourToMinutes = hour => {
-  const [hours, minutes] = hour.substr(0, 5).split(':')
-    .map(segment => Number(segment))
-  return hours * 60 + minutes
-}
-
-const getTimeSlots = (dayIndex, timeSlots) => {
-  const dayOfWeek = mapDayIndex(dayIndex)
-  return timeSlots.filter(ts => ts.dayOfWeek === dayOfWeek)
-    .map(ts => {
-      ts.mStart = hourToMinutes(ts.startHour)
-      ts.mEnd = hourToMinutes(ts.endHour)
-      return ts
-    })
-}
-
-const getSlotStyle = (ts, isBooked) => {
-  const top = CAL_HEIGHT * (ts.mStart - HOUR_MIN) / 1440 + 30
-  const height = CAL_HEIGHT * (ts.mEnd - ts.mStart) / 1440
-  return {
-    position: 'absolute',
-    border: '1px solid #ccc',
-    top: `${top}px`,
-    height: `${height}px`,
-    background: isBooked ? '#ffcccc' : '#ccffcc'
+const styles = {
+  flex: {
+    display: 'flex'
   }
-}
-
-const isSlotBooked = (ts, reservations) =>
-  reservations.find(r => r.timeSlotId === ts.id) !== undefined
-
-const WeekDay = props => (
-  <div style={dayStyles}>
-    <div>{props.day}</div>
-    <div>{props.date.getDate()}</div>
-    {
-      props.timeSlots.map(
-        (ts, k) => <div key={k} style={getSlotStyle(ts, isSlotBooked(ts, props.reservations))}>
-          {ts.id}
-        </div>
-      )
-    }
-  </div>
-)
-
-const getDates = nowDate => {
-  const nowDow = nowDate.getDay()
-  const dates = []
-  for(let d = 1 ; d < 8 ; d++) {
-    const date = new Date(nowDate)
-    date.setDate(date.getDate() + d - nowDow)
-    dates.push(date)
-  }
-  return dates
-}
-
-const formatDate = date => {
-    const d = new Date(date)
-    let month = '' + (d.getMonth() + 1)
-    let day = '' + d.getDate()
-    const year = d.getFullYear()
-
-    if (month.length < 2) month = '0' + month
-    if (day.length < 2) day = '0' + day
-
-    return [year, month, day].join('-')
-}
-
-const getReservations = (date, reservations) => {
-  console.log(formatDate(date), reservations)
-  return reservations.filter(r => r.date === formatDate(date))
 }
 
 class WeekCalendar extends React.Component {
@@ -109,19 +45,29 @@ class WeekCalendar extends React.Component {
   }
   render () {
     const { weekIndex, dates } = this.state
-    const { timeSlots, reservations } = this.props
+    const { timeSlots, reservations, classes } = this.props
     const sow = dates[0]
-    const sowStr = `${sow.getDate()}/${sow.getMonth() + 1 }`
+    const sowMonth = sow.getMonth()
     const eow = dates[6]
-    const eowStr = `${eow.getDate()}/${eow.getMonth() + 1 }`
+    const eowMonth = eow.getMonth()
+    const dateHeader = sowMonth === eowMonth ?
+      `${sow.getDate()} &mdash; ${eow.getDate()} ${formatMonth(sowMonth)}` :
+      `${sow.getDate()}&nbsp;${formatMonth(sowMonth)} - ${eow.getDate()}&nbsp;${formatMonth(eowMonth)}`
     return (
       <div>
-        <div style={{display: 'flex'}}>
-          <div style={{width: '20%', textAlign: 'left'}}><button onClick={() => this.weekChange(-1)} disabled={weekIndex === 0}>&laquo;</button></div>
-          <div style={{width: '60%', textAlign: 'center'}}>{sowStr} &mdash; {eowStr}</div>
-          <div style={{width: '20%', textAlign: 'right'}}><button onClick={() => this.weekChange(1)}>&raquo;</button></div>
+        <div className={classes.flex}>
+          <Typography component="div" style={{width: '20%', textAlign: 'left'}}>
+            <button onClick={() => this.weekChange(-1)} disabled={weekIndex === 0}>&laquo;</button>
+          </Typography>
+          <Typography
+            component="div"
+            style={{fontWeight: 'bold', width: '60%', textAlign: 'center'}}
+            dangerouslySetInnerHTML={{__html: dateHeader}} />
+          <Typography component="div" style={{width: '20%', textAlign: 'right'}}>
+            <button onClick={() => this.weekChange(1)}>&raquo;</button>
+          </Typography>
         </div>
-        <div style={{display: 'flex'}}>
+        <div className={classes.flex}>
           <div style={dayHeadStyles}>
           </div>
           {
@@ -135,4 +81,4 @@ class WeekCalendar extends React.Component {
   }
 }
 
-export default WeekCalendar
+export default withStyles(styles)(WeekCalendar)
