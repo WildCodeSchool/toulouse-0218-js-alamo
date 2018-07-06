@@ -1,0 +1,57 @@
+[
+  {
+    "clubName": "Club Hippique de Pech David",
+    "password": "abc",
+    "address": "37 Chemin des Canalets",
+    "postalCode": "31400",
+    "city": "Toulouse",
+    "lat": 43.5610809,
+    "lng": 1.4442032,
+    "email": "clubhippique.pechdavid@example.com",
+    "member": 0
+  },
+  {
+    "clubName": "Association Cheval Garonne",
+    "password": "abc",
+    "address": "50 Chemin de Ginestous",
+    "postalCode": "31200",
+    "city": "Toulouse",
+    "lat": 43.6331167,
+    "lng": 1.4063809,
+    "email": "assochevalgaronne@example.com",
+    "member": 1
+  },
+  {
+    "clubName": "Stade Toulousain Tennis Club",
+    "password": "abc",
+    "address": "116 Rue des Troènes",
+    "postalCode": "31200",
+    "city": "Toulouse",
+    "lat": 43.6213314,
+    "lng": 1.4005015,
+    "email": "sttc@example.com",
+    "member": 1
+  },
+  {
+    "clubName": "Poliveau Tennis Club Loisirs",
+    "password": "abc",
+    "address": "40 Rue Poliveau",
+    "postalCode": "75005",
+    "city": "Paris",
+    "lat": 48.8553961,
+    "lng": 2.2786586,
+    "email": "ptcl@example.com",
+    "member": 1
+  },
+  {
+    "clubName": "Centre Sportif Championnet",
+    "password": "abc",
+    "address": "172 Rue Championnet",
+    "postalCode": "75018",
+    "city": "Paris",
+    "lat": 48.8949322,
+    "lng": 2.3333257,
+    "email": "cschampionnet@example.com",
+    "member": 0
+  }
+]
