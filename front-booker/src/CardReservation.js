@@ -7,11 +7,11 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
-import { Link,  withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 const styles = theme => ({
   card: {
-    height: 300           
+    height: 300
   },
   paper: {
     height: 500,
@@ -48,9 +48,9 @@ class CardReservation extends React.Component {
     return (
       <div className={classes.result}>
         <Grid container justify='center'>
-        <Typography component="h1" className={classes.titre}>
+          <Typography component="h1" className={classes.titre}>
           Veuillez confirmer votre réservation
-        </Typography>
+          </Typography>
         </Grid>
         <Card className={classes.card}>
           <CardContent>
@@ -65,7 +65,7 @@ class CardReservation extends React.Component {
                   {this.props.club.phone}: <br />
                 </Typography>
                 <Button className={classes.button}>
-                  <Link to = {"/reservation/" + this.props.club.id} className={classes.link}>Confirmer</Link>
+                  <Link to = {'/reservation/' + this.props.club.id} className={classes.link}>Confirmer</Link>
                 </Button>
               </Grid>
               <Grid item xs={6}>

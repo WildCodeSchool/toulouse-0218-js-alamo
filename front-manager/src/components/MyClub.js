@@ -21,15 +21,8 @@ class MyClub extends React.Component {
     date: moment(),
     modalOpen: false,
     resources: [],
-    events: [
-      // {
-      //   "allDay": false,
-      //   "end": "2018-06-18T13:30:04+00:00",
-      //   "resourceId": "b",
-      //   "start": "2018-06-18T12:00:04+00:00",
-      //   "title": "dynamic event 0"
-      // }
-    ]
+    events: [],
+    selectedEvent: null
   }
 
   handleOpenModal = () => {
@@ -37,23 +30,14 @@ class MyClub extends React.Component {
   }
 
   handleCloseModal = () => {
-    this.setState({ modalOpen: false })
+    this.setState({ modalOpen: false, selectedEvent: null})
   }
   // C'est ici qu'on crée un nouvel évènement, une fois que
   // le formulaire de la modale de NewEventModal a été soumis
-  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description, resourceId }) => {
-    console.log(selectedDate)
-    const { events} = this.state
-    console.log('handleSubmitModal', this.state, timeStart, timeEnd)
+  handleSubmitModal = ({ timeStart, timeEnd, selectedDate, description, resourceId, timeslotId }) => {
     if(! timeStart || ! timeEnd) {
       return
     }
-
-    const date = selectedDate.format('YYYY-MM-DD')
-    const startHours = timeStart.format().substr(10)
-    const endHours = timeEnd.format().substr(10)
-
-
     const timeslotData = {
       title: description,
       resourceId,
@@ -61,30 +45,50 @@ class MyClub extends React.Component {
       startHour: timeStart.format('HH:mm'),
       endHour: timeEnd.format('HH:mm')
     }
-    fetch('/api/timeslots', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(timeslotData)
-    })
-    .then(response => response.json())
+    if (timeslotId) {
+      this.updateTimeslot(timeslotId, timeslotData)
+    } else {
+      this.createTimeslot(timeslotData)
+    }
+  }
+
+  createTimeslot = (timeslotData) => {
+    api.post('/api/timeslots', timeslotData)
     .then(timeslot => {
-      const newEvent = {
-        id: timeslot.id,
-        title: description,
-        start: date + startHours,
-        end: date + endHours,
-        resourceId,
-        allDay: false
-      }
+      const eventsForTimeslot = createEvents([timeslot])
       const {events} = this.state
       const newEvents = [
-        ...events, newEvent
+        ...events, ...eventsForTimeslot
       ]
       this.setState({
         events: newEvents,
         modalOpen: false
+      })
+    })
+  }
+
+  updateTimeslot = (timeslotId, timeslotData) => {
+    api.put(`/api/timeslots/${timeslotId}`, timeslotData)
+    .then(timeslot => {
+      const eventsForTimeslot = createEvents([timeslot])
+      // enlève les évenements correspondant au timeslot mis à jour
+      const events = this.state.events.filter(event => timeslotId !== event.timeslotId)
+      const newEvents = [
+        ...events, ...eventsForTimeslot
+      ]
+      this.setState({
+        events: newEvents,
+        modalOpen: false
+      })
+    })
+  }
+
+  deleteTimeslot = (timeslotId) => {
+    api.delete(`/api/timeslots/${timeslotId}`)
+    .then(() =>{
+      const events = this.state.events.filter(event => timeslotId !== event.timeslotId)
+      this.setState({
+        events, modalOpen:false
       })
     })
   }
@@ -119,6 +123,14 @@ class MyClub extends React.Component {
     })
   }
 
+  eventClick = (calEvent, jsEvent, view) => {
+  this.setState({
+    selectedEvent: calEvent,
+    modalOpen: true
+  })
+  console.log(calEvent.timeslotId)
+}
+
   backToLogin = () => {
     fetch("/api/clubs/logout", {
       credentials: 'include'
@@ -145,7 +157,7 @@ class MyClub extends React.Component {
       },
       resourceLabelText: 'Rooms',
       events: this.state.events,
-
+      eventClick: this.eventClick,
       customButtons: {
         deconnexion: {
           text: 'deconnexion',
@@ -183,13 +195,14 @@ class MyClub extends React.Component {
   }
 
   render () {
-    const { date, modalOpen, events, resources } = this.state
+    const { date, modalOpen, events, resources, selectedEvent } = this.state
     const { calendarOptions } = this
     const props = {...calendarOptions, events, resources}
     return (
       <Grid container spacing={24}>
+     
         <Grid item xs={12} sm={12} md={12}>
-          <NewEventModal open={modalOpen} resources={resources} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
+          { modalOpen && <NewEventModal event={selectedEvent} open={modalOpen} resources={resources} handleDelete={this.deleteTimeslot} handleSubmit={this.handleSubmitModal} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} /> } 
           <FullCalendar options={{...props}} />
         </Grid>
       </Grid>
