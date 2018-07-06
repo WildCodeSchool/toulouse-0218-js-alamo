@@ -12,6 +12,7 @@ const  users        =  require('./Users')
 const  connection   =  require('./db.js')
 const  resources    =  require('./Resources')
 const  timeslots    =  require('./Timeslots')
+const  bookings    =  require('./Bookings')
 
 app.use(morgan('dev'))
 // Voir Benoit pour secret
