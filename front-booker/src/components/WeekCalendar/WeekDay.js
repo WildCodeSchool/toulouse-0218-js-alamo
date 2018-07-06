@@ -20,27 +20,37 @@ const styles = {
     marginLeft: '4%',
     color: '#fff',
     fontSize: '10px',
-    paddingTop: '1px'
+    paddingTop: '1px',
+    '&:hover': {
+      opacity: 0.6
+    }
   },
   slotsWrapper: {
     position: 'relative'
   }
 }
 
-const WeekDay = ({ classes, day, date, reservations, timeSlots }) => (
+const WeekDay = ({ classes, day, date, now, reservations, timeSlots, onClickSlot }) => (
   <div className={classes.day}>
     <Typography component="div">{day}</Typography>
     <Typography component="div">{date.getDate()}</Typography>
     <div className={classes.slotsWrapper}>
       {
         timeSlots.map(
-          (ts, k) => <Typography
-            component="div"
-            className={classes.slot}
-            key={k}
-            style={getSlotStyle(ts, isSlotBooked(ts, reservations))}>
-            {formatHour(ts.startHour)}
-          </Typography>
+          (ts, k) => {
+            const isBookable = date >= now
+            const isBooked = isSlotBooked(ts, reservations)
+            return (
+              <Typography
+                onClick={e => onClickSlot(ts, isBookable, isBooked, e)}
+                component="div"
+                className={classes.slot}
+                key={k}
+                style={getSlotStyle(ts, isBookable, isBooked)}>
+                {formatHour(ts.startHour)}
+              </Typography>
+            )
+          }
         )
       }
     </div>

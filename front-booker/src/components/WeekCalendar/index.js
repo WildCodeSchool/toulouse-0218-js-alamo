@@ -9,6 +9,7 @@ import formatMonth from './helpers/formatMonth'
 import getTimeSlots from './helpers/getTimeSlots'
 import getDates from './helpers/getDates'
 import getReservations from './helpers/getReservations'
+import getToday from './helpers/getToday'
 
 import WeekDay from './WeekDay'
 
@@ -47,8 +48,8 @@ class WeekCalendar extends React.Component {
     })
   }
   render () {
-    const { weekIndex, dates } = this.state
-    const { timeSlots, reservations, classes } = this.props
+    const { weekIndex, dates, now } = this.state
+    const { timeSlots, reservations, classes, onClickSlot } = this.props
     const sow = dates[0]
     const sowMonth = sow.getMonth()
     const eow = dates[6]
@@ -77,7 +78,14 @@ class WeekCalendar extends React.Component {
           {/* <div style={dayHeadStyles}></div> */}
           {
             days.map((d, k) => (
-              <WeekDay key={k} day={d} date={dates[k]} timeSlots={getTimeSlots(k, timeSlots)} reservations={getReservations(dates[k], reservations)} />
+              <WeekDay
+                key={k}
+                day={d}
+                now={getToday()}
+                date={dates[k]}
+                timeSlots={getTimeSlots(k, timeSlots)}
+                reservations={getReservations(dates[k], reservations)}
+                onClickSlot={onClickSlot} />
             ))
           }
         </div>
