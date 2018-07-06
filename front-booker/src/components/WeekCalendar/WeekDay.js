@@ -9,37 +9,41 @@ import { CAL_HEIGHT } from './constants'
 
 const styles = {
   day: {
-    width: '13%',
+    width: '14.25%',
     height: `${CAL_HEIGHT}px`,
     fontSize: '11px',
-    position: 'relative',
     textAlign: 'center'
   },
   slot: {
     position: 'absolute',
-    width: '96%',
-    marginLeft: '2%',
+    width: '92%',
+    marginLeft: '4%',
     color: '#fff',
     fontSize: '10px',
     paddingTop: '1px'
+  },
+  slotsWrapper: {
+    position: 'relative'
   }
 }
 
-const WeekDay = props => (
-  <div className={props.classes.day}>
-    <Typography component="div">{props.day}</Typography>
-    <Typography component="div">{props.date.getDate()}</Typography>
-    {
-      props.timeSlots.map(
-        (ts, k) => <Typography
-          component="div"
-          className={props.classes.slot}
-          key={k}
-          style={getSlotStyle(ts, isSlotBooked(ts, props.reservations))}>
-          {formatHour(ts.startHour)}
-        </Typography>
-      )
-    }
+const WeekDay = ({ classes, day, date, reservations, timeSlots }) => (
+  <div className={classes.day}>
+    <Typography component="div">{day}</Typography>
+    <Typography component="div">{date.getDate()}</Typography>
+    <div className={classes.slotsWrapper}>
+      {
+        timeSlots.map(
+          (ts, k) => <Typography
+            component="div"
+            className={classes.slot}
+            key={k}
+            style={getSlotStyle(ts, isSlotBooked(ts, reservations))}>
+            {formatHour(ts.startHour)}
+          </Typography>
+        )
+      }
+    </div>
   </div>
 )
 

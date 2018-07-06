@@ -1,6 +1,9 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
+import ChevronLeft from '@material-ui/icons/ChevronLeft'
+import ChevronRight from '@material-ui/icons/ChevronRight'
 
 import formatMonth from './helpers/formatMonth'
 import getTimeSlots from './helpers/getTimeSlots'
@@ -10,7 +13,7 @@ import getReservations from './helpers/getReservations'
 import WeekDay from './WeekDay'
 
 const days = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
-const dayHeadStyles = {width: '9%'}
+// const dayHeadStyles = {width: '9%'}
 
 const styles = {
   flex: {
@@ -56,20 +59,22 @@ class WeekCalendar extends React.Component {
     return (
       <div>
         <div className={classes.flex}>
-          <Typography component="div" style={{width: '20%', textAlign: 'left'}}>
-            <button onClick={() => this.weekChange(-1)} disabled={weekIndex === 0}>&laquo;</button>
-          </Typography>
+          <IconButton
+            size="small"
+            onClick={() => this.weekChange(-1)} disabled={weekIndex === 0}>
+            <ChevronLeft />
+          </IconButton>
           <Typography
             component="div"
-            style={{fontWeight: 'bold', width: '60%', textAlign: 'center'}}
+            style={{fontWeight: 'bold', flexGrow: 1, textAlign: 'center', paddingTop: '14px'}}
             dangerouslySetInnerHTML={{__html: dateHeader}} />
-          <Typography component="div" style={{width: '20%', textAlign: 'right'}}>
-            <button onClick={() => this.weekChange(1)}>&raquo;</button>
-          </Typography>
+          <IconButton
+            size="small" onClick={() => this.weekChange(1)}>
+            <ChevronRight />
+          </IconButton>
         </div>
         <div className={classes.flex}>
-          <div style={dayHeadStyles}>
-          </div>
+          {/* <div style={dayHeadStyles}></div> */}
           {
             days.map((d, k) => (
               <WeekDay key={k} day={d} date={dates[k]} timeSlots={getTimeSlots(k, timeSlots)} reservations={getReservations(dates[k], reservations)} />
