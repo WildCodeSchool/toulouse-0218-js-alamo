@@ -160,9 +160,16 @@ updateResource = (resourceId, resourceData) => {
 deleteResource = (resourceId) => {
     api.delete(`/api/resources/${resourceId}`)
     .then(() =>{
-      const resources = this.state.resources.filter(resource => resource.title !== resource.resourceId)
+      const resourceIndex = this.state.resources.findIndex(
+        r => r.id === resourceId
+      )
+      const newResources = [
+        ...this.state.resources
+      ]
+      newResources.splice(resourceIndex,1)
       this.setState({
-        resources, modalResourceOpen:false
+        resources: newResources,
+        modalResourceOpen: false
       })
     })
   }
@@ -223,7 +230,7 @@ resourceClick = (calResource, jsEvent, view) => {
         },
           promptResource: {
             text: 'Salles',
-            click:this.resourceClick
+            click:this.createResource
           },
 
         addEventButton: {

@@ -1,0 +1,1 @@
+ALTER TABLE `resource` CHANGE `sportId` `sportId` INT(10) UNSIGNED NULL;
