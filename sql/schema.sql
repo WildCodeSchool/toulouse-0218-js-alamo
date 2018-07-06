@@ -107,10 +107,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alamo`.`reservation` (
   `id` INT UNSIGNED NOT NULL PRIMARY KEY,
-  `calendarId` INT UNSIGNED NOT NULL,
+  `timeSlotId` INT(10) UNSIGNED NOT NULL,
   `bookerId` INT UNSIGNED NOT NULL,
-  `date` DATE NULL,
-  `time` TIME NULL
+  `date` DATE NULL
   -- INDEX `id_idx` (`calendarId` ASC),
 --   INDEX `id_idx1` (`bookerId` ASC),
 )
