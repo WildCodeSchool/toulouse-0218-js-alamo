@@ -106,7 +106,7 @@ ENGINE = InnoDB;
 -- Table `reservation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `reservation` (
-  `id` INT UNSIGNED NOT NULL PRIMARY KEY,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `timeSlotId` INT(10) UNSIGNED NOT NULL,
   `bookerId` INT UNSIGNED NOT NULL,
   `date` DATE NULL
