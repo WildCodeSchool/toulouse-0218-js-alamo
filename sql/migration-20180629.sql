@@ -34,8 +34,8 @@ CREATE TABLE `villes_france_free` (
   `ville_slug` varchar(255) DEFAULT NULL,
   `ville_nom_reel` varchar(45) DEFAULT NULL,
   `ville_code_postal` varchar(255) DEFAULT NULL,
-  `ville_longitude_deg` float DEFAULT NULL,
-  `ville_latitude_deg` float DEFAULT NULL
+  `lng` float DEFAULT NULL,
+  `lat` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -788,7 +788,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (743, '02', 'ramicourt', 'Ramicourt', '02110', 3.33333, 49.95),
 (744, '02', 'bussiares', 'Bussiares', '02810', 3.25, 49.0833),
 (745, '02', 'bernot', 'Bernot', '02120', 3.5, 49.8667);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (746, '02', 'lerzy', 'Lerzy', '02260', 3.86667, 49.9333),
 (747, '02', 'samoussy', 'Samoussy', '02840', 3.73333, 49.5833),
 (748, '02', 'grougis', 'Grougis', '02110', 3.53333, 49.9333),
@@ -1524,7 +1524,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (1478, '03', 'saint-pourcain-sur-besbre', 'Saint-Pourçain-sur-Besbre', '03290', 3.65, 46.4667),
 (1479, '03', 'diou-03', 'Diou', '03290', 3.75, 46.5333),
 (1480, '03', 'broût-vernet', 'Broût-Vernet', '03110', 3.28333, 46.1833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (1481, '03', 'chapelaude', 'La Chapelaude', '03380', 2.5, 46.4167),
 (1482, '03', 'langy', 'Langy', '03150', 3.46667, 46.2667),
 (1483, '03', 'saint-germain-des-fosses', 'Saint-Germain-des-Fossés', '03260', 3.43333, 46.2),
@@ -2253,7 +2253,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (2206, '07', 'tauriers', 'Tauriers', '07110', 4.28333, 44.55),
 (2207, '07', 'peyraud', 'Peyraud', '07340', 4.78778, 45.3031),
 (2208, '07', 'saint-pierre-la-roche', 'Saint-Pierre-la-Roche', '07400', 4.61667, 44.65);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (2209, '07', 'saint-romain-d-ay', 'Saint-Romain-d\'Ay', '07290', 4.66667, 45.1667),
 (2210, '07', 'vernon-07', 'Vernon', '07260', 4.23333, 44.5),
 (2211, '07', 'saint-maurice-en-chalencon', 'Saint-Maurice-en-Chalencon', '07190', 4.58945, 44.8589),
@@ -2989,7 +2989,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (2941, '09', 'balagueres', 'Balaguères', '09800', 1.01667, 42.9667),
 (2942, '09', 'labatut-09', 'Labatut', '09700', 1.51667, 43.2667),
 (2943, '09', 'ignaux', 'Ignaux', '09110', 1.83333, 42.7333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (2944, '09', 'sabarat', 'Sabarat', '09350', 1.4, 43.1),
 (2945, '09', 'sainte-foi', 'Sainte-Foi', '09500', 1.91667, 43.1333),
 (2946, '09', 'lezat-sur-leze', 'Lézat-sur-Lèze', '09210', 1.35, 43.2833),
@@ -3721,7 +3721,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (3672, '11', 'trausse', 'Trausse', '11160', 2.56667, 43.3167),
 (3673, '11', 'counozouls', 'Counozouls', '11140', 2.23333, 42.7333),
 (3674, '11', 'cabrespine', 'Cabrespine', '11160', 2.46667, 43.3667);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (3675, '11', 'saint-martin-lalande', 'Saint-Martin-Lalande', '11400', 2.01667, 43.3),
 (3676, '11', 'villar-saint-anselme', 'Villar-Saint-Anselme', '11250', 2.31667, 43.0667),
 (3677, '11', 'monthaut', 'Monthaut', '11240', 2.03333, 43.0833),
@@ -4447,7 +4447,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (4397, '12', 'olemps', 'Olemps', '12510', 2.56667, 44.35),
 (4398, '12', 'lassouts', 'Lassouts', '12500', 2.86667, 44.5),
 (4399, '12', 'lapanouse-de-cernon', 'Lapanouse-de-Cernon', '12230', 3.1, 44);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (4400, '12', 'cantoin', 'Cantoin', '12420', 2.81667, 44.8333),
 (4401, '12', 'arnac-sur-dourdou', 'Arnac-sur-Dourdou', '12360', 2.93333, 43.7333),
 (4402, '12', 'sainte-eulalie-d-olt', 'Sainte-Eulalie-d\'Olt', '12130', 2.93333, 44.4667),
@@ -5139,7 +5139,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (5088, '14', 'marolles-14', 'Marolles', '14100', 0.366667, 49.1333),
 (5089, '14', 'crouay', 'Crouay', '14400', -0.8, 49.2667),
 (5090, '14', 'fresne-la-mere', 'Fresné-la-Mère', '14700', -0.116667, 48.9);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (5091, '14', 'danestal', 'Danestal', '14430', 0.016667, 49.25),
 (5092, '14', 'fourches', 'Fourches', '14620', -0.083333, 48.8667),
 (5093, '14', 'cleville-14', 'Cléville', '14370', -0.1, 49.15),
@@ -5861,7 +5861,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (5809, '16', 'lupsault', 'Lupsault', '16140', -0.066667, 45.9333),
 (5810, '16', 'villebois-lavalette', 'Villebois-Lavalette', '16320', 0.283333, 45.4833),
 (5811, '16', 'pillac', 'Pillac', '16390', 0.183333, 45.3167);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (5812, '16', 'bors-(canton-de-baignes-sainte-radegonde)', 'Bors (Canton de Baignes-Sainte-Radegonde)', '16360', -0.193889, 45.3278),
 (5813, '16', 'paizay-naudouin-embourie', 'Paizay-Naudouin-Embourie', '16240', -0.00333333, 46.0303),
 (5814, '16', 'chassiecq', 'Chassiecq', '16350', 0.383333, 45.95),
@@ -6570,7 +6570,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (6517, '18', 'celle-conde', 'La Celle-Condé', '18160', 2.18333, 46.8),
 (6518, '18', 'apremont-sur-allier', 'Apremont-sur-Allier', '18150', 3.04778, 46.9059),
 (6519, '18', 'saint-saturnin-18', 'Saint-Saturnin', '18370', 2.23333, 46.5);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (6520, '18', 'chapelle-d-angillon', 'La Chapelle-d\'Angillon', '18380', 2.43333, 47.3667),
 (6521, '18', 'saligny-le-vif', 'Saligny-le-Vif', '18800', 2.76667, 47.05),
 (6522, '18', 'montlouis', 'Montlouis', '18160', 2.23333, 46.8167),
@@ -7286,7 +7286,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (7232, '21', 'verrey-sous-salmaise', 'Verrey-sous-Salmaise', '21690', 4.66667, 47.4333),
 (7233, '21', 'dijon', 'Dijon', '21000-21100', 5.01667, 47.3167),
 (7234, '21', 'echenon', 'Échenon', '21170', 5.28333, 47.1167);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (7235, '21', 'maligny-21', 'Maligny', '21230', 4.50917, 47.0853),
 (7236, '21', 'epoisses', 'Époisses', '21460', 4.16667, 47.5),
 (7237, '21', 'antigny-la-ville', 'Antigny-la-Ville', '21230', 4.55, 47.1),
@@ -8018,7 +8018,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (7963, '22', 'uzel', 'Uzel', '22460', -2.85, 48.2833),
 (7964, '22', 'saint-igeaux', 'Saint-Igeaux', '22570', -3.1, 48.2667),
 (7965, '22', 'pledran', 'Plédran', '22960', -2.75, 48.45);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (7966, '22', 'saint-michel-de-plelan', 'Saint-Michel-de-Plélan', '22980', -2.21667, 48.4667),
 (7967, '22', 'faouet-22', 'Le Faouët', '22290', 2.92611, 48.6831),
 (7968, '22', 'leslay', 'Le Leslay', '22800', -2.96667, 48.4333),
@@ -8708,7 +8708,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (8652, '24', 'naussannes', 'Naussannes', '24440', 0.733333, 44.75),
 (8653, '24', 'brouchaud', 'Brouchaud', '24210', 1, 45.2),
 (8654, '24', 'sainte-foy-de-belves', 'Sainte-Foy-de-Belvès', '24170', 1.05, 44.7333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (8655, '24', 'cherveix-cubas', 'Cherveix-Cubas', '24390', 1.11667, 45.2833),
 (8656, '24', 'saussignac', 'Saussignac', '24240', 0.333333, 44.8167),
 (8657, '24', 'villetoureix', 'Villetoureix', '24600', 0.366667, 45.2667),
@@ -9431,7 +9431,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (9374, '25', 'villers-sous-chalamont', 'Villers-sous-Chalamont', '25270', 6.05, 46.9),
 (9375, '25', 'planee', 'La Planée', '25160', 6.28333, 46.8333),
 (9376, '25', 'fertans', 'Fertans', '25330', 6.06667, 47.05);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (9377, '25', 'saint-gorgon-main', 'Saint-Gorgon-Main', '25520', 6.33333, 47.0167),
 (9378, '25', 'oye-et-pallet', 'Oye-et-Pallet', '25160', 6.33333, 46.85),
 (9379, '25', 'dammartin-les-templiers', 'Dammartin-les-Templiers', '25110', 6.26667, 47.2833),
@@ -10132,7 +10132,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (10074, '27', 'brionne-27', 'Brionne', '27800', 0.716667, 49.2),
 (10075, '27', 'guiseniers', 'Guiseniers', '27700', 1.46667, 49.2167),
 (10076, '27', 'angerville-la-campagne', 'Angerville-la-Campagne', '27930', 1.16667, 48.9917);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (10077, '27', 'grainville', 'Grainville', '27380', 1.36667, 49.35),
 (10078, '27', 'beauficel-en-lyons', 'Beauficel-en-Lyons', '27480', 1.53333, 49.4),
 (10079, '27', 'tilly-27', 'Tilly', '27510', 1.53333, 49.15),
@@ -10813,7 +10813,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (10754, '28', 'sandarville', 'Sandarville', '28120', 1.35, 48.35),
 (10755, '28', 'lethuin', 'Léthuin', '28700', 1.86667, 48.3667),
 (10756, '28', 'vierville-28', 'Vierville', '28700', 1.91667, 48.3833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (10757, '28', 'trizay-les-bonneval', 'Trizay-lès-Bonneval', '28800', 1.33333, 48.2),
 (10758, '28', 'fresnay-l-eveque', 'Fresnay-l\'Évêque', '28310', 1.81667, 48.2667),
 (10759, '28', 'donnemain-saint-mames', 'Donnemain-Saint-Mamès', '28200', 1.36667, 48.1),
@@ -11527,7 +11527,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (11467, '30', 'cavillargues', 'Cavillargues', '30330', 4.51667, 44.1167),
 (11468, '30', 'lirac', 'Lirac', '30126', 4.68333, 44.0333),
 (11469, '30', 'saint-jean-de-maruejols-et-avejan', 'Saint-Jean-de-Maruéjols-et-Avéjan', '30430', 4.3, 44.25);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (11470, '30', 'saint-privat-de-champclos', 'Saint-Privat-de-Champclos', '30430', 4.38333, 44.2833),
 (11471, '30', 'saint-mamert-du-gard', 'Saint-Mamert-du-Gard', '30730', 4.2, 43.8833),
 (11472, '30', 'martinet-30', 'Le Martinet', '30960', 4.08333, 44.25),
@@ -12252,7 +12252,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (12191, '32', 'maravat', 'Maravat', '32120', 0.766667, 43.75),
 (12192, '32', 'puylausic', 'Puylausic', '32220', 0.933333, 43.45),
 (12193, '32', 'magnas', 'Magnas', '32380', 0.733333, 43.8833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (12194, '32', 'casteron', 'Castéron', '32380', 0.866667, 43.8833),
 (12195, '32', 'isle-bouzon', 'L\'Isle-Bouzon', '32380', 0.733333, 43.9167),
 (12196, '32', 'urdens', 'Urdens', '32500', 0.7, 43.85),
@@ -12965,7 +12965,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (12903, '33', 'saint-andre-du-bois', 'Saint-André-du-Bois', '33490', -0.2, 44.6),
 (12904, '33', 'isle-saint-georges', 'Isle-Saint-Georges', '33640', -0.483333, 44.7167),
 (12905, '33', 'pugnac', 'Pugnac', '33710', -0.483333, 45.0833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (12906, '33', 'saint-gervais-33', 'Saint-Gervais', '33240', -0.45, 45.0167),
 (12907, '33', 'gauriaguet', 'Gauriaguet', '33240', -0.4, 45.0333),
 (12908, '33', 'noaillac', 'Noaillac', '33190', -0.0111111, 44.5167),
@@ -13676,7 +13676,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (13613, '35', 'epiniac', 'Epiniac', '35120', -1.7, 48.5),
 (13614, '35', 'erbree', 'Erbrée', '35500', -1.11667, 48.1),
 (13615, '35', 'boussac-35', 'La Boussac', '35120', -1.66667, 48.5167);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (13616, '35', 'livre-sur-changeon', 'Livré-sur-Changeon', '35450', -1.35, 48.2167),
 (13617, '35', 'saint-aubin-du-pavail', 'Saint-Aubin-du-Pavail', '35410', -1.46667, 48.05),
 (13618, '35', 'saint-georges-de-chesne', 'Saint-Georges-de-Chesné', '35140', -1.28333, 48.2667),
@@ -14384,7 +14384,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (14320, '37', 'ligre', 'Ligré', '37500', 0.266667, 47.1167),
 (14321, '37', 'saint-aubin-le-depeint', 'Saint-Aubin-le-Dépeint', '37370', 0.383333, 47.6333),
 (14322, '37', 'saint-flovier', 'Saint-Flovier', '37600', 1.03333, 46.95);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (14323, '37', 'saint-jean-saint-germain', 'Saint-Jean-Saint-Germain', '37600', 1.03333, 47.0833),
 (14324, '37', 'bournan', 'Bournan', '37240', 0.733333, 47.0667),
 (14325, '37', 'chanceaux-sur-choisille', 'Chanceaux-sur-Choisille', '37390', 0.7, 47.4667),
@@ -15102,7 +15102,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (15037, '39', 'breteniere-39', 'La Bretenière', '39700', 5.66001, 47.1289),
 (15038, '39', 'geruge', 'Geruge', '39570', 5.53333, 46.6333),
 (15039, '39', 'loye', 'La Loye', '39380', 5.56667, 47.0333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (15040, '39', 'colonne', 'Colonne', '39800', 5.58333, 46.8833),
 (15041, '39', 'chemenot', 'Chemenot', '39230', 5.53333, 46.8667),
 (15042, '39', 'saizenay', 'Saizenay', '39110', 5.91667, 46.9667),
@@ -15843,7 +15843,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (15777, '41', 'arville-41', 'Arville', '41170', 0.95, 48.0667),
 (15778, '41', 'valaire', 'Valaire', '41120', 1.26667, 47.4667),
 (15779, '41', 'pray', 'Pray', '41190', 1.11667, 47.6833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (15780, '41', 'ville-aux-clercs', 'La Ville-aux-Clercs', '41160', 1.08333, 47.9167),
 (15781, '41', 'prenouvellon', 'Prénouvellon', '41240', 1.53333, 47.9667),
 (15782, '41', 'artins', 'Artins', '41800', 0.733333, 47.75),
@@ -16542,7 +16542,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (16475, '43', 'saugues', 'Saugues', '43170', 3.55, 44.9667),
 (16476, '43', 'ceyssac', 'Ceyssac', '43000', 3.81667, 45.0333),
 (16477, '43', 'pinols', 'Pinols', '43300', 3.41667, 45.05);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (16478, '43', 'sainte-eugenie-de-villeneuve', 'Sainte-Eugénie-de-Villeneuve', '43230', 3.61667, 45.1333),
 (16479, '43', 'lissac-43', 'Lissac', '43350', 3.76667, 45.1333),
 (16480, '43', 'barges-43', 'Barges', '43340', 3.9, 44.8333),
@@ -17236,7 +17236,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (17168, '45', 'fay-aux-loges', 'Fay-aux-Loges', '45450', 2.13333, 47.9333),
 (17169, '45', 'gaubertin', 'Gaubertin', '45340', 2.41667, 48.1167),
 (17170, '46', 'cornac', 'Cornac', '46130', 1.88333, 44.9167);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (17171, '46', 'rouffilhac', 'Rouffilhac', '46300', 1.41667, 44.7833),
 (17172, '46', 'loubressac', 'Loubressac', '46130', 1.8, 44.8833),
 (17173, '46', 'cregols', 'Crégols', '46330', 1.7, 44.4667),
@@ -17955,7 +17955,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (17886, '48', 'saint-chely-d-apcher', 'Saint-Chély-d\'Apcher', '48200', 3.28333, 44.8),
 (17887, '48', 'ribennes', 'Ribennes', '48700', 3.4, 44.6333),
 (17888, '48', 'monastier-pin-mories', 'Le Monastier-Pin-Moriès', '48100', 3.25445, 44.5148);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (17889, '48', 'saint-laurent-de-treves', 'Saint-Laurent-de-Trèves', '48400', 3.6, 44.2667),
 (17890, '48', 'altier', 'Altier', '48800', 3.86667, 44.4667),
 (17891, '48', 'marchastel-48', 'Marchastel', '48260', 3.11667, 44.65),
@@ -18630,7 +18630,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (18560, '50', 'brecey', 'Brécey', '50670', -1.16667, 48.7333),
 (18561, '50', 'saint-malo-de-la-lande', 'Saint-Malo-de-la-Lande', '50200', -1.53333, 49.0667),
 (18562, '50', 'mesnil-herman', 'Le Mesnil-Herman', '50750', -1.15, 49.0333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (18563, '50', 'saint-louet-sur-vire', 'Saint-Louet-sur-Vire', '50420', -0.983333, 48.9833),
 (18564, '50', 'buais', 'Buais', '50640', -0.966667, 48.5167),
 (18565, '50', 'emondeville', 'Émondeville', '50310', -1.33333, 49.4667),
@@ -19322,7 +19322,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (19251, '51', 'moiremont', 'Moiremont', '51800', 4.88333, 49.1333),
 (19252, '51', 'vanault-le-chatel', 'Vanault-le-Châtel', '51330', 4.73333, 48.8667),
 (19253, '51', 'chapelaine', 'Chapelaine', '51290', 4.5, 48.5833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (19254, '51', 'germinon', 'Germinon', '51130', 4.16667, 48.8833),
 (19255, '51', 'oeuilly', 'Œuilly', '51480', 3.8, 49.0667),
 (19256, '51', 'anglure', 'Anglure', '51260', 3.81667, 48.5833),
@@ -20029,7 +20029,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (19957, '52', 'merrey', 'Merrey', '52240', 5.6, 48.05),
 (19958, '52', 'frecourt', 'Frécourt', '52360', 5.45, 47.95),
 (19959, '52', 'thol-les-millieres', 'Thol-lès-Millières', '52240', 5.48333, 48.15);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (19960, '52', 'savigny-52', 'Savigny', '52500', 5.65, 47.7167),
 (19961, '52', 'pressigny-52', 'Pressigny', '52500', 5.66667, 47.75),
 (19962, '52', 'andilly-en-bassigny', 'Andilly-en-Bassigny', '52360', 5.51667, 47.9167),
@@ -20735,7 +20735,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (20662, '54', 'velle-sur-moselle', 'Velle-sur-Moselle', '54290', 6.28333, 48.5333),
 (20663, '54', 'jevoncourt', 'Jevoncourt', '54740', 6.16667, 48.4167),
 (20664, '54', 'pettonville', 'Pettonville', '54120', 6.75, 48.5333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (20665, '54', 'marainviller', 'Marainviller', '54300', 6.6, 48.5833),
 (20666, '54', 'loisy-54', 'Loisy', '54700', 6.1, 48.8667),
 (20667, '54', 'fraisnes-en-saintois', 'Fraisnes-en-Saintois', '54930', 6.05, 48.3833),
@@ -21429,7 +21429,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (21355, '55', 'salmagne', 'Salmagne', '55000', 5.33333, 48.75),
 (21356, '55', 'reffroy', 'Reffroy', '55190', 5.46667, 48.6333),
 (21357, '55', 'combres-sous-les-cotes', 'Combres-sous-les-Côtes', '55160', 5.63333, 49.05);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (21358, '55', 'ecurey-en-verdunois', 'Écurey-en-Verdunois', '55150', 5.34973, 49.3634),
 (21359, '55', 'nonsard-lamarche', 'Nonsard-Lamarche', '55210', 5.76251, 48.9312),
 (21360, '55', 'dainville-bertheleville', 'Dainville-Bertheléville', '55130', 5.51667, 48.4333),
@@ -22179,7 +22179,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (22104, '57', 'carling', 'Carling', '57490', 6.71667, 49.1667),
 (22105, '57', 'postroff', 'Postroff', '57930', 7.08333, 48.85),
 (22106, '57', 'faulquemont', 'Faulquemont', '57380', 6.6, 49.05);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (22107, '57', 'garrebourg', 'Garrebourg', '57820', 7.23333, 48.7167),
 (22108, '57', 'farschviller', 'Farschviller', '57450', 6.9, 49.1),
 (22109, '57', 'laneuveville-les-lorquin', 'Laneuveville-lès-Lorquin', '57790', 7, 48.65),
@@ -22912,7 +22912,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (22836, '59', 'cateau-cambresis', 'Le Cateau-Cambrésis', '59360', 3.54111, 50.1053),
 (22837, '59', 'armbouts-cappel', 'Armbouts-Cappel', '59380', 2.35, 50.9833),
 (22838, '59', 'liessies', 'Liessies', '59740', 4.08333, 50.1167);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (22839, '59', 'hoymille', 'Hoymille', '59492', 2.45, 50.9833),
 (22840, '59', 'haucourt-en-cambresis', 'Haucourt-en-Cambrésis', '59191', 3.35, 50.1),
 (22841, '59', 'halluin', 'Halluin', '59250', 3.13333, 50.7833),
@@ -23643,7 +23643,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (23566, '60', 'oudeuil', 'Oudeuil', '60860', 2.01667, 49.55),
 (23567, '60', 'saint-remy-en-l-eau', 'Saint-Remy-en-l\'Eau', '60130', 2.43333, 49.4833),
 (23568, '60', 'hermes', 'Hermes', '60370', 2.25, 49.3667);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (23569, '60', 'laverriere', 'Laverrière', '60210', 2.01667, 49.6833),
 (23570, '60', 'quesnel-aubry', 'Le Quesnel-Aubry', '60480', 2.3, 49.5167),
 (23571, '60', 'bienville', 'Bienville', '60200', 2.83333, 49.45),
@@ -24344,7 +24344,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (24266, '61', 'saint-sauveur-de-carrouges', 'Saint-Sauveur-de-Carrouges', '61320', -0.116667, 48.5833),
 (24267, '61', 'menil-berard', 'Le Ménil-Bérard', '61270', 0.516667, 48.7),
 (24268, '61', 'ri', 'Ri', '61210', -0.133333, 48.8);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (24269, '61', 'saint-andre-de-messei', 'Saint-André-de-Messei', '61440', -0.516667, 48.7),
 (24270, '61', 'sap-andre', 'Le Sap-André', '61230', 0.383333, 48.8333),
 (24271, '61', 'ceauce', 'Ceaucé', '61330', -0.616667, 48.5),
@@ -25055,7 +25055,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (24976, '62', 'cherisy-62', 'Cherisy', '62128', 2.91667, 50.2333),
 (24977, '62', 'dainville', 'Dainville', '62000', 2.71667, 50.2833),
 (24978, '62', 'alincthun', 'Alincthun', '62142', 1.8, 50.7333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (24979, '62', 'monchy-au-bois', 'Monchy-au-Bois', '62111', 2.66667, 50.1833),
 (24980, '62', 'nielles-les-blequin', 'Nielles-lès-Bléquin', '62380', 2.01667, 50.6667),
 (24981, '62', 'amettes', 'Amettes', '62260', 2.4, 50.5333),
@@ -25781,7 +25781,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (25701, '63', 'condat-en-combraille', 'Condat-en-Combraille', '63380', 2.56361, 45.8525),
 (25702, '63', 'peslieres', 'Peslières', '63580', 3.46667, 45.4333),
 (25703, '63', 'celles-sur-durolle', 'Celles-sur-Durolle', '63250', 3.63333, 45.85);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (25704, '63', 'vernet-la-varenne', 'Vernet-la-Varenne', '63580', 3.46667, 45.4667),
 (25705, '63', 'saint-pierre-le-chastel', 'Saint-Pierre-le-Chastel', '63230', 2.85, 45.8),
 (25706, '63', 'neuf-eglise', 'Neuf-Église', '63560', 2.9, 46.1),
@@ -26506,7 +26506,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (26425, '64', 'castetner', 'Castetner', '64300', -0.75, 43.45),
 (26426, '64', 'viellenave-d-arthez', 'Viellenave-d\'Arthez', '64170', -0.483333, 43.4167),
 (26427, '64', 'moncaup-64', 'Moncaup', '64350', -0.066667, 43.4833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (26428, '64', 'louvigny-64', 'Louvigny', '64410', -0.45, 43.5),
 (26429, '64', 'castet', 'Castet', '64260', -0.416667, 43.0667),
 (26430, '64', 'ramous', 'Ramous', '64270', -0.9, 43.5167),
@@ -27262,7 +27262,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (27180, '67', 'singrist', 'Singrist', '67440', 7.38333, 48.6667),
 (27181, '67', 'bitschhoffen', 'Bitschhoffen', '67350', 7.61667, 48.85),
 (27182, '67', 'stutzheim-offenheim', 'Stutzheim-Offenheim', '67370', 7.61862, 48.6306);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (27183, '67', 'wickersheim-wilshausen', 'Wickersheim-Wilshausen', '67270', 7.53195, 48.7831),
 (27184, '67', 'sand', 'Sand', '67230', 7.61667, 48.3833),
 (27185, '67', 'gries', 'Gries', '67240', 7.81667, 48.75),
@@ -27999,7 +27999,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (27916, '68', 'durmenach', 'Durmenach', '68480', 7.33333, 47.5333),
 (27917, '68', 'rorschwihr', 'Rorschwihr', '68590', 7.36667, 48.2167),
 (27918, '68', 'bisel', 'Bisel', '68580', 7.21667, 47.5333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (27919, '68', 'sierentz', 'Sierentz', '68510', 7.46667, 47.6667),
 (27920, '68', 'voegtlinshoffen', 'Vœgtlinshoffen', '68420', 7.28112, 48.0209),
 (27921, '68', 'ueberstrass', 'Ueberstrass', '68580', 7.16667, 47.55),
@@ -28708,7 +28708,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (28624, '70', 'pont-du-bois', 'Pont-du-Bois', '70210', 6.13333, 47.9667),
 (28625, '70', 'vellechevreux-et-courbenans', 'Vellechevreux-et-Courbenans', '70110', 6.53862, 47.54),
 (28626, '70', 'gy', 'Gy', '70700', 5.81667, 47.4);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (28627, '70', 'besnans', 'Besnans', '70230', 6.26667, 47.45),
 (28628, '70', 'ormenans', 'Ormenans', '70230', 6.2, 47.45),
 (28629, '70', 'chavanne-70', 'Chavanne', '70400', 6.65806, 47.5578),
@@ -29412,7 +29412,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (29327, '71', 'saint-martin-en-gatinois', 'Saint-Martin-en-Gâtinois', '71350', 5.01667, 46.9333),
 (29328, '71', 'saint-martin-du-tartre', 'Saint-Martin-du-Tartre', '71460', 4.61667, 46.6333),
 (29329, '71', 'fragnes', 'Fragnes', '71530', 4.83333, 46.8333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (29330, '71', 'rosey-71', 'Rosey', '71390', 4.7, 46.75),
 (29331, '71', 'toutenant', 'Toutenant', '71350', 5.11667, 46.8667),
 (29332, '71', 'saint-martin-du-mont-71', 'Saint-Martin-du-Mont', '71580', 5.29167, 46.6167),
@@ -30105,7 +30105,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (30019, '73', 'trinite-73', 'La Trinité', '73110', 6.15, 45.5),
 (30020, '73', 'entremont-le-vieux', 'Entremont-le-Vieux', '73670', 5.88333, 45.4333),
 (30021, '73', 'croix-de-la-rochette', 'La Croix-de-la-Rochette', '73110', 6.11667, 45.4667);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (30022, '73', 'verrens-arvey', 'Verrens-Arvey', '73460', 6.31667, 45.65),
 (30023, '73', 'motz', 'Motz', '73310', 5.84684, 45.9207),
 (30024, '73', 'saint-pierre-d-alvey', 'Saint-Pierre-d\'Alvey', '73170', 5.73333, 45.6333),
@@ -30810,7 +30810,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (30723, '76', 'bordeaux-saint-clair', 'Bordeaux-Saint-Clair', '76790', 0.25, 49.7),
 (30724, '76', 'monchaux-soreng', 'Monchaux-Soreng', '76340', 1.58333, 49.95),
 (30725, '76', 'ectot-l-auber', 'Ectot-l\'Auber', '76760', 0.933333, 49.65);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (30726, '76', 'sainte-agathe-d-aliermont', 'Sainte-Agathe-d\'Aliermont', '76660', 1.31667, 49.8333),
 (30727, '76', 'hermeville', 'Hermeville', '76280', 0.266667, 49.6),
 (30728, '76', 'hanouard', 'Le Hanouard', '76450', 0.666667, 49.7333),
@@ -31487,7 +31487,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (31399, '77', 'brie-comte-robert', 'Brie-Comte-Robert', '77170', 2.61667, 48.6833),
 (31400, '77', 'bernay-vilbert', 'Bernay-Vilbert', '77540', 2.93778, 48.6759),
 (31401, '77', 'fouju', 'Fouju', '77390', 2.78333, 48.5833);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (31402, '77', 'bouleurs', 'Bouleurs', '77580', 2.91667, 48.8833),
 (31403, '77', 'othis', 'Othis', '77280', 2.68333, 49.0833),
 (31404, '77', 'boissise-le-roi', 'Boissise-le-Roi', '77310', 2.56667, 48.5333),
@@ -32184,7 +32184,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (32095, '79', 'chapelle-thireuil', 'La Chapelle-Thireuil', '79160', -0.55, 46.5667),
 (32096, '79', 'hanc', 'Hanc', '79110', -0.016667, 46.0833),
 (32097, '79', 'cirieres', 'Cirières', '79140', -0.616667, 46.8333);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (32098, '79', 'retail', 'Le Retail', '79130', -0.433333, 46.5667),
 (32099, '79', 'saint-varent', 'Saint-Varent', '79330', -0.233333, 46.8833),
 (32100, '79', 'thenezay', 'Thénezay', '79390', -0.033333, 46.7167),
@@ -32901,7 +32901,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (32811, '80', 'meigneux-80', 'Meigneux', '80590', 1.88333, 49.7667),
 (32812, '80', 'barleux', 'Barleux', '80200', 2.88333, 49.8833),
 (32813, '80', 'woirel', 'Woirel', '80140', 1.81667, 49.9667);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (32814, '80', 'sailly-flibeaucourt', 'Sailly-Flibeaucourt', '80970', 1.76667, 50.1833),
 (32815, '80', 'assainvillers', 'Assainvillers', '80500', 2.6, 49.6167),
 (32816, '80', 'ligescourt', 'Ligescourt', '80150', 1.88333, 50.2833),
@@ -33632,7 +33632,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (33541, '82', 'ginals', 'Ginals', '82330', 1.86667, 44.2),
 (33542, '82', 'dieupentale', 'Dieupentale', '82170', 1.26667, 43.8667),
 (33543, '82', 'bourg-de-visa', 'Bourg-de-Visa', '82190', 0.966667, 44.25);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (33544, '82', 'montbartier', 'Montbartier', '82700', 1.26667, 43.9),
 (33545, '82', 'asques-82', 'Asques', '82120', 0.916667, 44),
 (33546, '82', 'belveze', 'Belvèze', '82150', 1.1, 44.3333),
@@ -34331,7 +34331,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (34239, '86', 'roche-posay', 'La Roche-Posay', '86270', 0.816667, 46.7833),
 (34240, '86', 'chouppes', 'Chouppes', '86110', 0.166667, 46.8167),
 (34241, '86', 'linazay', 'Linazay', '86400', 0.183333, 46.1667);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (34242, '86', 'bournand', 'Bournand', '86120', 0.066667, 47.0833),
 (34243, '86', 'poitiers', 'Poitiers', '86000', 0.333333, 46.5833),
 (34244, '86', 'fontaine-le-comte', 'Fontaine-le-Comte', '86240', 0.266667, 46.5333),
@@ -35042,7 +35042,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (34949, '88', 'pargny-sous-mureau', 'Pargny-sous-Mureau', '88350', 5.6, 48.3667),
 (34950, '88', 'mandray', 'Mandray', '88650', 7, 48.2167),
 (34951, '88', 'chaumousey', 'Chaumousey', '88390', 6.33333, 48.1667);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (34952, '88', 'gircourt-les-vieville', 'Gircourt-lès-Viéville', '88500', 6.2, 48.3333),
 (34953, '88', 'sartes', 'Sartes', '88300', 5.68333, 48.25),
 (34954, '88', 'hagecourt', 'Hagécourt', '88270', 6.15, 48.2333),
@@ -35771,7 +35771,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (35677, '90', 'rougegoutte', 'Rougegoutte', '90200', 6.85, 47.7333),
 (35678, '90', 'romagny-sous-rougemont', 'Romagny-sous-Rougemont', '90110', 6.96667, 47.7167),
 (35679, '90', 'petitefontaine', 'Petitefontaine', '90360', 7.00778, 47.7214);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (35680, '90', 'petitmagny', 'Petitmagny', '90170', 6.89834, 47.7214),
 (35681, '90', 'andelnans', 'Andelnans', '90400', 6.86667, 47.6),
 (35682, '90', 'saint-dizier-l-eveque', 'Saint-Dizier-l\'Évêque', '90100', 6.96667, 47.4667),
@@ -36486,7 +36486,7 @@ INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`,
 (36391, '2B', 'novale', 'Novale', '20234', 9.41556, 42.31),
 (36392, '2B', 'piazzali', 'Piazzali', '20234', 9.40862, 42.3189),
 (36393, '2B', 'zuani', 'Zuani', '20272', 9.3464, 42.2714);
-INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `ville_longitude_deg`, `ville_latitude_deg`) VALUES
+INSERT INTO `villes_france_free` (`ville_id`, `ville_departement`, `ville_slug`, `ville_nom_reel`, `ville_code_postal`, `lng`, `lat`) VALUES
 (36394, '2B', 'sermano', 'Sermano', '20212', 9.26751, 42.3142),
 (36395, '2B', 'bustanico', 'Bustanico', '20212', 9.30029, 42.3225),
 (36396, '2B', 'alzi', 'Alzi', '20212', 9.30195, 42.3034),
@@ -36808,7 +36808,7 @@ ALTER TABLE `villes_france_free`
   ADD KEY `ville_departement` (`ville_departement`),
   ADD KEY `ville_nom_reel` (`ville_nom_reel`),
   ADD KEY `ville_code_postal` (`ville_code_postal`),
-  ADD KEY `ville_longitude_latitude_deg` (`ville_longitude_deg`,`ville_latitude_deg`);
+  ADD KEY `ville_longitude_latitude_deg` (`lng`,`lat`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
