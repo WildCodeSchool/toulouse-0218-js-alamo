@@ -27,13 +27,12 @@ const styles = theme => ({
 })
 
 class ResultTransitory extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {}
+  state = {
+    
   }
-  
+
   render () {
-    const { classes, clubs } = this.props
+    const { classes, clubs, timeSlots, reservations } = this.props
     const date = new Date()
     const defaultDate = date.toISOString().substr(0, 10)
     return (
@@ -58,7 +57,7 @@ class ResultTransitory extends React.Component {
             <div>
               {
                 clubs.map((club, k) => {
-                  return club.member ? <CardResultMember club={club} key={k} /> : <CardResultDefault club={club} key={k} />
+                  return club.member ? <CardResultMember club={club} key={k} timeSlots={timeSlots} reservations={reservations} /> : <CardResultDefault club={club} key={k} />
                 })
               }
             </div>

@@ -1,0 +1,8 @@
+[
+	{ "manager": "Club Hippique de Pech David", "sport": "Equitation", "title": "Terrain 1" },
+	{ "manager": "Association Cheval Garonne", "sport": "Equitation", "title": "Terrain 1" },
+	{ "manager": "Stade Toulousain Tennis Club", "sport": "Tennis", "title": "Court 1" },
+	{ "manager": "Poliveau Tennis Club Loisirs", "sport": "Tennis", "title": "Court 1" },
+	{ "manager": "Centre Sportif Championnet", "sport": "Equitation", "title": "Terrain 1" },
+	{ "manager": "Centre Sportif Championnet", "sport": "Tennis", "title": "Court 1" }
+]

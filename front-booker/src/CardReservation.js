@@ -7,11 +7,13 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
-import { Link,  withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import formatMonth from './components/WeekCalendar/helpers/formatMonth'
+import formatHour from './components/WeekCalendar/helpers/formatHour'
 
 const styles = theme => ({
   card: {
-    height: 300           
+    height: 300
   },
   paper: {
     height: 500,
@@ -43,37 +45,68 @@ const styles = theme => ({
 })
 
 class CardReservation extends React.Component {
+  sendBookingRequest = e => {
+    const { slotId, date } = this.props
+    fetch(`/api/bookings/${slotId}/${date}`, {
+      method: 'POST',
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(response => {
+        if(response.error) {
+          alert(`ERROR: ${response.error}`)
+        }
+        else {
+          alert('Votre réservation a bien été enregistrée')
+        }
+      })
+
+  }
   render () {
-    const { classes } = this.props
+    const { classes, data } = this.props
+    const date = new Date(this.props.date)
+    const dayOfMonth = date.getDate()
+    const month = formatMonth(date.getMonth())
+    const year = 1900 + date.getYear()
+    const formattedDate = `${dayOfMonth} ${month} ${year}`
+    const startHour = formatHour(data.startHour)
+    const endHour = formatHour(data.endHour)
     return (
       <div className={classes.result}>
         <Grid container justify='center'>
-        <Typography component="h1" className={classes.titre}>
-          Veuillez confirmer votre réservation
-        </Typography>
+          <Grid item xs={12}>
+            <Typography component="h1" className={classes.titre}>
+            Veuillez confirmer votre réservation
+            </Typography>
+          </Grid>
         </Grid>
-        <Card className={classes.card}>
-          <CardContent>
-            <Grid container>
-              <Grid item xs={6} className={classes.verticalItems}>
+        <Grid container justify='center'>
+          <Grid item xs={8} className={classes.verticalItems}>
+            <Card className={classes.card}>
+              <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
-                  {this.props.club.name}
+                  {data.clubName}
                 </Typography>
                 <Typography component="p" className={classes.verticalFill}>
-                  {this.props.club.adresse} : <br />
-                  {this.props.club.email}: <br />
-                  {this.props.club.phone}: <br />
+                  <strong>Adresse</strong>: {data.address}, {data.city}<br />
+                  <strong>E-mail</strong>: {data.email} <br /> <br />
+                  {/* {data.phone} <br /> */}
                 </Typography>
-                <Button className={classes.button}>
-                  <Link to = {"/reservation/" + this.props.club.id} className={classes.link}>Confirmer</Link>
+                <Typography gutterBottom variant="headline" component="h3">
+                Réservation
+                </Typography>
+                <Typography component="p" className={classes.verticalFill}>
+                  <strong>Sport</strong>: {data.sport} <br />
+                  <strong>Lieu</strong>: {data.resource} <br />
+                  <strong>Date</strong>: {formattedDate} de {startHour} &agrave; {endHour} <br />
+                </Typography>
+                <Button className={classes.button} onClick={this.sendBookingRequest}>
+                  Confirmer
                 </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Paper className={classes.paperCalendar}>Récap réservation</Paper>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
       </div>
     )
   }

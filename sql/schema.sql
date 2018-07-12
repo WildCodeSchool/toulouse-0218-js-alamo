@@ -14,13 +14,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema alamo
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `alamo` DEFAULT CHARACTER SET utf8 ;
-USE `alamo` ;
+-- CREATE SCHEMA IF NOT EXISTS `alamo` DEFAULT CHARACTER SET utf8 ;
 
 -- -----------------------------------------------------
--- Table `alamo`.`sport`
+-- Table `sport`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `alamo`.`sport` (
+CREATE TABLE IF NOT EXISTS `sport` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `slug` VARCHAR(45),
   `label` VARCHAR(45) NULL,
@@ -29,9 +28,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alamo`.`booker`
+-- Table `booker`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `alamo`.`booker` (
+CREATE TABLE IF NOT EXISTS `booker` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `familyName` VARCHAR(50) NULL DEFAULT NULL,
   `firstName` VARCHAR(50) NULL DEFAULT NULL,
@@ -45,16 +44,16 @@ CREATE TABLE IF NOT EXISTS `alamo`.`booker` (
   INDEX `id_idx` (`favSport` ASC),
   CONSTRAINT `id`
     FOREIGN KEY (`favSport`)
-    REFERENCES `alamo`.`sport` (`id`)
+    REFERENCES `sport` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alamo`.`manager`
+-- Table `manager`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `alamo`.`manager` (
+CREATE TABLE IF NOT EXISTS `manager` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `clubName` VARCHAR(50) NULL DEFAULT NULL,
   `password` VARCHAR(50) NULL DEFAULT NULL,
@@ -64,14 +63,15 @@ CREATE TABLE IF NOT EXISTS `alamo`.`manager` (
   `lat` FLOAT NULL DEFAULT NULL,
   `lng` FLOAT NULL DEFAULT NULL,
   `email` VARCHAR(50) NULL DEFAULT NULL,
+  `member` INT DEFAULT 0
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alamo`.`admin`
+-- Table `admin`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `alamo`.`admin` (
+CREATE TABLE IF NOT EXISTS `admin` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NULL DEFAULT NULL,
   `password` VARCHAR(50) NULL DEFAULT NULL,
@@ -80,9 +80,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alamo`.`calendar`
+-- Table `calendar`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `alamo`.`calendar` (
+CREATE TABLE IF NOT EXISTS `calendar` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `managerId` INT UNSIGNED NOT NULL,
   `sportId` INT UNSIGNED NOT NULL
@@ -94,43 +94,42 @@ ENGINE = InnoDB;
 -- ALTER TABLE  `calendar`
 --  ADD CONSTRAINT `fk_calendar_1`
 --     FOREIGN KEY (`sportId`)
---     REFERENCES `alamo`.`sport` (`id`),
+--     REFERENCES `sport` (`id`),
 -- --     ON DELETE NO ACTION
 -- --     ON UPDATE NO ACTION,
 --  ADD CONSTRAINT `fk_calendar_2`
 --     FOREIGN KEY (`managerId`)
---     REFERENCES `alamo`.`manager` (`id`);
+--     REFERENCES `manager` (`id`);
 -- --     ON DELETE NO ACTION
 -- --     ON UPDATE NO ACTION;
 -- -----------------------------------------------------
--- Table `alamo`.`reservation`
+-- Table `reservation`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `alamo`.`reservation` (
-  `id` INT UNSIGNED NOT NULL PRIMARY KEY,
-  `calendarId` INT UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `reservation` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `timeSlotId` INT(10) UNSIGNED NOT NULL,
   `bookerId` INT UNSIGNED NOT NULL,
-  `date` DATE NULL,
-  `time` TIME NULL
+  `date` DATE NULL
   -- INDEX `id_idx` (`calendarId` ASC),
 --   INDEX `id_idx1` (`bookerId` ASC),
 )
 ENGINE = InnoDB;
 
--- ALTER TABLE `alamo`.`reservation`
+-- ALTER TABLE `reservation`
 --   ADD CONSTRAINT `fk_reservation_1`
 --     FOREIGN KEY (`calendarId`)
---     REFERENCES `alamo`.`calendar` (`id`)
+--     REFERENCES `calendar` (`id`)
 --     ON DELETE NO ACTION
 --     ON UPDATE NO ACTION,
 --   ADD CONSTRAINT `fk_reservation_2`
 --     FOREIGN KEY (`bookerId`)
---     REFERENCES `alamo`.`booker` (`id`)
+--     REFERENCES `booker` (`id`)
 --     ON DELETE NO ACTION
 --     ON UPDATE NO ACTION;
 -- -----------------------------------------------------
--- Table `alamo`.`timeSlot`
+-- Table `timeSlot`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `alamo`.`timeSlot` (
+CREATE TABLE IF NOT EXISTS `timeSlot` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `resourceId` INT(11) UNSIGNED NULL DEFAULT NULL,
   `title` VARCHAR(60) NULL DEFAULT '',
@@ -141,10 +140,10 @@ CREATE TABLE IF NOT EXISTS `alamo`.`timeSlot` (
   )
 ENGINE = InnoDB;
 
--- ALTER TABLE `alamo`.`timeSlot`
+-- ALTER TABLE `timeSlot`
 --  ADD CONSTRAINT `fk_timeslot_1`
 --     FOREIGN KEY (`calendarId`)
---     REFERENCES `alamo`.`calendar` (`sportId`);
+--     REFERENCES `calendar` (`sportId`);
 -- --     ON DELETE NO ACTION
 --     ON UPDATE NO ACTION;
 -- 

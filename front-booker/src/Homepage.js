@@ -21,7 +21,9 @@ const noEmpty = str => str && str !== ''
 class Homepage extends React.Component {
   state = {
     city: null,
-    markers : []
+    markers : [],
+    timeSlots: [],
+    reservations: []
   }
   componentWillReceiveProps(nextProps) {
     console.log('willReceiveProps', nextProps)
@@ -50,11 +52,14 @@ class Homepage extends React.Component {
     .then(res => res.json())
     .then(data => this.setState({
       markers: data.markers,
-      city: data.city
+      city: data.city,
+      timeSlots: data.timeSlots,
+      reservations: data.reservations
     }))
   }
   render () {
     const { classes, match } = this.props
+    const { city, markers, timeSlots, reservations } = this.state
     const { params } = match
     const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
     return (<div>
@@ -69,7 +74,7 @@ class Homepage extends React.Component {
           <IconePresentation />
         </Collapse>
         <Collapse in={hasSearchResults}>
-          <ResultTransitory city={this.state.city} clubs={this.state.markers} />
+          <ResultTransitory city={city} clubs={markers} timeSlots={timeSlots} reservations={reservations} />
         </Collapse>
     </div>
     )
