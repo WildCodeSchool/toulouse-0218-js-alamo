@@ -95,7 +95,7 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
   const query1 = `SELECT * from villes_france_free where ville_slug = ?`
   connection.query(query1, [city], (error, result) => {
     if (error) {
-      return res.status(500).json({error: error.message})
+      return res.status(500).json({error: 'erreur query1' + error.message})
     }
     const city = result[0]
     if(result.length === 0) {

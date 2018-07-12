@@ -29,13 +29,7 @@ class App extends React.Component {
       }
     })
   }
-  // componentDidUpdate (user) {
-  //   if (user === null){
-  //     fetch("/api/clubs/status", {
-  //       credentials: 'include'
-  //     })
-  //   }
-  // }
+
   render() {
     return (
       <Router basename="/manager">
