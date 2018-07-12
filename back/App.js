@@ -4,6 +4,7 @@ const  express      =  require('express')
 const  bodyParser   =  require('body-parser')
 const  morgan       =  require('morgan')
 const  session      =  require('express-session')
+// const  cors         =  require('cors')
 
 const  app          =  express()
 
@@ -19,8 +20,24 @@ app.use(morgan('dev'))
 app.use(session({ secret: "alamo", resave: true, saveUninitialized: true }))
 app.use(bodyParser.urlencoded({ extended:  false }))
 app.use(bodyParser.json())
+app.use('/manager', express.static(path.normalize(`${__dirname}/../front-manager/build`)))
 app.use(express.static(__dirname  +  '/public'))
 
+/* TESTS de Benoit, pas touche !!! */
+/* const whitelist = ['https://alamo.wild31.com', 'https://manager.alamo.wild31.com']
+const corsOptions = {
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions))
+*/
 app.get('/api/cities',(req, res)=> {
   const search = req.query.search
   const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 2`
