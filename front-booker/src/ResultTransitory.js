@@ -1,6 +1,8 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import {withStyles} from '@material-ui/core/styles'
+import withWidth, {isWidthDown} from '@material-ui/core/withWidth'
+import compose from 'recompose/compose'
 import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
 import Paper from '@material-ui/core/Paper'
@@ -32,9 +34,10 @@ class ResultTransitory extends React.Component {
   }
 
   render () {
-    const { classes, clubs, timeSlots, reservations } = this.props
+    const { classes, clubs, timeSlots, reservations, width } = this.props
     const date = new Date()
     const defaultDate = date.toISOString().substr(0, 10)
+    const direction = isWidthDown('sm', width) ? 'column-reverse' : 'row'
     return (
       <Paper className={classes.paper}>
         <Grid item xs={12} md={12}>
@@ -52,7 +55,7 @@ class ResultTransitory extends React.Component {
             </Grid>
           </form>
         </Grid>
-        <Grid container direction='column-reverse' >
+        <Grid container direction={direction} >
             <Grid item xs={12} md={5}>
               <div>
                 {
@@ -77,4 +80,7 @@ ResultTransitory.propTypes = {
   classes: PropTypes.object,
   nextStep: PropTypes.func
 }
-export default withStyles(styles)(ResultTransitory)
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(ResultTransitory)
