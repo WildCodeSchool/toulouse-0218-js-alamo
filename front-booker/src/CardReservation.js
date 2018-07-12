@@ -54,7 +54,7 @@ class CardReservation extends React.Component {
       .then(res => res.json())
       .then(response => {
         if(response.error) {
-          alert('y a un blème')
+          alert(`ERROR: ${response.error}`)
         }
         else {
           alert('Votre réservation a bien été enregistrée')
