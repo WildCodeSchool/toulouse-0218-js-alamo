@@ -38,7 +38,7 @@ class App extends React.Component {
   // }
   render() {
     return (
-      <Router>
+      <Router basename="/manager">
         <div>
           <Switch>
             <Route exact path="/" render={props => 
@@ -55,4 +55,4 @@ class App extends React.Component {
 }
 
 export default App
-  
+
