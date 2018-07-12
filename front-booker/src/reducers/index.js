@@ -1,18 +1,8 @@
-const initialState = {
-  user : null,
-  city: null
-}
+import { combineReducers } from 'redux'
+import user from './user'
+import infoWindow from './infoWindow'
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SIGNED_IN':
-      const {user} = action
-      return {user}
-    case 'SIGNED_OUT':
-      return {user: null}
-    default:
-      return state
-    }
-}
-
-export default reducer
+export default combineReducers({
+  user: user,
+  infoWindow: infoWindow
+})
