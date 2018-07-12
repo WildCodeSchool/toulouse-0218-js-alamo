@@ -12,6 +12,7 @@
     "events": "^3.0.0",
     "jquery": "^3.3.1",
     "jqwidgets-framework": "^5.7.2",
+    "kew": "^0.7.0",
     "lodash": "^4.17.10",
     "material-ui-pickers": "^1.0.0-rc.10",
     "material-ui-search-bar": "^1.0.0-beta.6",
