@@ -22,13 +22,13 @@ const styles = theme => ({
   },
   paper: {
     backgroundColor: '#E6EAF0',
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2,
   }
 })
 
 class ResultTransitory extends React.Component {
   state = {
-    
+
   }
 
   render () {
@@ -37,37 +37,37 @@ class ResultTransitory extends React.Component {
     const defaultDate = date.toISOString().substr(0, 10)
     return (
       <Paper className={classes.paper}>
-        <Grid container>
-          <Grid item xs={12} md={12}>
-            <form className={classes.formDate} noValidate>
-              <Grid container justify='center'>
-                <TextField
-                  id="date"
-                  type="date"
-                  defaultValue={defaultDate}
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-              </Grid>
-            </form>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <div>
-              {
-                clubs.map((club, k) => {
-                  return club.member ? <CardResultMember club={club} key={k} timeSlots={timeSlots} reservations={reservations} /> : <CardResultDefault club={club} key={k} />
-                })
-              }
-            </div>
-          </Grid>
-          <Grid item xs={12} md={7}>
-            <div>
-              <AlamoMap city={this.props.city} markers={clubs} />
-            </div>
-          </Grid>
+        <Grid item xs={12} md={12}>
+          <form className={classes.formDate} noValidate>
+            <Grid container justify='center'>
+              <TextField
+                id="date"
+                type="date"
+                defaultValue={defaultDate}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true
+                }}
+              />
+            </Grid>
+          </form>
         </Grid>
+        <Grid container direction='column-reverse' >
+            <Grid item xs={12} md={5}>
+              <div>
+                {
+                  clubs.map((club, k) => {
+                    return club.member ? <CardResultMember club={club} key={k} timeSlots={timeSlots} reservations={reservations} /> : <CardResultDefault club={club} key={k} />
+                  })
+                }
+              </div>
+            </Grid>
+            <Grid item xs={12} md={7}>
+              <div>
+                <AlamoMap city={this.props.city} markers={clubs} />
+              </div>
+            </Grid>
+          </Grid>
       </Paper>
     )
   }
