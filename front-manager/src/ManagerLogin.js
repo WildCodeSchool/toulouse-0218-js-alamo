@@ -36,7 +36,7 @@ const styles = theme => ({
 
 class ManagerLogin extends React.Component {
   state = {
-    name: '',
+    email: '',
     password: '',
     message: ''
   }
@@ -91,12 +91,12 @@ class ManagerLogin extends React.Component {
               >
                 <h3>Alamo</h3>
                 <TextField
-                  name="name"
+                  name="email"
                   type="text"
-                  label="Nom du club"
+                  label="Email du club"
                   placeholder=" "
                   className={classes.textField}
-                  value={this.state.name}
+                  value={this.state.email}
                   onChange={this.handleInputChange}
                 />
                 <TextField

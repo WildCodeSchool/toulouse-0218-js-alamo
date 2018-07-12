@@ -4,8 +4,8 @@ const connection  = require('./db.js')
 
 //route de vérification si les identifiants entrés existent et récupération de ses données
 router.post('/login', function(req, res) {
-  const { name, password } = req.body
-  const query = `SELECT * FROM manager WHERE clubName='${name}' and password='${password}'`
+  const { email, password } = req.body
+  const query = `SELECT * FROM manager WHERE email='${email}' and password='${password}'`
   connection.query(query, (error, result) => {
     if (error) {
       return res.status(500).json({
