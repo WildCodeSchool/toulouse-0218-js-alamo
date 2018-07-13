@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { apiKey } from './config'
 import { infoWindowOpen, infoWindowClose } from './actions'
 
-
 const defaultCenter = {lat: 43.600000, lng: 1.433333}
 
 const mapStateToProps = state => ({
