@@ -203,12 +203,13 @@ resourceClick = (calResource, jsEvent, view) => {
   constructor (props) {
     super(props)
     this.calendarOptions = {
+      title :'title',
       schedulerLicenseKey,
       defaultView: 'agendaDay',
       groupByResource: true,
       header: {
-        left: 'promptResource, prev,next',
-        center: 'addEventButton',
+        left: 'promptResource,addEventButton, prev,next',
+        center: 'title',
         right: 'agendaDay,agendaWeek,month,deconnexion'
       },
       resourceLabelText: 'Rooms',
