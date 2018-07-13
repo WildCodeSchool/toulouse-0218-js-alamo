@@ -54,9 +54,9 @@ class SearchLocationBar extends React.Component {
             <form>
               {!hasSearchResults && <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>}
 
-              <Grid container spacing={0}>
+              <Grid container spacing={0} >
                 <Grid item xs={12} sm={5}>
-                  <MultiSelectField onSelect={sport => this.setState({ sport })}/>
+                  <MultiSelectField onSelect={sport => this.setState({ sport })} />
                 </Grid>
                 <Grid item xs={12} sm={5}>
                 <IntegrationAutosuggest onChange={city => this.setState({ city})} />

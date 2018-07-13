@@ -1,3 +1,4 @@
+
 export const SIGNED_IN = 'SIGNED_IN'
 
 export function signedIn(user) {
@@ -15,3 +16,19 @@ export function signedOut() {
   }
 }
 
+export const INFOWINDOW_OPEN = 'INFOWINDOW_OPEN'
+
+export function infoWindowOpen(markerId) {
+  return {
+    type: INFOWINDOW_OPEN,
+    markerId: markerId
+  }
+}
+
+export const INFOWINDOW_CLOSE = 'INFOWINDOW_CLOSE'
+
+export function infoWindowClose() {
+  return {
+    type: INFOWINDOW_CLOSE
+  }
+}
