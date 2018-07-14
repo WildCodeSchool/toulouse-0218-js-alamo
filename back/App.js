@@ -4,6 +4,7 @@ const  express      =  require('express')
 const  bodyParser   =  require('body-parser')
 const  morgan       =  require('morgan')
 const  session      =  require('express-session')
+const  nodemailer   =  require('nodemailer')
 // const  cors         =  require('cors')
 
 const  app          =  express()
@@ -13,7 +14,8 @@ const  users        =  require('./Users')
 const  connection   =  require('./db.js')
 const  resources    =  require('./Resources')
 const  timeslots    =  require('./Timeslots')
-const  bookings    =  require('./Bookings')
+const  bookings     =  require('./Bookings')
+const  credentials  =  require('./credentials.json')
 
 app.use(morgan('dev'))
 // Voir Benoit pour secret
@@ -38,6 +40,21 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 */
+
+// envoi mail
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: credentials
+})
+
+const mailOptions = {
+  from: credentials.user,
+  to: "alexandre.morazin@live.fr",
+  subject: "Mail de Michou",
+  html: "<p>Salut Papa ! Alors, tu viens plus aux soirées ?!</p>"
+}
+// envoi mail end
+
 app.get('/api/cities',(req, res)=> {
   const search = req.query.search
   const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 2`
