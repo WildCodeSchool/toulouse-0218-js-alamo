@@ -13,6 +13,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import Collapse from '@material-ui/core/Collapse'
 import PlusOne from '@material-ui/icons/PlusOne'
+import Chevron from '../img/chevron-left.png'
 import Delete from '@material-ui/icons/Delete'
 import Timer from '@material-ui/icons/Timer'
 import { TimePicker as TimePickerBase } from 'material-ui-pickers'
@@ -174,6 +175,9 @@ handleTimeChange = (date, name) => {
             <FormControl className={classes.mb}>
             <DatePicker
               keyboard
+              allowKeyboardControl={true}
+              leftArrowIcon='<'
+              rightArrowIcon='>'
               clearable
               label="Choose a date"
               helperText="Possible manual entry via keyboard"
