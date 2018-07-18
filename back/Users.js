@@ -1,13 +1,17 @@
+const fs            =  require('fs')
 const express       =  require('express')
 const router        =  express.Router()
-const connection    =  require('./db.js')
 const nodemailer    =  require('nodemailer')
+const Mustache      =  require('mustache')
+const connection    =  require('./db.js')
 const credentials   =  require('./credentials.json')
+const template      =  fs.readFileSync('./templates/inscription.html').toString()
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: credentials
 })
+const html = Mustache.render(template)
 
 router.post('/register', function(req, res) {
   console.log(req.body)
@@ -15,7 +19,7 @@ router.post('/register', function(req, res) {
     from: credentials.user,
     to: `${req.body.email}`,
     subject: "Confirmation d'inscription",
-    html: "<h1>Mail test Alamo</h1></br><p>Well done bro, tu es inscrit ;)</p>"
+    html: html
   }
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
