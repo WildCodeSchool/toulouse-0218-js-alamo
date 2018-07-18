@@ -13,7 +13,7 @@ const  users        =  require('./Users')
 const  connection   =  require('./db.js')
 const  resources    =  require('./Resources')
 const  timeslots    =  require('./Timeslots')
-const  bookings    =  require('./Bookings')
+const  bookings     =  require('./Bookings')
 
 app.use(morgan('dev'))
 // Voir Benoit pour secret
@@ -38,6 +38,7 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 */
+
 app.get('/api/cities',(req, res)=> {
   const search = req.query.search
   const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 2`
@@ -135,6 +136,12 @@ app.get('/api/cities/:city/sport-match/:sport', (req, res) => {
         })
       })
     })
+  })
+})
+
+app.post('/send-mail', (req, res) => {
+  res.json({
+    succes: true
   })
 })
 
