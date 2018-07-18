@@ -6,7 +6,6 @@ const Mustache      =  require('mustache')
 const connection    =  require('./db.js')
 const credentials   =  require('./credentials.json')
 const template      =  fs.readFileSync('./templates/inscription.html').toString()
-// const template = fs.readFileSync(`${__dirname}/templates/bookingPartner.html`).toString()
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
