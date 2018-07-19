@@ -3,7 +3,7 @@ const router = express.Router()
 const connection = require('./db.js')
 const sendEmail = require('./Mailer')
 const Mustache = require('mustache')
-const template = fs.readFileSync(`${__dirname}/templates/bookingPartner.html`).toString()
+const template = fs.readFileSync(`${__dirname}/templates/bookingMailer.html`).toString()
 
 router.get('/:managerId/:slotId/:date', (req, res) => {
   // Extrait l'id du club, du slot, et la date de réservation demandée, depuis l'URL
