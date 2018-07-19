@@ -34,17 +34,18 @@ function renderInput (inputProps) {
 function renderSuggestion (suggestion, { query, isHighlighted }) {
   const matches = match(suggestion.label, query)
   const parts = parse(suggestion.label, matches)
-
+  const exactMatch = suggestion.label.toLowerCase() === this.state.value.toLowerCase()
+  const background = exactMatch ? '#ABFF90' : '#FFF'
   return (
-    <MenuItem selected={isHighlighted} component="div">
+    <MenuItem style={{background}} selected={isHighlighted} component="div">
       <div>
         {parts.map((part, index) => {
           return part.highlight ? (
-            <span key={String(index)} style={{ fontWeight: 300 }}>
+            <span key={String(index)} style={{ fontWeight: 500 }}>
               {part.text}
             </span>
           ) : (
-            <strong key={String(index)} style={{ fontWeight: 500 }}>
+            <strong key={String(index)} style={{ fontWeight: 300 }}>
               {part.text}
             </strong>
           )
@@ -116,7 +117,7 @@ const styles = theme => ({
   },
   suggestionsList: {
     margin: 0,
-    padding: 10,
+    padding: 0,
     listStyleType: 'none'
   },
   input: {
@@ -129,50 +130,52 @@ const styles = theme => ({
 class IntegrationAutosuggest extends React.Component {
   state = {
     value: '',
+    exactMatch: false,
     suggestions: []
   }
 
-  _handleSuggestionsFetchRequested = ({ value }) => {
-
-    // this.setState({
-    //   suggestions: getSuggestions(value),
-    // })
-    // console.log('fetch', value)
+  // Pour demander des suggestions au serveur
+  _handleSuggestionsFetchRequested = ({ value }) =>
     fetch('/api/cities?search=' + encodeURIComponent(value))
       .then(res => res.json())
-      .then(suggestions => this.setState({suggestions}))
-  }
+      .then(this.onSuggestionsReceived(value))
+
+  // Appelé quand le serveur nous a renvoyé les suggestions
+  onSuggestionsReceived = value => suggestions =>
+    this.setState({suggestions}, () => this.lookupCity(value))
+
   get handleSuggestionsFetchRequested () {
     return this._handleSuggestionsFetchRequested
   }
   set handleSuggestionsFetchRequested (value) {
     this._handleSuggestionsFetchRequested = value
   }
-
-  lookupCity (value) {
+  // Recherche une ville dans les suggestions
+  lookupCity = value => {
     const search = value || this.state.value
     const city = this.state.suggestions.find(city => city.label.toLowerCase() === search.toLowerCase())
-    console.log('looking up city', search.toLowerCase(), 'in', this.state.suggestions.map(s => s.label.toLowerCase()), this.state, city)
-    this.props.onChange(city)
+    const exactMatch = city !== undefined
+    this.setState({ exactMatch })
+    this.props.onChange(city ? city.slug : '')
   }
 
   handleSuggestionsClearRequested = () => {
     // console.log('clear', this.state.value)
     // this.lookupCity()
-    this.setState({ suggestions: [] })
+    // this.setState({ suggestions: [] })
   }
 
   handleChange = (event, { newValue }) => {
-    console.log('change', newValue)
-    this.lookupCity(newValue)
     this.setState({
       value: newValue
-    })
+    }, () => this.lookupCity(newValue))
   }
 
   render () {
     const { classes, missing } = this.props
-    const borderClass = missing ? classes.borderError : classes.borderIdle
+    const { exactMatch } = this.state
+    const borderClass = missing ? classes.borderError
+      : (exactMatch ? classes.borderOk : classes.borderIdle)
     return (
       <Autosuggest style={{disableUnderline: true}}
         theme={{
@@ -187,7 +190,7 @@ class IntegrationAutosuggest extends React.Component {
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
         renderSuggestionsContainer={renderSuggestionsContainer}
         getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
+        renderSuggestion={renderSuggestion.bind(this)}
         inputProps={{
           classes: classes,
           placeholder: 'Choisissez une ville',

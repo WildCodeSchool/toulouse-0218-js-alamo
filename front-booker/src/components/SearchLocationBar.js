@@ -20,7 +20,7 @@ class SearchLocationBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      city: null,
+      city: '',
       sport: '',
       missing: {
         city: false,
@@ -31,12 +31,13 @@ class SearchLocationBar extends React.Component {
 
   // Vérifie que les champs requis sont renseignés
   checkFields = override => {
+    console.log(this.state)
     const fields = override || ['city', 'sport']
     let missing = {}
     let ok = true
     for (let field of fields) {
       console.log(field, this.state[field], !this.state[field])
-      if (!this.state[field]) {
+      if (this.state[field] === '') {
         missing[field] = true
         ok = false
       }
@@ -51,7 +52,7 @@ class SearchLocationBar extends React.Component {
       return
     }
     const { sport, city } = this.state
-    this.props.history.push(`/s/${sport}/${city.slug}`)
+    this.props.history.push(`/s/${sport}/${city}`)
   }
 
   researchOnEnter = e => {
@@ -61,9 +62,14 @@ class SearchLocationBar extends React.Component {
     this.onSubmit()
   }
 
+  onSportChange = sport => {
+    const missing = {...this.state.missing, sport: false }
+    this.setState({ sport, missing })
+  }
+
   onCityChange = city => {
-    this.checkFields(['city'])
-    this.setState({ city })
+    const missing = {...this.state.missing, city: false }
+    this.setState({ city, missing })
   }
 
   render () {
@@ -87,7 +93,7 @@ class SearchLocationBar extends React.Component {
 
               <Grid container spacing={0} >
                 <Grid item xs={12} sm={5}>
-                  <MultiSelectField missing={missing.sport} onSelect={sport => this.setState({ sport })} />
+                  <MultiSelectField missing={missing.sport} onSelect={this.onSportChange} />
                 </Grid>
                 <Grid item xs={12} sm={5}>
                   <IntegrationAutosuggest missing={missing.city} onChange={this.onCityChange} />
