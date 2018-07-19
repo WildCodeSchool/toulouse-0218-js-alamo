@@ -1,3 +1,4 @@
 .Select--single>.Select-control .Select-value, .Select-placeholder {
-  top: 9px;
+  top: 11px;
+  left: 11px;
 }
