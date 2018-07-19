@@ -23,7 +23,6 @@ const styles = {
   }
 }
 
-
 class Register extends React.Component {
   constructor (props) {
     super(props)
@@ -48,7 +47,6 @@ class Register extends React.Component {
   onSubmit = (e) => {
     e.preventDefault()
     // Submit to login URL
-    const data = {}
     fetch('/api/users/register', {
       method: 'POST',
       headers: new Headers({
@@ -56,15 +54,14 @@ class Register extends React.Component {
       }),
       body: JSON.stringify(this.state)
     })
-    .then(res => res.json())
-    .then(data  => {
-      if (data.error) {
-        this.setState({'message':data.error})
-      }
-      else {
-        this.setState({'message':'good'})
-      }       
-    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          this.setState({'message': data.error})
+        } else {
+          this.setState({'message': 'good'})
+        }
+      })
   }
 
   render () {
