@@ -6,10 +6,10 @@ const transporter = nodemailer.createTransport({
   auth: credentials
 })
 
-const sendEmail = (email, subject, content, callback) => {
+const sendEmail = (req, res, subject, content, callback) => {
   const mailOptions = {
     from: credentials.user,
-    to: `${email}`,
+    to: `${req.body.email}`,
     subject: subject,
     html: content
   }
