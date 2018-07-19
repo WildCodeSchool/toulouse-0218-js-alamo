@@ -7,8 +7,6 @@ import MultiSelectField from './SelectBar'
 import Collapse from '@material-ui/core/Collapse'
 import IntegrationAutosuggest from './Autosuggest'
 
-
-
 const styles = _theme => ({
   root: {
     flexGrow: 1
@@ -22,22 +20,51 @@ class SearchLocationBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      city:'',
-      sport: ''
+      city: null,
+      sport: '',
+      missing: {
+        city: false,
+        sport: false
+      }
     }
   }
 
-  onSubmit = () => this.props.history.push(`/s/${this.state.sport}/${this.state.city}`)
+  // Vérifie que les champs requis sont renseignés
+  checkFields = () => {
+    let missing = {}
+    let ok = true
+    for (let field of ['city', 'sport']) {
+      console.log(field, this.state[field], !this.state[field])
+      if (!this.state[field]) {
+        missing[field] = true
+        ok = false
+      }
+    }
+    this.setState({ missing })
+    return ok
+  }
+
+  onSubmit = e => {
+    e.preventDefault()
+    if (!this.checkFields()) {
+      return
+    }
+    const { sport, city } = this.state
+    this.props.history.push(`/s/${sport}/${city.slug}`)
+  }
 
   researchOnEnter = e => {
-    if(e.keyCode !== 13) {
+    if (e.keyCode !== 13) {
       return
     }
     this.onSubmit()
   }
 
+  onCityChange = city => this.setState({ city })
+
   render () {
     const { classes, hasSearchResults } = this.props
+    const { missing } = this.state
     const gridHeight = hasSearchResults ? '50px' : '60vh'
     return (
       <Collapse in={!hasSearchResults} collapsedHeight="100px">
@@ -51,18 +78,18 @@ class SearchLocationBar extends React.Component {
             style={{height: gridHeight}} // A VOIR AVEC BENOIT MET UNE MARGE EN BAS DE PAGE !
           >
 
-            <form>
+            <form onSubmit={this.onSubmit}>
               {!hasSearchResults && <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>}
 
               <Grid container spacing={0} >
                 <Grid item xs={12} sm={5}>
-                  <MultiSelectField onSelect={sport => this.setState({ sport })} />
+                  <MultiSelectField missing={missing.sport} onSelect={sport => this.setState({ sport })} />
                 </Grid>
                 <Grid item xs={12} sm={5}>
-                <IntegrationAutosuggest onChange={city => this.setState({ city})} />
+                  <IntegrationAutosuggest missing={missing.city} onChange={this.onCityChange} />
                 </Grid>
                 <Grid item xs={12} sm={2}>
-                  <Button className={classes.btn} onClick={this.onSubmit} variant="raised" style={{backgroundColor: '#66FF33', height: '100%',padding: '10', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
+                  <Button type="submit" className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', padding: '10', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>
                     Recherchez
                   </Button>
                 </Grid>
