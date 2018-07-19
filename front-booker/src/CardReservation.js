@@ -59,7 +59,7 @@ class CardReservation extends React.Component {
         else {
           alert('Votre réservation a bien été enregistrée')
         }
-      })
+          })
 
   }
   render () {

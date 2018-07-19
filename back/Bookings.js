@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const connection = require('./db.js')
+const sendEmail = require('./Mailer')
 
 router.get('/:managerId/:slotId/:date', (req, res) => {
   // Extrait l'id du club, du slot, et la date de réservation demandée, depuis l'URL
@@ -73,7 +74,20 @@ router.post('/:slotId/:date', (req, res) => {
           error: error.message
         })
       }
-      res.json({ success: true })
+      const subject = `votre reservation sur Alamo, ${req.session.user.firstName}`
+      const content = `Merci pour votre réservation`
+      sendEmail(subject, content, (err, info) => {
+        if (err) {
+          console.log('ERROR', err)
+          return res.status(500).json
+          error: err.message
+        } 
+          console.log('OK', info)
+      res.json({
+          success: true,
+          info: info
+          })
+        })
     })
   })
 })
