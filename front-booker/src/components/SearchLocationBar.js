@@ -30,10 +30,11 @@ class SearchLocationBar extends React.Component {
   }
 
   // Vérifie que les champs requis sont renseignés
-  checkFields = () => {
+  checkFields = override => {
+    const fields = override || ['city', 'sport']
     let missing = {}
     let ok = true
-    for (let field of ['city', 'sport']) {
+    for (let field of fields) {
       console.log(field, this.state[field], !this.state[field])
       if (!this.state[field]) {
         missing[field] = true
@@ -60,7 +61,10 @@ class SearchLocationBar extends React.Component {
     this.onSubmit()
   }
 
-  onCityChange = city => this.setState({ city })
+  onCityChange = city => {
+    this.checkFields(['city'])
+    this.setState({ city })
+  }
 
   render () {
     const { classes, hasSearchResults } = this.props
