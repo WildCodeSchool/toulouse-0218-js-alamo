@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `villes_france_free`
 --
 
-CREATE TABLE `villes_france_free` (
+CREATE TABLE IF NOT EXISTS `villes_france_free` (
   `ville_id` mediumint(8) UNSIGNED NOT NULL,
   `ville_departement` varchar(3) DEFAULT NULL,
   `ville_slug` varchar(255) DEFAULT NULL,
