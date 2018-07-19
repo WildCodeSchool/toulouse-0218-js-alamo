@@ -134,10 +134,27 @@ class IntegrationAutosuggest extends React.Component {
     suggestions: []
   }
 
+  componentDidMount () {
+    const { initialValue } = this.props
+    if (initialValue) {
+      this.fetchSuggestions(initialValue)
+        .then(suggestions => {
+          const matchingSuggestion = suggestions.find(
+            suggestion => suggestion.slug === initialValue
+          )
+          if (matchingSuggestion) {
+            this.setState({ value: matchingSuggestion.label })
+          }
+        })
+    }
+  }
+
+  fetchSuggestions = value => fetch(`${this.props.dataUrl}?search=${encodeURIComponent(value)}`)
+    .then(res => res.json())
+
   // Pour demander des suggestions au serveur
   _handleSuggestionsFetchRequested = ({ value }) =>
-    fetch(`${this.props.dataUrl}?search=${encodeURIComponent(value)}`)
-      .then(res => res.json())
+    this.fetchSuggestions(value)
       .then(this.onSuggestionsReceived(value))
 
   // Appelé quand le serveur nous a renvoyé les suggestions

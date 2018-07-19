@@ -19,9 +19,15 @@ const styles = _theme => ({
 class SearchLocationBar extends React.Component {
   constructor (props) {
     super(props)
+
+    // Détecter si on est sur la homepage initiale, ou
+    // sur les résultats de recherche
+    // Si on a les paramètres sport et city dans l'URL, hasSearchParams vaut true
+    const { params } = props.match
+    const hasSearchParams = Object.keys(params).length === 2
     this.state = {
-      city: '',
-      sport: '',
+      city: hasSearchParams ? params.city : '',
+      sport: hasSearchParams ? params.sport : '',
       missing: {
         city: false,
         sport: false
@@ -33,6 +39,8 @@ class SearchLocationBar extends React.Component {
   checkFields = override => {
     console.log(this.state)
     const fields = override || ['city', 'sport']
+    // On crée un objet où on va stocker une valeur true/false
+    // associée à chaque clé (city ou sport)
     let missing = {}
     let ok = true
     for (let field of fields) {
@@ -96,6 +104,7 @@ class SearchLocationBar extends React.Component {
                   {/* <MultiSelectField missing={missing.sport} onSelect={this.onSportChange} /> */}
                   <IntegrationAutosuggest
                     placeholder='Choisissez un sport'
+                    initialValue={this.state.sport}
                     dataUrl='/api/sports'
                     missing={missing.sport}
                     onChange={this.onSportChange} />
@@ -103,6 +112,7 @@ class SearchLocationBar extends React.Component {
                 <Grid item xs={12} sm={5}>
                   <IntegrationAutosuggest
                     placeholder='Choisissez une ville'
+                    initialValue={this.state.city}
                     dataUrl='/api/cities'
                     missing={missing.city}
                     onChange={this.onCityChange} />
