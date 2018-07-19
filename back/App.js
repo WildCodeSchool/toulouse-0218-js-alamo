@@ -43,7 +43,19 @@ app.use(cors(corsOptions))
 app.get('/api/cities',(req, res)=> {
   const search = mysqlEscape(req.query.search)
   const query = `select ville_nom_reel as label, ville_slug as slug From villes_france_free where ville_nom_reel LIKE '${search}%' limit 2`
-  connection.query(query,(error, result)=>{
+  connection.query(query,(error, result) => {
+      if (error){
+          return res.status(500).json([])
+      }
+      console.log(result[0])
+      res.json(result)
+  })
+})
+
+app.get('/api/sports',(req, res)=> {
+  const search = mysqlEscape(req.query.search)
+  const query = `select label, slug From sport where label LIKE '${search}%' limit 2`
+  connection.query(query,(error, result) => {
       if (error){
           return res.status(500).json([])
       }

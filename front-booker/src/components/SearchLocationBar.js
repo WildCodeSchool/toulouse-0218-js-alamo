@@ -93,10 +93,19 @@ class SearchLocationBar extends React.Component {
 
               <Grid container spacing={0} >
                 <Grid item xs={12} sm={5}>
-                  <MultiSelectField missing={missing.sport} onSelect={this.onSportChange} />
+                  {/* <MultiSelectField missing={missing.sport} onSelect={this.onSportChange} /> */}
+                  <IntegrationAutosuggest
+                    placeholder='Choisissez un sport'
+                    dataUrl='/api/sports'
+                    missing={missing.sport}
+                    onChange={this.onSportChange} />
                 </Grid>
                 <Grid item xs={12} sm={5}>
-                  <IntegrationAutosuggest missing={missing.city} onChange={this.onCityChange} />
+                  <IntegrationAutosuggest
+                    placeholder='Choisissez une ville'
+                    dataUrl='/api/cities'
+                    missing={missing.city}
+                    onChange={this.onCityChange} />
                 </Grid>
                 <Grid item xs={12} sm={2}>
                   <Button type="submit" className={classes.btn} variant="raised" style={{backgroundColor: '#66FF33', height: '100%', padding: '10', boxSizing: 'border-box', boxShadow: 'none', border: '1px solid', borderColor: '#A2A9BC'}}>

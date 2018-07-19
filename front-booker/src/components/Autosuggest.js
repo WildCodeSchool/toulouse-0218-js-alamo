@@ -108,7 +108,7 @@ const styles = theme => ({
   suggestionsContainerOpen: {
     position: 'absolute',
     zIndex: 1,
-    marginTop: theme.spacing.unit,
+    marginTop: 1,
     left: 0,
     right: 0
   },
@@ -121,7 +121,7 @@ const styles = theme => ({
     listStyleType: 'none'
   },
   input: {
-    padding: '18px 16px 10px 16px',
+    padding: '14px 16px',
     boxSizing: 'border-box',
     height: '100%'
   }
@@ -136,13 +136,13 @@ class IntegrationAutosuggest extends React.Component {
 
   // Pour demander des suggestions au serveur
   _handleSuggestionsFetchRequested = ({ value }) =>
-    fetch('/api/cities?search=' + encodeURIComponent(value))
+    fetch(`${this.props.dataUrl}?search=${encodeURIComponent(value)}`)
       .then(res => res.json())
       .then(this.onSuggestionsReceived(value))
 
   // Appelé quand le serveur nous a renvoyé les suggestions
   onSuggestionsReceived = value => suggestions =>
-    this.setState({suggestions}, () => this.lookupCity(value))
+    this.setState({suggestions}, () => this.lookupItem(value))
 
   get handleSuggestionsFetchRequested () {
     return this._handleSuggestionsFetchRequested
@@ -151,24 +151,24 @@ class IntegrationAutosuggest extends React.Component {
     this._handleSuggestionsFetchRequested = value
   }
   // Recherche une ville dans les suggestions
-  lookupCity = value => {
+  lookupItem = value => {
     const search = value || this.state.value
-    const city = this.state.suggestions.find(city => city.label.toLowerCase() === search.toLowerCase())
-    const exactMatch = city !== undefined
+    const item = this.state.suggestions.find(item => item.label.toLowerCase() === search.toLowerCase())
+    const exactMatch = item !== undefined
     this.setState({ exactMatch })
-    this.props.onChange(city ? city.slug : '')
+    this.props.onChange(item ? item.slug : '')
   }
 
   handleSuggestionsClearRequested = () => {
     // console.log('clear', this.state.value)
-    // this.lookupCity()
+    // this.lookupItem()
     // this.setState({ suggestions: [] })
   }
 
   handleChange = (event, { newValue }) => {
     this.setState({
       value: newValue
-    }, () => this.lookupCity(newValue))
+    }, () => this.lookupItem(newValue))
   }
 
   render () {
@@ -193,7 +193,7 @@ class IntegrationAutosuggest extends React.Component {
         renderSuggestion={renderSuggestion.bind(this)}
         inputProps={{
           classes: classes,
-          placeholder: 'Choisissez une ville',
+          placeholder: this.props.placeholder,
           value: this.state.value,
           onChange: this.handleChange
         }}
