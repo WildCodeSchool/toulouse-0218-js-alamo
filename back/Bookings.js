@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs')
 const router = express.Router()
 const connection = require('./db.js')
 const sendEmail = require('./Mailer')
@@ -76,14 +77,15 @@ router.post('/:slotId/:date', (req, res) => {
           error: error.message
         })
       }
+      const html = Mustache.render(template)
       const subject = `votre reservation sur Alamo, ${req.session.user.firstName}`
-      const content = `Merci pour votre réservation`
-      sendEmail(subject, content, (err, info) => {
+      const email = req.session.user.email
+      sendEmail(email, subject, html, (err, info) => {
         if (err) {
           console.log('ERROR', err)
           return res.status(500).json
           error: err.message
-        } 
+        }
           console.log('OK', info)
       res.json({
           success: true,
