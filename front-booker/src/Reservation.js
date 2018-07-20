@@ -33,7 +33,6 @@ class Reservation extends React.Component {
   }
   render () {
     const { classes, match } = this.props
-    const id = Number(match.params.id)
     const { date, slotId } = match.params
     const { data, available } = this.state
     return (

@@ -1,9 +1,33 @@
-const express = require('express')
-const router = express.Router()
-const connection = require('./db.js')
+const fs            =  require('fs')
+const express       =  require('express')
+const router        =  express.Router()
+const nodemailer    =  require('nodemailer')
+const Mustache      =  require('mustache')
+const connection    =  require('./db.js')
+const credentials   =  require('./credentials.json')
+const template      =  fs.readFileSync('./templates/inscription.html').toString()
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: credentials
+})
+const html = Mustache.render(template)
 
 router.post('/register', function(req, res) {
   console.log(req.body)
+  const mailOptions = {
+    from: credentials.user,
+    to: `${req.body.email}`,
+    subject: "Confirmation d'inscription",
+    html: html
+  }
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log('Erreur Fatale !!!!', err)
+    } else {
+      console.log('OK', info)
+    }
+  })
   const query = `INSERT INTO booker (familyName, firstName, pseudo, email, password) VALUE ('${req.body.familyName}', '${req.body.firstName}',
    '${req.body.pseudo}', '${req.body.email}', '${req.body.password}')`
   connection.query(query, (error, result) => {
@@ -42,6 +66,5 @@ router.post('/login', function(req, res) {
     console.log(res.json)
   })
 })
-
 
 module.exports = router
