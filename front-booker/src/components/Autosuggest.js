@@ -89,9 +89,12 @@ function getSuggestions(value) {
 const styles = theme => ({
   container: {
     backgroundColor: theme.palette.common.white,
+
+    boxShadow: '0 3px 0px 2px',
+
     boxSizing: 'border-box',
     border: '1px solid', 
-    borderColor: '#A2A9BC',
+    borderColor: '#000000',
     flexGrow: 1,
     position: 'relative',
     height: '100%',

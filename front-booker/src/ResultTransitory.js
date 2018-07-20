@@ -23,7 +23,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2
   },
   paper: {
-    backgroundColor: '#E6EAF0',
+    backgroundColor: 'none',
     padding: theme.spacing.unit * 2,
   }
 })

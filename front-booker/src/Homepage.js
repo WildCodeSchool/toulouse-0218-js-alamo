@@ -1,7 +1,6 @@
 import React from 'react'
 import SearchLocationBar from './components/SearchLocationBar'
 import { withStyles } from '@material-ui/core/styles'
-import IconeSport from './components/Icones'
 import PropTypes from 'prop-types'
 import Paper from '@material-ui/core/Paper'
 import ResultTransitory from './ResultTransitory'
@@ -12,7 +11,7 @@ import './index.css'
 
 const styles = theme => ({
   paper: {
-    backgroundColor: '#E6EAF0'
+
   }
 })
 
@@ -63,13 +62,12 @@ class Homepage extends React.Component {
     const { params } = match
     const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
     return (<div>
-      <Paper className={classes.paper}>
+      <div >
         <NavBar />
         <SearchLocationBar history={this.props.history} hasSearchResults={hasSearchResults} />
           <Collapse in ={!hasSearchResults}>
-            <IconeSport />
           </Collapse>
-      </Paper>
+      </div>
         <Collapse in={!hasSearchResults}>
           <IconePresentation />
         </Collapse>

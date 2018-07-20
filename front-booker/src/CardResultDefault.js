@@ -13,7 +13,7 @@ const styles = theme => ({
   },
   paper: {
     height: 500,
-    backgroundColor: '#E6EAF0'
+    backgroundColor: 'none'
   },
   paperCalendar: {
     height: 270

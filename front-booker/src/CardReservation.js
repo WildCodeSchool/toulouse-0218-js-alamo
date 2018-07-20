@@ -17,7 +17,7 @@ const styles = theme => ({
   },
   paper: {
     height: 500,
-    backgroundColor: '#E6EAF0'
+    backgroundColor: 'none'
   },
   paperCalendar: {
     height: 270
@@ -30,7 +30,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   button: {
-    backgroundColor: '#66FF33',
+    backgroundColor: '#00ccff',
     marginRight: 20,
     color: 'white'
   },

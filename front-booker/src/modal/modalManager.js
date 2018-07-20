@@ -24,7 +24,7 @@ function getModalStyle() {
 const styles = theme => ({
   paper: {
     position: "absolute",
-    width: theme.spacing.unit * 50,
+    width: theme.spacing.unit * 70,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4
@@ -54,7 +54,7 @@ class SimpleModal extends React.Component {
             className={classes.btn}
             onClick={this.handleOpen}
             variant="raised"
-            style={{ backgroundColor: "#66FF33" }}
+            style={{ backgroundColor: "#00ccff" }}
           >
             Vous êtes gérant de salle de sport ?
           </Button>
@@ -64,7 +64,7 @@ class SimpleModal extends React.Component {
             className={classes.btn}
             onClick={this.handleOpen}
             variant="raised"
-            style={{ backgroundColor: "#66FF33" }}
+            style={{ backgroundColor: "#00ccff" }}
           >
             gérant ?
           </Button>

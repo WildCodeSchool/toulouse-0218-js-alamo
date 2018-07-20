@@ -12,11 +12,12 @@ import { signedOut } from '../actions'
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: ''
   },
   flex: {
     flex: 1,
-    color: '#66FF33'
+    color: '#00ccff',
+    textShadow: '1px 1px 1px #000'
   },
   link: {
     textDecoration: 'none',
@@ -33,8 +34,8 @@ class NavBarConnected extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      
-    }    
+
+    }
   }
 
   render () {
@@ -43,7 +44,7 @@ class NavBarConnected extends React.Component {
       <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', flex: 1 }}>
-            <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'ChampagneLimousines' }}>
+            <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'cabin' }}>
             Alamo
             </Typography>
           </Link>
@@ -52,7 +53,7 @@ class NavBarConnected extends React.Component {
           </Button>
           <a href ="#" onClick={this.props.signedOut}><img src={logout} className={classes.logout} alt="logo" /></a>
         </Toolbar>
-      </AppBar>      
+      </AppBar>
     </div>
     )
   }

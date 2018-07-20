@@ -7,7 +7,7 @@ import NavBar from './components/NavBar'
 
 const styles = theme => ({
   paper: {
-    backgroundColor: '#E6EAF0',
+    backgroundColor: 'none',
     height: 500
   }
 })

@@ -17,7 +17,7 @@ const styles = () => ({
   },
   paper: {
     height: 500,
-    backgroundColor: '#E6EAF0'
+    backgroundColor: '#00ccff'
   },
   paperCalendar: {
     // height: 270
@@ -38,7 +38,7 @@ const styles = () => ({
     color: '#333'
   },
   enabledButton: {
-    backgroundColor: '#66FF33',
+    backgroundColor: '#00ccff',
     color: 'white'
   },
   link: {
