@@ -1,16 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Homepage from './Homepage'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Reservation from './Reservation'
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      user: {}
-    }
-  }
-
   render () {
     return (
       <Router>

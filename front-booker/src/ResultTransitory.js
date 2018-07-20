@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 import Paper from '@material-ui/core/Paper'
 import CardResultDefault from './CardResultDefault'
 import CardResultMember from './CardResultMember'
+import CardResultEmpty from './CardResultEmpty'
 import AlamoMap from './AlamoMap'
 
 
@@ -56,21 +57,21 @@ class ResultTransitory extends React.Component {
           </form>
         </Grid>
         <Grid container direction={direction} >
-            <Grid item xs={12} md={5}>
-              <div>
-                {
-                  clubs.map((club, k) => {
-                    return club.member ? <CardResultMember club={club} key={k} timeSlots={timeSlots} reservations={reservations} /> : <CardResultDefault club={club} key={k} />
-                  })
-                }
-              </div>
-            </Grid>
-            <Grid item xs={12} md={7}>
-              <div>
-                <AlamoMap city={this.props.city} markers={clubs} />
-              </div>
-            </Grid>
+          <Grid item xs={12} md={5}>
+            {
+              clubs.length === 0
+                ? <CardResultEmpty />
+                : clubs.map((club, k) => {
+                  return club.member ? <CardResultMember club={club} key={k} timeSlots={timeSlots} reservations={reservations} /> : <CardResultDefault club={club} key={k} />
+                })
+            }
           </Grid>
+          <Grid item xs={12} md={7}>
+            <div>
+              <AlamoMap city={this.props.city} markers={clubs} />
+            </div>
+          </Grid>
+        </Grid>
       </Paper>
     )
   }
