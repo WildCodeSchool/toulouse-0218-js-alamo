@@ -35,7 +35,7 @@ function renderSuggestion (suggestion, { query, isHighlighted }) {
   const matches = match(suggestion.label, query)
   const parts = parse(suggestion.label, matches)
   const exactMatch = suggestion.label.toLowerCase() === this.state.value.toLowerCase()
-  const background = exactMatch ? '#ABFF90' : '#FFF'
+  const background = exactMatch ? '#2FD5FC' : '#FFF'
   return (
     <MenuItem style={{background}} selected={isHighlighted} component="div">
       <div>
@@ -90,8 +90,13 @@ function getSuggestions (value) {
 const styles = theme => ({
   container: {
     backgroundColor: theme.palette.common.white,
+
+    boxShadow: '0 3px 0px 2px',
+
     boxSizing: 'border-box',
-    border: '1px solid #A2A9BC',
+//    border: '1px solid #A2A9BC',
+    border: '1px solid', 
+    borderColor: '#000000',
     flexGrow: 1,
     position: 'relative',
     height: '100%'
@@ -100,7 +105,7 @@ const styles = theme => ({
     border: '1px solid #A2A9BC'
   },
   borderOk: {
-    border: '1px solid #A2FFBC'
+    border: '1px solid #00ccff'
   },
   borderError: {
     border: '1px solid #FFA9BC'

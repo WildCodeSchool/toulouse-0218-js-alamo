@@ -2,15 +2,16 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import footer from '../images/footer.png'
 
 const styles = {
   root: {
     flexGrow: 1
   },
-  paper: {
-    backgroundColor: '#E6EAF0'
+  item: {
+    width: '50%',
+    textAlign: 'center'
   }
+
 }
 
 class IconePresentation extends React.Component {
@@ -25,18 +26,24 @@ class IconePresentation extends React.Component {
         <Grid item xs={12}>
           <Grid
             container
-            spacing={8}
+            spacing={2}
             className={classes.demo}
             direction={'row'}
             justify={'center'}
             alignItems={'center'}
           >
             <Grid item xs={12}>
-              <h1 style={{textAlign: 'center', fontSize: '40px', color: '#49515F', paddingTop: '10vh'}}> En quelques clics...</h1>
+              <h1 style={{textAlign: 'center', fontSize: '20px', color: '#000000', paddingTop: '3vh'}}> En quelques clics...</h1>
             </Grid>
-            <Grid container item spacing={0} justify="center" >
-              <Grid item xs={9} style={{width: '100%'}}>
-                <img src={footer} className="footer" alt="footer" style={{width: '100%', marginBottom: '5%'}} />
+            <Grid container spacing={1} justify="center" >
+              <Grid item xs={12} md={4} className={classes.item} >
+                <h4 style={{color: '#00ccff', paddingLeft: '0vh'}} > Réservez votre session sportive en ligne </h4>
+              </Grid>
+              <Grid item xs={12} md={4} className={classes.item} justify="center" >
+                <h4 style={{color: '#00ccff', paddingLeft: '5vh'}} > Réservez votre session sportive en ligne </h4>
+              </Grid>
+              <Grid item xs={12} md={4} className={classes.item}justify="left" >
+                <h4 style={{color: '#00ccff', paddingLeft: '10vh'}} > Réservez votre session sportive en ligne </h4>
               </Grid>
             </Grid>
           </Grid>

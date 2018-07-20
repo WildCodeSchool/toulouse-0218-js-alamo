@@ -148,7 +148,7 @@ class Register extends React.Component {
           
         </FormControl> */}
         <div className={classes.center}>
-          <Button type="submit" onClick={this.onSubmit} style={{ backgroundColor: '#66ff33', variant: 'raised' }}>
+          <Button type="submit" onClick={this.onSubmit} style={{ backgroundColor: '#00ccff', variant: 'raised' }}>
             Sign in
           </Button>
         </div>

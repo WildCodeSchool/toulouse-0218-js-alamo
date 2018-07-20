@@ -9,14 +9,17 @@ import Modal from '../modal/modal'
 import ModalManager from '../modal/modalManager'
 import { Link } from 'react-router-dom'
 
+
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: ""
   },
   flex: {
     flex: 1,
-    color: '#66FF33'
-  }
+    color: '#00ccff',
+    textShadow: '2px 2px 2px rgba(0, 0, 0, 0.5)'
+  },
+  
 }
 
 class NavBarGuest extends React.Component {
@@ -43,10 +46,11 @@ class NavBarGuest extends React.Component {
     const { classes } = this.props
     const { modalOpen } = this.state
     return (<div className={classes.root}>
-      <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
+      <AppBar position="static" style={{backgroundColor: '#ffff', boxShadow: 'none'}}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', flex: 1 }}>
-            <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'ChampagneLimousines' }}>
+            <Typography variant="title" className={classes.flex} style={{ fontSize: '100px', fontFamily: 'cabin',
+            }}>
             Alamo
             </Typography>
           </Link>

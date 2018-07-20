@@ -72,7 +72,7 @@ class SelectBar extends React.Component {
           rtl={this.state.rtl}
           simpleValue
           value={value}
-          style={{ fontFamily: 'Roboto, Helvetica', borderRadius: 0, border: 'none', padding: '10px', verticalAlign: 'middle' }}
+          style={{ fontFamily: 'Roboto, Helvetica',  boxShadow: '0 3px 0px 2px', borderRadius: 0, borderColor: '#000000', padding: '10px', verticalAlign: 'middle' }}
         />
       </div>
     )
