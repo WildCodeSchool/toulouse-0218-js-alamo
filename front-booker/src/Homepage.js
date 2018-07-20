@@ -24,7 +24,8 @@ class Homepage extends React.Component {
     timeSlots: [],
     reservations: []
   }
-  componentWillReceiveProps(nextProps) {
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
     console.log('willReceiveProps', nextProps)
     const params = nextProps.match.params
     const hasSearchResults = noEmpty(params.sport) && noEmpty(params.city)
@@ -48,13 +49,13 @@ class Homepage extends React.Component {
   }
   fetchMarkers (params) {
     fetch(`/api/cities/${params.city}/sport-match/${params.sport}`)
-    .then(res => res.json())
-    .then(data => this.setState({
-      markers: data.markers,
-      city: data.city,
-      timeSlots: data.timeSlots,
-      reservations: data.reservations
-    }))
+      .then(res => res.json())
+      .then(data => this.setState({
+        markers: data.markers,
+        city: data.city,
+        timeSlots: data.timeSlots,
+        reservations: data.reservations
+      }))
   }
   render () {
     const { classes, match } = this.props
@@ -64,6 +65,7 @@ class Homepage extends React.Component {
     return (<div>
       <div >
         <NavBar />
+<<<<<<< HEAD
         <SearchLocationBar history={this.props.history} hasSearchResults={hasSearchResults} />
           <Collapse in ={!hasSearchResults}>
           </Collapse>
@@ -73,7 +75,19 @@ class Homepage extends React.Component {
         </Collapse>
         <Collapse in={hasSearchResults}>
           <ResultTransitory city={city} clubs={markers} timeSlots={timeSlots} reservations={reservations} />
+=======
+        <SearchLocationBar match={this.props.match} history={this.props.history} hasSearchResults={hasSearchResults} />
+        <Collapse in ={!hasSearchResults}>
+          <IconeSport />
+>>>>>>> 18a37be362300727cd8d48b51163cc67b35cc831
         </Collapse>
+      </Paper>
+      <Collapse in={!hasSearchResults}>
+        <IconePresentation />
+      </Collapse>
+      <Collapse in={hasSearchResults}>
+        <ResultTransitory city={city} clubs={markers} timeSlots={timeSlots} reservations={reservations} />
+      </Collapse>
     </div>
     )
   }

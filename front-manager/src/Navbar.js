@@ -55,7 +55,7 @@ function ButtonAppBar (props) {
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
-        <Toolbar >
+        <Toolbar>
           <Typography variant="title" color="#66FF33"  >
             Alamo
           </Typography>

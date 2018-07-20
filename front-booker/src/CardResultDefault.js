@@ -9,6 +9,8 @@ import PropTypes from 'prop-types'
 
 const styles = theme => ({
   card: {
+    marginRight: 10,
+    marginBottom: 10,
     height: 300
   },
   paper: {

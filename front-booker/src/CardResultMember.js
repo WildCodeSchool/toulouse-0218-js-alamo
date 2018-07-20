@@ -6,13 +6,14 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
-import MyCalendar from '../src/components/MyCalendar'
+import { withRouter } from 'react-router-dom'
 import WeekCalendar from './components/WeekCalendar'
 import classNames from 'classnames'
 
 const styles = () => ({
   card: {
+    marginRight: 10,
+    marginBottom: 10
     // height: 300
   },
   paper: {

@@ -6,11 +6,15 @@ import NavBarConnected from './NavBarConnected'
 
 class NavBar extends React.Component {
   render () {
-    const {user} = this.props
+    const { user } = this.props
     return (
       this.props.user ? <NavBarConnected user={user} /> : <NavBarGuest />
     )
   }
+}
+
+NavBar.propTypes = {
+  user: PropTypes.object
 }
 
 const mapStateToProps = state => ({ 

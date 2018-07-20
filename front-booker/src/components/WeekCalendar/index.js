@@ -48,7 +48,7 @@ class WeekCalendar extends React.Component {
     })
   }
   render () {
-    const { weekIndex, dates, now } = this.state
+    const { weekIndex, dates } = this.state
     const { timeSlots, reservations, classes, onClickSlot } = this.props
     const sow = dates[0]
     const sowMonth = sow.getMonth()
