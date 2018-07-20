@@ -19,6 +19,15 @@ const styles = _theme => ({
     color: 'none',
     borderColor: '#000000',
     border: '1px solid'
+  },
+  headline: {
+    color: '#FFF',
+    width: '100%',
+    textShadow: '2px 2px 2px rgba(0, 0, 0, 0.5)',
+    textAlign: 'center'
+    // background: 'rgba(0, 0, 0, 0.2)',
+    // padding: 15,
+    // margin: 0
   }
 })
 
@@ -111,7 +120,7 @@ class SearchLocationBar extends React.Component {
                 style={{height: gridHeight}} // A VOIR AVEC BENOIT MET UNE MARGE EN BAS DE PAGE !
               >
                 <form onSubmit={this.onSubmit}>
-              {!hasSearchResults && <h1 style={{color: '#49515F'}} > Réservez votre session sportive en ligne </h1>}
+              {!hasSearchResults && <h1 className={classes.headline} > Réservez votre session sportive en ligne </h1>}
 
               <Grid container spacing={0} >
                 <Grid item xs={12} sm={5}>
