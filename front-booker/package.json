@@ -8,6 +8,7 @@
     "@material-ui/icons": "^1.1.0",
     "autosuggest-highlight": "^3.1.1",
     "class-names": "^1.0.0",
+    "classnames": "^2.2.6",
     "daypilot-pro-react": "https://npm.daypilot.org/daypilot-pro-react/trial/2018.2.3319.tar.gz",
     "eslint": "^4.19.1",
     "events": "^3.0.0",
