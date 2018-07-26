@@ -12,13 +12,13 @@ import { Link } from 'react-router-dom'
 
 const styles = {
   root: {
-    flexGrow: ""
+    flexGrow: ''
   },
   flex: {
     flex: 1,
     color: '#00ccff',
     textShadow: '2px 2px 2px rgba(0, 0, 0, 0.5)'
-  },
+  }
   
 }
 
@@ -49,7 +49,7 @@ class NavBarGuest extends React.Component {
       <AppBar position="static" style={{backgroundColor: '#ffff', boxShadow: 'none'}}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', flex: 1 }}>
-            <Typography variant="title" className={classes.flex} style={{ fontSize: '100px', fontFamily: 'cabin',
+            <Typography variant="title" className={classes.flex} style={{ fontSize: '100px', fontFamily: 'cabin'
             }}>
             Alamo
             </Typography>

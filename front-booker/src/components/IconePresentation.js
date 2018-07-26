@@ -37,13 +37,13 @@ class IconePresentation extends React.Component {
             </Grid>
             <Grid container spacing={1} justify="center" >
               <Grid item xs={12} md={4} className={classes.item} >
-                <h4 style={{color: '#00ccff', paddingLeft: '0vh'}} > Réservez votre session sportive en ligne </h4>
+                <h4 style={{color: '#00ccff', paddingLeft: '0vh'}} > Trouver un clubs prés de chez soi </h4>
               </Grid>
               <Grid item xs={12} md={4} className={classes.item} justify="center" >
-                <h4 style={{color: '#00ccff', paddingLeft: '5vh'}} > Réservez votre session sportive en ligne </h4>
+                <h4 style={{color: '#00ccff', paddingLeft: '5vh'}} > Reserve un terrain ou un cours </h4>
               </Grid>
               <Grid item xs={12} md={4} className={classes.item}justify="left" >
-                <h4 style={{color: '#00ccff', paddingLeft: '10vh'}} > Réservez votre session sportive en ligne </h4>
+                <h4 style={{color: '#00ccff', paddingLeft: '10vh'}} > Enregistrer ses cours et clubs favoris</h4>
               </Grid>
             </Grid>
           </Grid>

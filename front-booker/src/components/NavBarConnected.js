@@ -17,7 +17,7 @@ const styles = {
   flex: {
     flex: 1,
     color: '#00ccff',
-    textShadow: '1px 1px 1px #000'
+    textShadow: '2px 2px 2px rgba(0, 0, 0, 0.5)'
   },
   link: {
     textDecoration: 'none',
@@ -41,10 +41,10 @@ class NavBarConnected extends React.Component {
   render () {
     const { classes } = this.props
     return (<div className={classes.root}>
-      <AppBar position="static" style={{backgroundColor: '#E6EAF0', boxShadow: 'none'}}>
+      <AppBar position="static" style={{backgroundColor: '#ffff', boxShadow: 'none'}}>
         <Toolbar>
           <Link to='/' style={{ textDecoration: 'none', flex: 1 }}>
-            <Typography variant="title" className={classes.flex} style={{ fontSize: '50px', fontFamily: 'cabin' }}>
+            <Typography variant="title" className={classes.flex} style={{ fontSize: '100px', fontFamily: 'cabin' }}>
             Alamo
             </Typography>
           </Link>
