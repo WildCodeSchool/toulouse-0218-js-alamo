@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
@@ -31,6 +32,11 @@ const styles = theme => ({
     marginRight: 20,
     color: 'white'
   },
+  buttonDisabled: {
+    backgroundColor: '#bbb',
+    marginRight: 20,
+    color: 'white'
+  },
   link: {
     color: 'white',
     textDecoration: 'none'
@@ -59,7 +65,7 @@ class CardReservation extends React.Component {
       })
   }
   render () {
-    const { classes, data } = this.props
+    const { classes, data, user } = this.props
     const date = new Date(this.props.date)
     const dayOfMonth = date.getDate()
     const month = formatMonth(date.getMonth())
@@ -96,9 +102,13 @@ class CardReservation extends React.Component {
                   <strong>Lieu</strong>: {data.resource} <br />
                   <strong>Date</strong>: {formattedDate} de {startHour} &agrave; {endHour} <br />
                 </Typography>
-                <Button className={classes.button} onClick={this.sendBookingRequest}>
+                <Button
+                  disabled={!user}
+                  className={user ? classes.button : classes.buttonDisabled}
+                  onClick={this.sendBookingRequest}>
                   Confirmer
                 </Button>
+                { !user && <Typography variant="caption">Connectez-vous pour pouvoir réserver.</Typography>}
               </CardContent>
             </Card>
           </Grid>
@@ -108,4 +118,10 @@ class CardReservation extends React.Component {
   }
 }
 
-export default withStyles(styles)(CardReservation)
+const mapStateToProps = state => ({
+  user: state.user.user
+})
+
+export default connect(mapStateToProps)(
+  withStyles(styles)(CardReservation)
+)
